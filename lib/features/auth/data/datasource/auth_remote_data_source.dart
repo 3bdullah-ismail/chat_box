@@ -22,6 +22,4 @@ abstract class AuthRemoteDataSource {
   Future<String> signInWithGoogle();
 
   Future<void> saveUser(UserModel user);
-  //
-  // Future<UserModel> getUser(String uid);
 }

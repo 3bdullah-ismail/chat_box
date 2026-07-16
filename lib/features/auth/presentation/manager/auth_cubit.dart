@@ -21,8 +21,6 @@ class AuthCubit extends Cubit<AuthState> {
 
   static AuthCubit get(context) => BlocProvider.of(context);
 
-  // ─── Private helper ────────────────────────────────────────────────────────
-  /// Emits [loading], runs [action], then emits the success/error state.
   Future<void> _run<T>({
     required AuthState loading,
     required Future<T> Function() action,

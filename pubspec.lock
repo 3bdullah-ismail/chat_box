@@ -161,6 +161,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.0"
+  cli_util:
+    dependency: transitive
+    description:
+      name: cli_util
+      sha256: ff6785f7e9e3c38ac98b2fb035701789de90154024a75b6cb926445e83197d1c
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.2"
   clock:
     dependency: transitive
     description:
@@ -257,14 +265,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.8"
-  custom_sliding_segmented_control:
-    dependency: "direct main"
-    description:
-      name: custom_sliding_segmented_control
-      sha256: bc747b1500284bff36fc8c61774c9a3ca35c1dca4d570141c8a2569b4f984bf3
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.8.5"
   dart_style:
     dependency: transitive
     description:
@@ -393,54 +393,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.7+10"
-  firebase_messaging:
-    dependency: "direct main"
-    description:
-      name: firebase_messaging
-      sha256: ce21a510e5a9aed67a0404476981e19ec0361a0301eeba547dc93dc2e7dec99a
-      url: "https://pub.dev"
-    source: hosted
-    version: "16.4.1"
-  firebase_messaging_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_messaging_platform_interface
-      sha256: e10f6d521e7ed663d0ea2f4ec7de4c6729f8c2ce25d32faf6d6b4219da8515c2
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.9.0"
-  firebase_messaging_web:
-    dependency: transitive
-    description:
-      name: firebase_messaging_web
-      sha256: "7ab45dfaf8efcd1a769baa9b8debbd0da281f5d3fc07274296b564396a980292"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.2.1"
-  firebase_storage:
-    dependency: "direct main"
-    description:
-      name: firebase_storage
-      sha256: f732bbcd82d21cfbe49b6fe5f4c50334f5f3660a151f004f58da388f8e39e6d3
-      url: "https://pub.dev"
-    source: hosted
-    version: "13.4.3"
-  firebase_storage_platform_interface:
-    dependency: transitive
-    description:
-      name: firebase_storage_platform_interface
-      sha256: "2515a8d16be44fffb3782669543804a651e73f637bb668db77d76a5bd38c396f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.3"
-  firebase_storage_web:
-    dependency: transitive
-    description:
-      name: firebase_storage_web
-      sha256: "05813d665afa2c2bafaba62c97dc1b510886b1b4fcec49bf05934bd78795c6e7"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.11.9"
   fixnum:
     dependency: transitive
     description:
@@ -462,6 +414,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.1.1"
+  flutter_launcher_icons:
+    dependency: "direct main"
+    description:
+      name: flutter_launcher_icons
+      sha256: "10f13781741a2e3972126fae08393d3c4e01fa4cd7473326b94b72cf594195e7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.14.4"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -486,6 +446,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.9.3"
+  flutter_spinkit:
+    dependency: transitive
+    description:
+      name: flutter_spinkit
+      sha256: "77850df57c00dc218bfe96071d576a8babec24cf58b2ed121c83cca4a2fdce7f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.2.2"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -752,6 +720,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.1"
+  load_switch:
+    dependency: "direct main"
+    description:
+      name: load_switch
+      sha256: "723b3e69e3b421d90be12c1a68596b64faa5a3361a98cbf6de2a04f15dcf0db6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
+  logger:
+    dependency: transitive
+    description:
+      name: logger
+      sha256: "25aee487596a6257655a1e091ec2ae66bc30e7af663592cc3a27e6591e05035c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.7.0"
   logging:
     dependency: transitive
     description:
@@ -976,6 +960,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.0"
+  rename:
+    dependency: "direct main"
+    description:
+      name: rename
+      sha256: da5f4d67f8c68f066ad04edfd6585495dbe595f2baf3b1999eb6af1805d79539
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   rive:
     dependency: transitive
     description:
@@ -1181,6 +1173,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.16"
+  timeago:
+    dependency: "direct main"
+    description:
+      name: timeago
+      sha256: b05159406a97e1cbb2b9ee4faa9fb096fe0e2dfcd8b08fcd2a00553450d3422e
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.7.1"
   typed_data:
     dependency: transitive
     description:

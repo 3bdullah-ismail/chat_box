@@ -44,8 +44,6 @@ TextStyle getMediumStyle({
   );
 }
 
-// bold style
-
 TextStyle getBoldStyle({
   double fontSize = FontSize.s11,
   required Color color,
@@ -54,6 +52,46 @@ TextStyle getBoldStyle({
   return _getTextStyle(
     fontSize,
     FontWeightManager.bold,
+    color,
+    letterSpacing: letterSpacing,
+  );
+}
+
+TextStyle getSemiBoldStyle({
+  double fontSize = FontSize.s11,
+  required Color color,
+  double? letterSpacing,
+}) {
+  return _getTextStyle(
+    fontSize,
+    FontWeightManager.semiBold,
+    color,
+    letterSpacing: letterSpacing,
+  );
+}
+
+TextStyle getExtraBoldStyle({
+  double fontSize = FontSize.s11,
+  required Color color,
+  double? letterSpacing,
+}) {
+  return _getTextStyle(
+    fontSize,
+    FontWeightManager.extraBold,
+    color,
+    letterSpacing: letterSpacing,
+  );
+}
+
+TextStyle getTextStyle(
+  double fontSize,
+  FontWeight fontWeight,
+  Color color, {
+  double? letterSpacing,
+}) {
+  return _getTextStyle(
+    fontSize,
+    fontWeight,
     color,
     letterSpacing: letterSpacing,
   );

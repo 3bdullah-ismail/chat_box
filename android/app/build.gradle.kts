@@ -8,10 +8,11 @@ plugins {
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:34.15.0"))
     implementation("com.google.firebase:firebase-analytics")
+    implementation("androidx.multidex:multidex:2.0.1")
 }
 
 android {
-    namespace = "com.example.chat_app"
+    namespace = "com.example.Silora"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -25,9 +26,10 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.chat_app"
+        applicationId = "com.example.Silora"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
+        multiDexEnabled = true
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }

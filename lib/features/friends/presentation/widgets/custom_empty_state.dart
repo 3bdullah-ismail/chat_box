@@ -1,6 +1,7 @@
-import 'package:chat_app/core/constants/color_manager.dart';
-import 'package:chat_app/core/constants/font_manager.dart';
-import 'package:chat_app/core/constants/styles_manager.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/font_manager.dart';
+import 'package:silora/core/constants/styles_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -24,7 +25,7 @@ class CustomEmptyState extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        padding: EdgeInsets.symmetric(horizontal: AppPadding.p24.w),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,7 +40,7 @@ class CustomEmptyState extends StatelessWidget {
               ),
               child: Icon(icon, size: iconSize.sp, color: ColorManager.gray),
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: AppSize.s20.h),
             Text(
               title,
               textAlign: TextAlign.center,
@@ -48,7 +49,7 @@ class CustomEmptyState extends StatelessWidget {
                 fontSize: FontSize.s20.sp,
               ),
             ),
-            SizedBox(height: 8.h),
+            SizedBox(height: AppSize.s8.h),
             Text(
               description,
               textAlign: TextAlign.center,
@@ -57,7 +58,7 @@ class CustomEmptyState extends StatelessWidget {
                 fontSize: FontSize.s14.sp,
               ),
             ),
-            if (action != null) ...[SizedBox(height: 24.h), action!],
+            if (action != null) ...[SizedBox(height: AppSize.s24.h), action!],
           ],
         ),
       ),

@@ -1,4 +1,4 @@
-import 'package:chat_app/core/constants/color_manager.dart';
+import 'package:silora/core/constants/color_manager.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/font_manager.dart';
@@ -46,7 +46,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      style: const TextStyle(color: ColorManager.black),
+      style: getRegularStyle(color: ColorManager.black, fontSize: FontSize.s16),
       keyboardType: widget.keyboardType,
       controller: widget.controller,
       validator: widget.validator,

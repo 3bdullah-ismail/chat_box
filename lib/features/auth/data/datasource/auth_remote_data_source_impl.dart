@@ -1,4 +1,4 @@
-import 'package:chat_app/core/error/exceptions.dart';
+import 'package:silora/core/error/exceptions.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -43,6 +43,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
           name: name,
           email: email,
           username: username,
+          joinedAt: DateTime.now(),
           isProfileCompleted: true,
         ),
       );
@@ -131,6 +132,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
             name: user.displayName ?? 'Google User',
             email: user.email ?? '',
             username: user.email?.split('@')[0] ?? 'google_user',
+            joinedAt: DateTime.now(),
             isProfileCompleted: true,
           ),
         );
@@ -164,24 +166,6 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
       throw const ServerException('Failed to sign out properly.');
     }
   }
-
-  // @override
-  // Future<UserModel> getUser(String uid) async {
-  //   try {
-  //     final doc = await fireStore.collection('users').doc(uid).get();
-  //
-  //     if (!doc.exists || doc.data() == null) {
-  //       throw const ServerException('User not found');
-  //     }
-  //
-  //     return UserModel.fromFirestore(doc);
-  //   } catch (e) {
-  //     if (e is ServerException || e is AuthException) rethrow;
-  //     throw const ServerException(
-  //       'Failed to fetch user data. Please try again.',
-  //     );
-  //   }
-  // }
 
   @override
   Future<String> verificationEmail() async {

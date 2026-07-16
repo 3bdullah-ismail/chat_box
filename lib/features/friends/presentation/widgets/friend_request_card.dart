@@ -1,8 +1,10 @@
-import 'package:chat_app/core/constants/color_manager.dart';
-import 'package:chat_app/core/constants/styles_manager.dart';
-import 'package:chat_app/core/widgets/custom_elevated_button.dart';
-import 'package:chat_app/features/auth/data/models/user_model.dart';
-import 'package:chat_app/features/friends/presentation/widgets/friend_base_card.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/font_manager.dart';
+import 'package:silora/core/constants/styles_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
+import 'package:silora/core/widgets/custom_elevated_button.dart';
+import 'package:silora/features/auth/data/models/user_model.dart';
+import 'package:silora/features/friends/presentation/widgets/friend_base_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -29,12 +31,15 @@ class FriendRequestCard extends StatelessWidget {
     return FriendBaseCard(
       title: user.name,
       avatarSize: isCompact ? 48.0 : 54.0,
-      padding: isCompact ? null : EdgeInsets.all(16.w),
+      padding: isCompact ? null : EdgeInsets.all(AppPadding.p16.w),
       subtitle: Text(
         "@${user.username}",
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
-        style: getMediumStyle(color: ColorManager.neutralGray, fontSize: 14.sp),
+        style: getMediumStyle(
+          color: ColorManager.neutralGray,
+          fontSize: FontSize.s14.sp,
+        ),
       ),
       trailing: isCompact ? _buildCompactButtons() : null,
       bottom: !isCompact ? _buildExpandedButtons() : null,
@@ -45,32 +50,38 @@ class FriendRequestCard extends StatelessWidget {
     if (!isReceived) return null;
     return Row(
       mainAxisSize: MainAxisSize.min,
-      spacing: 6.w,
+      spacing: AppSize.s6.w,
       children: [
         CustomElevatedButton(
           label: "Accept",
           width: 75.w,
-          height: 36.h,
+          height: AppSize.s36.h,
           backgroundColor: ColorManager.black,
-          textStyle: getMediumStyle(color: ColorManager.white, fontSize: 13.sp),
+          textStyle: getMediumStyle(
+            color: ColorManager.white,
+            fontSize: FontSize.s13.sp,
+          ),
           onTap: onAccept ?? () {},
         ),
         SizedBox(
           width: 75.w,
-          height: 36.h,
+          height: AppSize.s36.h,
           child: TextButton(
             onPressed: onDecline ?? () {},
             style: TextButton.styleFrom(
               backgroundColor: ColorManager.lightGray,
               foregroundColor: ColorManager.error,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.r),
+                borderRadius: BorderRadius.circular(AppRadius.r8.r),
               ),
               padding: EdgeInsets.zero,
             ),
             child: Text(
               "Decline",
-              style: getMediumStyle(color: ColorManager.error, fontSize: 13.sp),
+              style: getMediumStyle(
+                color: ColorManager.error,
+                fontSize: FontSize.s13.sp,
+              ),
             ),
           ),
         ),
@@ -85,33 +96,33 @@ class FriendRequestCard extends StatelessWidget {
           Expanded(
             child: CustomElevatedButton(
               label: "Accept",
-              height: 44.h,
+              height: AppSize.s44.h,
               backgroundColor: ColorManager.black,
               textStyle: getMediumStyle(
                 color: ColorManager.white,
-                fontSize: 14.sp,
+                fontSize: FontSize.s14.sp,
               ),
               onTap: onAccept ?? () {},
             ),
           ),
-          SizedBox(width: 12.w),
+          SizedBox(width: AppSize.s12.w),
           Expanded(
             child: OutlinedButton(
               onPressed: onDecline ?? () {},
               style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: ColorManager.borderGray),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.r),
+                  borderRadius: BorderRadius.circular(AppRadius.r8.r),
                 ),
                 backgroundColor: ColorManager.white,
-                fixedSize: Size.fromHeight(44.h),
+                fixedSize: Size.fromHeight(AppSize.s44.h),
                 padding: EdgeInsets.zero,
               ),
               child: Text(
                 "Decline",
                 style: getMediumStyle(
                   color: ColorManager.nearBlack,
-                  fontSize: 14.sp,
+                  fontSize: FontSize.s14.sp,
                 ),
               ),
             ),
@@ -121,11 +132,11 @@ class FriendRequestCard extends StatelessWidget {
     } else {
       return CustomElevatedButton(
         label: "Cancel Request",
-        height: 44.h,
+        height: AppSize.s44.h,
         backgroundColor: ColorManager.lightGray,
         textStyle: getMediumStyle(
           color: ColorManager.nearBlack,
-          fontSize: 14.sp,
+          fontSize: FontSize.s14.sp,
         ),
         onTap: onCancel ?? () {},
       );

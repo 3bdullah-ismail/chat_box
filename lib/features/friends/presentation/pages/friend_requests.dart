@@ -3,14 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:chat_app/core/constants/color_manager.dart';
-import 'package:chat_app/core/constants/font_manager.dart';
-import 'package:chat_app/core/constants/styles_manager.dart';
-import 'package:chat_app/core/widgets/loading.dart';
-import 'package:chat_app/features/friends/presentation/manager/friend_cubit.dart';
-import 'package:chat_app/features/friends/presentation/widgets/skeleton_list_widget.dart';
-import 'package:chat_app/features/friends/presentation/widgets/received_requests_list.dart';
-import 'package:chat_app/features/friends/presentation/widgets/sent_requests_list.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/font_manager.dart';
+import 'package:silora/core/constants/styles_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
+import 'package:silora/core/widgets/loading.dart';
+import 'package:silora/features/friends/presentation/manager/friend_cubit.dart';
+import 'package:silora/features/friends/presentation/widgets/skeleton_list_widget.dart';
+import 'package:silora/features/friends/presentation/widgets/received_requests_list.dart';
+import 'package:silora/features/friends/presentation/widgets/sent_requests_list.dart';
 
 class FriendRequests extends StatefulWidget {
   const FriendRequests({super.key});
@@ -74,11 +75,14 @@ class _FriendRequestsState extends State<FriendRequests> {
           ),
           body: SafeArea(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+              padding: EdgeInsets.symmetric(
+                horizontal: AppPadding.p24.w,
+                vertical: AppPadding.p20.h,
+              ),
               child: Column(
                 children: [
                   TabBar(
-                    dividerColor: Colors.transparent,
+                    dividerColor: ColorManager.transparent,
                     indicatorColor: ColorManager.black,
                     indicatorSize: TabBarIndicatorSize.tab,
                     labelStyle: getBoldStyle(
@@ -114,7 +118,7 @@ class _FriendRequestsState extends State<FriendRequests> {
                           return Center(
                             child: Text(
                               state.message,
-                              style: const TextStyle(color: ColorManager.error),
+                              style: getRegularStyle(color: ColorManager.error),
                             ),
                           );
                         }

@@ -1,3 +1,4 @@
+import 'package:silora/core/constants/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,9 +15,11 @@ class OrDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Expanded(child: Divider(color: ColorManager.gray, thickness: 1)),
+        const Expanded(
+          child: Divider(color: ColorManager.gray, thickness: AppSize.s1),
+        ),
         Padding(
-          padding: REdgeInsets.symmetric(horizontal: 8),
+          padding: REdgeInsets.symmetric(horizontal: AppPadding.p8),
           child: Text(
             text,
             style: getBoldStyle(
@@ -25,7 +28,9 @@ class OrDivider extends StatelessWidget {
             ),
           ),
         ),
-        const Expanded(child: Divider(color: ColorManager.gray, thickness: 1)),
+        const Expanded(
+          child: Divider(color: ColorManager.gray, thickness: AppSize.s1),
+        ),
       ],
     );
   }

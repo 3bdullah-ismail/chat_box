@@ -1,10 +1,10 @@
-import 'package:chat_app/core/constants/color_manager.dart';
-import 'package:chat_app/core/constants/font_manager.dart';
-import 'package:chat_app/core/constants/styles_manager.dart';
-import 'package:chat_app/core/constants/values_manager.dart';
-import 'package:chat_app/core/routes/app_routes_names.dart';
-import 'package:chat_app/features/auth/presentation/manager/auth_cubit.dart';
-import 'package:chat_app/features/auth/presentation/widgets/sign_in_social_section_widget.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/font_manager.dart';
+import 'package:silora/core/constants/styles_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
+import 'package:silora/core/routes/app_routes_names.dart';
+import 'package:silora/features/auth/presentation/manager/auth_cubit.dart';
+import 'package:silora/features/auth/presentation/widgets/sign_in_social_section_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,15 +29,15 @@ class SignInFormCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: REdgeInsets.all(24),
+      padding: REdgeInsets.all(AppPadding.p24),
       decoration: BoxDecoration(
         color: ColorManager.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppRadius.r20),
         boxShadow: [
           BoxShadow(
             color: ColorManager.gray.withValues(alpha: 0.2),
-            blurRadius: 10,
-            offset: const Offset(0, 5),
+            blurRadius: AppSize.s10,
+            offset: const Offset(0, AppSize.s4),
           ),
         ],
       ),

@@ -1,16 +1,21 @@
-import 'package:chat_app/core/constants/color_manager.dart';
+import 'package:silora/core/constants/styles_manager.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/font_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
 import 'package:flutter/material.dart';
 
 class ChatBubble extends StatelessWidget {
   final String text;
   final bool isMe;
   final String time;
+  final bool isSeen;
 
   const ChatBubble({
     super.key,
     required this.text,
     required this.isMe,
     required this.time,
+    this.isSeen = false,
   });
 
   @override
@@ -18,73 +23,66 @@ class ChatBubble extends StatelessWidget {
     return Align(
       alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
       child: Column(
-        // بيحاذي المحتوى بالكامل يمين أو شمال بناءً على الراسل
         crossAxisAlignment: isMe
             ? CrossAxisAlignment.end
             : CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          // صندوق الرسالة
           Container(
             padding: const EdgeInsets.only(
-              top: 12,
-              left: 20,
+              top: AppPadding.p12,
+              left: AppPadding.p20,
               right: 40.75,
-              bottom: 12,
+              bottom: AppPadding.p12,
             ),
             constraints: const BoxConstraints(maxWidth: 297.50),
             decoration: BoxDecoration(
-              // لون أسود لرسالتك وأبيض لرسالة الطرف الآخر
               color: isMe ? ColorManager.black : ColorManager.white,
               border: Border.all(
-                color: isMe ? Colors.transparent : ColorManager.borderGray,
-                width: 1,
+                color: isMe
+                    ? ColorManager.transparent
+                    : ColorManager.borderGray,
+                width: AppSize.s1,
               ),
-              // الحواف دائرية بانتظام من كل الجهات زي الصورة
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(AppRadius.r12),
               boxShadow: [
                 BoxShadow(
                   color: ColorManager.black.withValues(alpha: 0.04),
-                  blurRadius: 2,
-                  offset: const Offset(0, 1),
+                  blurRadius: AppSize.s2,
+                  offset: const Offset(0, AppSize.s1),
                 ),
               ],
             ),
             child: Text(
               text,
-              style: TextStyle(
-                // كتابة بيضاء على الخلفية السوداء، وسودة على الخلفية البيضاء
+              style: getRegularStyle(
                 color: isMe ? ColorManager.white : ColorManager.nearBlack,
-                fontSize: 16,
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w400,
-                height: 1.50,
-              ),
+                fontSize: FontSize.s16,
+              ).copyWith(height: 1.50),
             ),
           ),
 
-          const SizedBox(height: 4), // مسافة صغيرة بين الصندوق والوقت
+          const SizedBox(height: AppSize.s4),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
+            padding: const EdgeInsets.symmetric(horizontal: AppPadding.p4),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   time,
-                  style: const TextStyle(
+                  style: getRegularStyle(
                     color: ColorManager.neutralGray,
-                    fontSize: 11,
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w400,
+                    fontSize: FontSize.s11,
                   ),
                 ),
-                // لو الرسالة بتاعتي، بنظهر علامتي الصح الزرقاء جنب الوقت
                 if (isMe) ...[
-                  const SizedBox(width: 4),
-                  const Icon(
-                    Icons.done_all,
-                    size: 14,
-                    color: ColorManager.blue, // اللون الأزرق لعلامة الصح
+                  const SizedBox(width: AppSize.s4),
+                  Icon(
+                    isSeen ? Icons.done_all : Icons.done,
+                    size: AppSize.s14,
+                    color: isSeen
+                        ? ColorManager.blue
+                        : ColorManager.neutralGray,
                   ),
                 ],
               ],

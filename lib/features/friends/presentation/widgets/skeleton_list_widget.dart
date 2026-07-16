@@ -1,4 +1,5 @@
-import 'package:chat_app/core/constants/color_manager.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -54,7 +55,7 @@ class _SkeletonListWidgetState extends State<SkeletonListWidget>
             ],
             stops: const [0.3, 0.5, 0.7],
           ),
-          borderRadius: BorderRadius.circular(8.r),
+          borderRadius: BorderRadius.circular(AppRadius.r8.r),
         );
         return ListView.separated(
           shrinkWrap: true,
@@ -64,10 +65,10 @@ class _SkeletonListWidgetState extends State<SkeletonListWidget>
               widget.type == SkeletonType.chatsList
               ? Divider(
                   color: ColorManager.borderGray.withValues(alpha: 0.3),
-                  height: 1.h,
-                  thickness: 1,
+                  height: AppSize.s1.h,
+                  thickness: AppSize.s1,
                 )
-              : SizedBox(height: 12.h),
+              : SizedBox(height: AppSize.s12.h),
           itemBuilder: (context, index) => _buildItem(widget.type, shimmer),
         );
       },
@@ -83,15 +84,17 @@ class _SkeletonListWidgetState extends State<SkeletonListWidget>
         ? const BoxDecoration(color: ColorManager.white)
         : BoxDecoration(
             color: ColorManager.white,
-            borderRadius: BorderRadius.circular(isAddFriend ? 12.0.r : 16.0.r),
+            borderRadius: BorderRadius.circular(
+              isAddFriend ? AppRadius.r12.r : AppRadius.r16.r,
+            ),
             border: Border.all(
               color: ColorManager.borderGray.withValues(alpha: 0.8),
             ),
             boxShadow: [
               BoxShadow(
                 color: ColorManager.black.withValues(alpha: 0.03),
-                blurRadius: 12,
-                offset: const Offset(0, 6),
+                blurRadius: AppSize.s12,
+                offset: const Offset(0, AppSize.s6),
               ),
             ],
           );
@@ -110,10 +113,10 @@ class _SkeletonListWidgetState extends State<SkeletonListWidget>
                       ? 70
                       : 90)
                   .w,
-          height: 14.h,
+          height: AppSize.s14.h,
           decoration: shimmer,
         ),
-        SizedBox(height: 8.h),
+        SizedBox(height: AppSize.s8.h),
         Container(
           width:
               (isExpanded
@@ -124,21 +127,21 @@ class _SkeletonListWidgetState extends State<SkeletonListWidget>
                       ? 130
                       : 140)
                   .w,
-          height: 10.h,
+          height: AppSize.s10.h,
           decoration: shimmer,
         ),
         if (isAddFriend) ...[
-          SizedBox(height: 4.h),
-          Container(width: 80.w, height: 10.h, decoration: shimmer),
+          SizedBox(height: AppSize.s4.h),
+          Container(width: 80.w, height: AppSize.s10.h, decoration: shimmer),
         ],
       ],
     );
     final Widget? trailingWidget = switch (type) {
       SkeletonType.friend => Container(
-        width: 40.w,
-        height: 40.h,
+        width: AppSize.s40.w,
+        height: AppSize.s40.h,
         decoration: shimmer.copyWith(
-          borderRadius: BorderRadius.circular(9999.r),
+          borderRadius: BorderRadius.circular(AppRadius.r999.r),
         ),
       ),
       SkeletonType.friendRequestCompact => Row(
@@ -146,38 +149,44 @@ class _SkeletonListWidgetState extends State<SkeletonListWidget>
         children: [
           Container(
             width: 75.w,
-            height: 36.h,
+            height: AppSize.s36.h,
             decoration: shimmer.copyWith(
-              borderRadius: BorderRadius.circular(12.r),
+              borderRadius: BorderRadius.circular(AppRadius.r12.r),
             ),
           ),
-          SizedBox(width: 6.w),
+          SizedBox(width: AppSize.s6.w),
           Container(
             width: 75.w,
-            height: 36.h,
+            height: AppSize.s36.h,
             decoration: shimmer.copyWith(
-              borderRadius: BorderRadius.circular(12.r),
+              borderRadius: BorderRadius.circular(AppRadius.r12.r),
             ),
           ),
         ],
       ),
       SkeletonType.addFriend => Container(
-        width: 120.w,
+        width: AppSize.s120.w,
         height: 46.h,
-        decoration: shimmer.copyWith(borderRadius: BorderRadius.circular(12.r)),
+        decoration: shimmer.copyWith(
+          borderRadius: BorderRadius.circular(AppRadius.r12.r),
+        ),
       ),
       SkeletonType.chatsList => Container(
         width: 35.w,
-        height: 14.h,
-        decoration: shimmer.copyWith(borderRadius: BorderRadius.circular(4.r)),
+        height: AppSize.s14.h,
+        decoration: shimmer.copyWith(
+          borderRadius: BorderRadius.circular(AppRadius.r4.r),
+        ),
       ),
       _ => null,
     };
 
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: isSimpleList ? 8.w : 16.w,
-        vertical: isSimpleList ? 18.h : (isExpanded ? 16.h : 12.h),
+        horizontal: isSimpleList ? AppPadding.p8.w : AppPadding.p16.w,
+        vertical: isSimpleList
+            ? AppPadding.p18.h
+            : (isExpanded ? AppPadding.p16.h : AppPadding.p12.h),
       ),
       decoration: cardDecoration,
       child: isExpanded
@@ -191,30 +200,30 @@ class _SkeletonListWidgetState extends State<SkeletonListWidget>
                       width: 54.w,
                       height: 54.h,
                       decoration: shimmer.copyWith(
-                        borderRadius: BorderRadius.circular(9999.r),
+                        borderRadius: BorderRadius.circular(AppRadius.r999.r),
                       ),
                     ),
-                    SizedBox(width: 12.w),
+                    SizedBox(width: AppSize.s12.w),
                     Expanded(child: textColumn),
                   ],
                 ),
-                SizedBox(height: 16.h),
+                SizedBox(height: AppSize.s16.h),
                 Row(
                   children: [
                     Expanded(
                       child: Container(
-                        height: 44.h,
+                        height: AppSize.s44.h,
                         decoration: shimmer.copyWith(
-                          borderRadius: BorderRadius.circular(12.r),
+                          borderRadius: BorderRadius.circular(AppRadius.r12.r),
                         ),
                       ),
                     ),
-                    SizedBox(width: 12.w),
+                    SizedBox(width: AppSize.s12.w),
                     Expanded(
                       child: Container(
-                        height: 44.h,
+                        height: AppSize.s44.h,
                         decoration: shimmer.copyWith(
-                          borderRadius: BorderRadius.circular(12.r),
+                          borderRadius: BorderRadius.circular(AppRadius.r12.r),
                         ),
                       ),
                     ),
@@ -225,16 +234,24 @@ class _SkeletonListWidgetState extends State<SkeletonListWidget>
           : Row(
               children: [
                 Container(
-                  width: (isSimpleList ? 44 : (isAddFriend ? 40 : 48)).w,
-                  height: (isSimpleList ? 44 : (isAddFriend ? 40 : 48)).h,
+                  width:
+                      (isSimpleList
+                              ? AppSize.s44
+                              : (isAddFriend ? AppSize.s40 : AppSize.s48))
+                          .w,
+                  height:
+                      (isSimpleList
+                              ? AppSize.s44
+                              : (isAddFriend ? AppSize.s40 : AppSize.s48))
+                          .h,
                   decoration: shimmer.copyWith(
-                    borderRadius: BorderRadius.circular(9999.r),
+                    borderRadius: BorderRadius.circular(AppRadius.r999.r),
                   ),
                 ),
-                SizedBox(width: 14.w),
+                SizedBox(width: AppSize.s14.w),
                 Expanded(child: textColumn),
                 if (trailingWidget != null) ...[
-                  SizedBox(width: 8.w),
+                  SizedBox(width: AppSize.s8.w),
                   trailingWidget,
                 ],
               ],

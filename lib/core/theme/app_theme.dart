@@ -1,9 +1,10 @@
-import 'package:chat_app/core/constants/color_manager.dart';
+import 'package:silora/core/constants/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../constants/font_manager.dart';
 import '../constants/styles_manager.dart';
+import '../constants/values_manager.dart';
 
 class AppTheme {
   static ThemeData get theme => ThemeData(
@@ -39,11 +40,11 @@ class AppTheme {
       unselectedIconTheme: const IconThemeData(color: ColorManager.gray),
       selectedLabelStyle: getBoldStyle(
         color: ColorManager.nearBlack,
-        fontSize: 12,
+        fontSize: FontSize.s12,
       ),
       unselectedLabelStyle: getBoldStyle(
         color: ColorManager.nearBlack,
-        fontSize: 12,
+        fontSize: FontSize.s12,
       ),
     ),
     dividerTheme: const DividerThemeData(
@@ -55,7 +56,7 @@ class AppTheme {
       color: ColorManager.white,
       elevation: 0,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppRadius.r12),
         side: const BorderSide(color: ColorManager.borderGray),
       ),
     ),
@@ -92,42 +93,58 @@ class AppTheme {
     ),
     inputDecorationTheme: InputDecorationTheme(
       hintStyle: getBoldStyle(color: ColorManager.gray, fontSize: FontSize.s16),
-      contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+      contentPadding: EdgeInsets.symmetric(
+        horizontal: AppPadding.p16.w,
+        vertical: AppPadding.p16.h,
+      ),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8.r),
+        borderRadius: BorderRadius.circular(AppRadius.r8.r),
         borderSide: const BorderSide(
           color: ColorManager.borderGray,
-          width: 1.5,
+          width: AppSize.s1_5,
         ),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8.r),
+        borderRadius: BorderRadius.circular(AppRadius.r8.r),
         borderSide: const BorderSide(
           color: ColorManager.borderGray,
-          width: 1.5,
+          width: AppSize.s1_5,
         ),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8.r),
-        borderSide: const BorderSide(color: ColorManager.nearBlack, width: 2.0),
+        borderRadius: BorderRadius.circular(AppRadius.r8.r),
+        borderSide: const BorderSide(
+          color: ColorManager.nearBlack,
+          width: AppSize.s2,
+        ),
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8.r),
-        borderSide: const BorderSide(color: ColorManager.error, width: 2.0),
+        borderRadius: BorderRadius.circular(AppRadius.r8.r),
+        borderSide: const BorderSide(
+          color: ColorManager.error,
+          width: AppSize.s2,
+        ),
       ),
       focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8.r),
-        borderSide: const BorderSide(color: ColorManager.error, width: 2.0),
+        borderRadius: BorderRadius.circular(AppRadius.r8.r),
+        borderSide: const BorderSide(
+          color: ColorManager.error,
+          width: AppSize.s2,
+        ),
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppRadius.r8.r),
+        ),
       ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppRadius.r8.r),
+        ),
       ),
     ),
   );

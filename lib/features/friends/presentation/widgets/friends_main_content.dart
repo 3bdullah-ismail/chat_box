@@ -1,9 +1,9 @@
-import 'package:chat_app/core/constants/color_manager.dart';
-import 'package:chat_app/core/routes/app_routes_names.dart';
-import 'package:chat_app/features/auth/data/models/user_model.dart';
-import 'package:chat_app/features/friends/presentation/manager/friend_cubit.dart';
-import 'package:chat_app/features/friends/presentation/widgets/friend_card.dart';
-import 'package:chat_app/features/friends/presentation/widgets/friend_request_card.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/routes/app_routes_names.dart';
+import 'package:silora/features/auth/data/models/user_model.dart';
+import 'package:silora/features/friends/presentation/manager/friend_cubit.dart';
+import 'package:silora/features/friends/presentation/widgets/friend_card.dart';
+import 'package:silora/features/friends/presentation/widgets/friend_request_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,6 +11,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/font_manager.dart';
 import '../../../../core/constants/styles_manager.dart';
+import '../../../../core/constants/values_manager.dart';
 import '../../../../core/widgets/custom_text_btn.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../chat/presentation/manager/chat_cubit.dart';
@@ -43,8 +44,7 @@ class _FriendsMainContentState extends State<FriendsMainContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      // ظ„طھط£ط®ط° ط®ظ„ظپظٹط© ط§ظ„ظ€ SafeArea ط§ظ„ط£طµظ„ظٹط©
+      backgroundColor: ColorManager.transparent,
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.push(AppRouteNames.addFriends),
         foregroundColor: ColorManager.black,
@@ -53,7 +53,10 @@ class _FriendsMainContentState extends State<FriendsMainContent> {
         child: const Icon(Icons.person_add_alt),
       ),
       body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+        padding: EdgeInsets.symmetric(
+          horizontal: AppPadding.p24.w,
+          vertical: AppPadding.p20.h,
+        ),
         physics: const BouncingScrollPhysics(),
         children: [
           Text(
@@ -63,19 +66,15 @@ class _FriendsMainContentState extends State<FriendsMainContent> {
               fontSize: FontSize.s24.sp,
             ),
           ),
-          SizedBox(height: 20.h),
+          SizedBox(height: AppSize.s20.h),
           CustomTextField(
             controller: _searchController,
             text: "Search by username, email, or phone",
             onChanged: (query) => setState(() => _searchQuery = query),
           ),
-          SizedBox(height: 24.h),
-
-          // --- ظ‚ط³ظ… ط·ظ„ط¨ط§طھ ط§ظ„طµط¯ط§ظ‚ط© ---
+          SizedBox(height: AppSize.s24.h),
           _buildRequestsSection(),
-          SizedBox(height: 24.h),
-
-          // --- ظ‚ط³ظ… ظ‚ط§ط¦ظ…ط© ط§ظ„ط£طµط¯ظ‚ط§ط، ---
+          SizedBox(height: AppSize.s24.h),
           _buildFriendsSection(),
         ],
       ),
@@ -103,7 +102,7 @@ class _FriendsMainContentState extends State<FriendsMainContent> {
             ),
           ],
         ),
-        SizedBox(height: 8.h),
+        SizedBox(height: AppSize.s8.h),
         if (widget.cubit.receivedRequests.isNotEmpty)
           ListView.builder(
             shrinkWrap: true,
@@ -158,7 +157,7 @@ class _FriendsMainContentState extends State<FriendsMainContent> {
             fontSize: FontSize.s18.sp,
           ),
         ),
-        SizedBox(height: 8.h),
+        SizedBox(height: AppSize.s8.h),
         if (filteredFriends.isNotEmpty)
           ListView.builder(
             shrinkWrap: true,

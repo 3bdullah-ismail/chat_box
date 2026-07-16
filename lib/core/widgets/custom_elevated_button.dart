@@ -1,6 +1,7 @@
-import 'package:chat_app/core/constants/color_manager.dart';
-import 'package:chat_app/core/constants/font_manager.dart';
-import 'package:chat_app/core/constants/styles_manager.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/font_manager.dart';
+import 'package:silora/core/constants/styles_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -37,10 +38,10 @@ class CustomElevatedButton extends StatelessWidget {
           foregroundColor: ColorManager.white,
 
           padding: height != null
-              ? EdgeInsets.symmetric(horizontal: 12.w)
-              : EdgeInsets.symmetric(vertical: 16.h),
+              ? EdgeInsets.symmetric(horizontal: AppPadding.p12.w)
+              : EdgeInsets.symmetric(vertical: AppPadding.p16.h),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.r),
+            borderRadius: BorderRadius.circular(AppRadius.r8.r),
           ),
         ),
         onPressed: onTap,
@@ -50,7 +51,10 @@ class CustomElevatedButton extends StatelessWidget {
               ? MainAxisSize.max
               : MainAxisSize.min,
           children: [
-            if (prefixIcon != null) ...[prefixIcon!, SizedBox(width: 8.w)],
+            if (prefixIcon != null) ...[
+              prefixIcon!,
+              SizedBox(width: AppSize.s8.w),
+            ],
             Text(
               label,
               style:
@@ -60,7 +64,10 @@ class CustomElevatedButton extends StatelessWidget {
                     fontSize: FontSize.s16,
                   ),
             ),
-            if (suffixIcon != null) ...[SizedBox(width: 8.w), suffixIcon!],
+            if (suffixIcon != null) ...[
+              SizedBox(width: AppSize.s8.w),
+              suffixIcon!,
+            ],
           ],
         ),
       ),

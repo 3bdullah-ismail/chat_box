@@ -1,6 +1,8 @@
-import 'package:chat_app/core/constants/color_manager.dart';
-import 'package:chat_app/features/friends/presentation/pages/friends.dart';
-import 'package:chat_app/features/profile/presentation/pages/profile_page.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
+import 'package:silora/core/constants/assets_manager.dart';
+import 'package:silora/features/friends/presentation/pages/friends.dart';
+import 'package:silora/features/profile/presentation/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -16,7 +18,15 @@ class LayoutPage extends StatefulWidget {
 
 class _LayoutPageState extends State<LayoutPage> {
   int _currentIndex = 0;
-  final List<Widget> _pages = const [ChatsPage(), FriendsPage(), ProfilePage()];
+  List<Widget> get _pages => [
+    ChatsPage(
+      onJumpToFriendsTab: () {
+        setState(() => _currentIndex = 1);
+      },
+    ),
+    const FriendsPage(),
+    const ProfilePage(),
+  ];
 
   Widget _buildIcon(int index, String? svgAsset, IconData iconData) {
     final color = _currentIndex == index
@@ -25,11 +35,11 @@ class _LayoutPageState extends State<LayoutPage> {
     return svgAsset != null
         ? SvgPicture.asset(
             svgAsset,
-            width: 20,
-            height: 20,
+            width: AppSize.s20,
+            height: AppSize.s20,
             colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
           )
-        : Icon(iconData, size: 28, color: color);
+        : Icon(iconData, size: AppSize.s28, color: color);
   }
 
   @override
@@ -38,8 +48,8 @@ class _LayoutPageState extends State<LayoutPage> {
       body: _pages[_currentIndex],
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
+          splashColor: ColorManager.transparent,
+          highlightColor: ColorManager.transparent,
         ),
         child: BottomNavigationBar(
           currentIndex: _currentIndex,
@@ -54,7 +64,7 @@ class _LayoutPageState extends State<LayoutPage> {
             BottomNavigationBarItem(
               icon: _buildIcon(
                 0,
-                'assets/images/chat.svg',
+                ImageAssets.chatSvg,
                 Icons.chat_bubble_outline_rounded,
               ),
               label: 'Chats',
@@ -62,7 +72,7 @@ class _LayoutPageState extends State<LayoutPage> {
             BottomNavigationBarItem(
               icon: _buildIcon(
                 1,
-                'assets/images/friends.svg',
+                ImageAssets.friendsSvg,
                 Icons.people_outline_rounded,
               ),
               label: 'Friends',

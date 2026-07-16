@@ -1,18 +1,32 @@
 {
   "project_info": {
     "project_number": "710064998768",
+    "firebase_url": "https://chat-app-4b06d-default-rtdb.firebaseio.com",
     "project_id": "chat-app-4b06d",
     "storage_bucket": "chat-app-4b06d.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:710064998768:android:9ca7362e08e4f7e8b067b5",
+        "mobilesdk_app_id": "1:710064998768:android:8e952a06e1348d79b067b5",
         "android_client_info": {
-          "package_name": "com.example.chat_app"
+          "package_name": "com.example.Silora"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "710064998768-qib6c7iurforv7srapuj0dec59hdnc7t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.Silora",
+            "certificate_hash": "aa0084d8167d284f70730442ed732098a471052d"
+          }
+        },
+        {
+          "client_id": "710064998768-oeudr7utns02ivgtqkbdvj4urr7ih6vm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDceDtY_B0ylj3sMjAvq20TdRgotWblkBM"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "710064998768-oeudr7utns02ivgtqkbdvj4urr7ih6vm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

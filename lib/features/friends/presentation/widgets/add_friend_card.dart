@@ -1,8 +1,9 @@
-import 'package:chat_app/core/constants/color_manager.dart';
-import 'package:chat_app/core/constants/styles_manager.dart';
-import 'package:chat_app/core/widgets/custom_elevated_button.dart';
-import 'package:chat_app/features/auth/data/models/user_model.dart';
-import 'package:chat_app/features/friends/presentation/widgets/friend_base_card.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/styles_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
+import 'package:silora/core/widgets/custom_elevated_button.dart';
+import 'package:silora/features/auth/data/models/user_model.dart';
+import 'package:silora/features/friends/presentation/widgets/friend_base_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -20,9 +21,12 @@ class AddFriendCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return FriendBaseCard(
       title: user.name,
-      avatarSize: 40.0,
-      borderRadius: 12.0,
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+      avatarSize: AppSize.s40,
+      borderRadius: AppRadius.r12,
+      padding: EdgeInsets.symmetric(
+        horizontal: AppPadding.p16.w,
+        vertical: AppPadding.p12.h,
+      ),
       avatarChild: const Icon(Icons.person, color: ColorManager.gray),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

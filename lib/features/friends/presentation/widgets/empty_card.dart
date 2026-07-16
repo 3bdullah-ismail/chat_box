@@ -1,4 +1,5 @@
-import 'package:chat_app/core/constants/color_manager.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
 import 'package:flutter/material.dart';
 
 class EmptyCard extends StatelessWidget {
@@ -6,10 +7,10 @@ class EmptyCard extends StatelessWidget {
 
   Widget _buildSkeleton(double width, Color color) => Container(
     width: width,
-    height: 10,
+    height: AppSize.s10,
     decoration: BoxDecoration(
       color: color,
-      borderRadius: BorderRadius.circular(5),
+      borderRadius: BorderRadius.circular(AppRadius.r4),
     ),
   );
 
@@ -18,14 +19,14 @@ class EmptyCard extends StatelessWidget {
     required IconData icon,
     Color ic = ColorManager.neutralGray,
   }) => Container(
-    width: 36,
-    height: 36,
+    width: AppSize.s40,
+    height: AppSize.s40,
     decoration: BoxDecoration(
       color: bg,
       shape: BoxShape.circle,
-      border: Border.all(color: ColorManager.white, width: 2),
+      border: Border.all(color: ColorManager.white, width: AppSize.s2),
     ),
-    child: Icon(icon, size: 18, color: ic),
+    child: Icon(icon, size: AppSize.s18, color: ic),
   );
 
   @override
@@ -42,7 +43,7 @@ class EmptyCard extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   color: ColorManager.white.withValues(alpha: 0.5),
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.circular(AppRadius.r24),
                   border: Border.all(color: ColorManager.borderGray),
                 ),
               ),
@@ -53,18 +54,18 @@ class EmptyCard extends StatelessWidget {
               angle: -0.05,
               child: Container(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 18,
+                  horizontal: AppPadding.p20,
+                  vertical: AppPadding.p18,
                 ),
                 decoration: BoxDecoration(
                   color: ColorManager.white,
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.circular(AppRadius.r24),
                   border: Border.all(color: ColorManager.surfaceGray),
                   boxShadow: [
                     BoxShadow(
                       color: ColorManager.black.withValues(alpha: 0.04),
-                      blurRadius: 12,
-                      offset: const Offset(0, 4),
+                      blurRadius: AppSize.s12,
+                      offset: const Offset(0, AppSize.s4),
                     ),
                   ],
                 ),
@@ -72,7 +73,7 @@ class EmptyCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _buildSkeleton(100, ColorManager.borderGray),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: AppSize.s6),
                     _buildSkeleton(70, ColorManager.lightGray),
                     const Spacer(),
 
@@ -80,7 +81,7 @@ class EmptyCard extends StatelessWidget {
                       child: Badge(
                         alignment: const Alignment(0.7, -0.7),
                         backgroundColor: ColorManager.danger,
-                        smallSize: 10,
+                        smallSize: AppSize.s10,
                         child: Container(
                           width: 56,
                           height: 56,
@@ -90,7 +91,7 @@ class EmptyCard extends StatelessWidget {
                           ),
                           child: const Icon(
                             Icons.people_outline_rounded,
-                            size: 30,
+                            size: AppSize.s30,
                             color: ColorManager.neutralGray,
                           ),
                         ),
@@ -133,7 +134,7 @@ class EmptyCard extends StatelessWidget {
                     const Spacer(),
 
                     _buildSkeleton(double.infinity, ColorManager.lightGray),
-                    const SizedBox(height: 6),
+                    const SizedBox(height: AppSize.s6),
                     _buildSkeleton(120, ColorManager.lightGray),
                   ],
                 ),

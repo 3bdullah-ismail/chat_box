@@ -9,8 +9,9 @@ class ChatLoading extends ChatState {}
 
 class ChatSuccess extends ChatState {
   final String conversationId;
+  final UserModel friendUser;
 
-  ChatSuccess({required this.conversationId});
+  ChatSuccess({required this.conversationId, required this.friendUser});
 }
 
 class ChatError extends ChatState {

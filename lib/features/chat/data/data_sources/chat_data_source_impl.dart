@@ -1,150 +1,258 @@
-import 'package:chat_app/core/utils/chat_utils.dart';
-import 'package:chat_app/features/auth/data/models/user_model.dart'; // تأكد من مسار UserModel الخاص بك
-import 'package:chat_app/features/chat/data/models/conversation_model.dart';
+import 'package:silora/core/utils/chat_utils.dart';
+import 'package:silora/features/auth/data/models/user_model.dart';
+import 'package:silora/features/chat/data/models/conversation_model.dart';
+import 'package:silora/features/chat/data/models/message_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:injectable/injectable.dart';
 
-import '../models/message_model.dart';
+import '../models/presence_model.dart';
 import 'chat_data_source.dart';
 
-@Injectable(as: ChatDataSource)
+@LazySingleton(as: ChatDataSource)
 class ChatRemoteDataSourceImpl implements ChatDataSource {
-  final FirebaseDatabase _database;
-  final FirebaseAuth _firebaseAuth;
+  final FirebaseDatabase database;
+  final FirebaseAuth firebaseAuth;
 
   ChatRemoteDataSourceImpl({
-    required FirebaseDatabase database,
-    required FirebaseAuth firebaseAuth,
-  }) : _database = database,
-       _firebaseAuth = firebaseAuth;
+    required this.database,
+    required this.firebaseAuth,
+  });
 
-  String get _currentUserId => _firebaseAuth.currentUser!.uid;
+  String get currentUserId => firebaseAuth.currentUser!.uid;
 
   @override
   Future<String> createConversation({
-    required UserModel friendUser,
     required UserModel currentUser,
+    required UserModel friendUser,
   }) async {
-    try {
-      final conversationId = ChatUtils.getConversationId(
-        _currentUserId,
-        friendUser.id,
-      );
+    final conversationId = ChatUtils.getConversationId(
+      currentUser.id,
+      friendUser.id,
+    );
 
-      final ref = _database.ref("conversations/$conversationId");
+    final ref = database.ref("conversations/$conversationId");
+    final snapshot = await ref.get();
 
-      final snapshot = await ref.get();
-
-      if (!snapshot.exists) {
-        await ref.set({
-          "id": conversationId,
-          "participants": {_currentUserId: true, friendUser.id: true},
-          "userNames": {
-            _currentUserId: currentUser.name,
-            friendUser.id: friendUser.name,
-          },
-          "userImages": {
-            _currentUserId: currentUser.username,
-            friendUser.id: friendUser.username,
-          },
-          "lastMessage": "",
-          "lastMessageTime": DateTime.now().millisecondsSinceEpoch,
-          "createdAt": ServerValue.timestamp,
-        });
-      }
-
-      return conversationId;
-    } catch (e) {
-      throw Exception("فشل في إنشاء أو جلب غرفة المحادثة: ${e.toString()}");
+    if (!snapshot.exists) {
+      await ref.set({
+        "id": conversationId,
+        "participants": {currentUser.id: true, friendUser.id: true},
+        "userNames": {
+          currentUser.id: currentUser.name,
+          friendUser.id: friendUser.name,
+        },
+        "userImages": {currentUser.id: "", friendUser.id: ""},
+        "lastMessage": "",
+        "lastMessageSenderId": "",
+        "lastMessageTime": 0,
+        "unreadCount": {currentUser.id: 0, friendUser.id: 0},
+        "createdAt": ServerValue.timestamp,
+      });
     }
+
+    return conversationId;
   }
 
   @override
   Stream<List<ConversationModel>> getConversations() {
-    try {
-      return _database
-          .ref("conversations")
-          .orderByChild("participants/$_currentUserId")
-          .equalTo(true)
-          .onValue
-          .map((event) {
-            final Map<dynamic, dynamic>? conversationsMap =
-                event.snapshot.value as Map<dynamic, dynamic>?;
-            if (conversationsMap == null) return [];
+    return database
+        .ref("conversations")
+        .orderByChild("participants/$currentUserId")
+        .equalTo(true)
+        .onValue
+        .map((event) {
+          final data = event.snapshot.value as Map<dynamic, dynamic>?;
 
-            final List<ConversationModel> conversations = [];
-            conversationsMap.forEach((key, value) {
-              final Map<String, dynamic> conversationData =
-                  Map<String, dynamic>.from(value as Map);
-              conversations.add(
-                ConversationModel.fromJson(conversationData, key.toString()),
-              );
-            });
+          if (data == null) return [];
 
-            conversations.sort(
-              (a, b) => b.lastMessageTime.compareTo(a.lastMessageTime),
-            );
-            return conversations;
-          });
-    } catch (e) {
-      throw Exception("فشل في قراءة قايمة المحادثات: ${e.toString()}");
-    }
+          final conversations = data.entries.map((entry) {
+            final json = Map<String, dynamic>.from(entry.value as Map);
+            return ConversationModel.fromJson(json, entry.key.toString());
+          }).toList();
+
+          conversations.sort(
+            (a, b) => b.lastMessageTime.compareTo(a.lastMessageTime),
+          );
+
+          return conversations;
+        });
   }
 
   @override
   Future<void> sendMessage({
     required String conversationId,
+    required String receiverId,
     required String text,
   }) async {
-    try {
-      final int currentTime = DateTime.now().millisecondsSinceEpoch;
+    final messageText = text.trim();
+    if (messageText.isEmpty) return;
 
-      final messageRef = _database.ref("messages/$conversationId").push();
-      final messageData = {
-        "senderId": _currentUserId,
-        "text": text,
-        "timestamp": currentTime,
+    final now = DateTime.now().millisecondsSinceEpoch;
+    final messageRef = database.ref("messages/$conversationId").push();
+
+    await Future.wait([
+      messageRef.set({
+        "senderId": currentUserId,
+        "receiverId": receiverId,
+        "text": messageText,
+        "timestamp": now,
         "isSeen": false,
-      };
-      final conversationUpdateData = {
-        "lastMessage": text,
-        "lastMessageTime": currentTime,
-      };
-      await messageRef.set(messageData);
-      await _database
-          .ref("conversations/$conversationId")
-          .update(conversationUpdateData);
-    } catch (e) {
-      throw Exception("فشل في إرسال الرسالة: ${e.toString()}");
-    }
+        "isDeletedForEveryone": false,
+        "deletedForUsers": [],
+      }),
+      database.ref("conversations/$conversationId").update({
+        "lastMessage": messageText,
+        "lastMessageSenderId": currentUserId,
+        "lastMessageTime": now,
+
+        "unreadCount/$receiverId": ServerValue.increment(1),
+      }),
+    ]);
   }
 
   @override
   Stream<List<MessageModel>> getMessagesStream({
     required String conversationId,
   }) {
-    try {
-      final messagesRef = _database.ref("messages/$conversationId");
-      return messagesRef.onValue.map((event) {
-        final Map<dynamic, dynamic>? messagesMap =
-            event.snapshot.value as Map<dynamic, dynamic>?;
+    return database.ref("messages/$conversationId").onValue.map((event) {
+      final data = event.snapshot.value as Map<dynamic, dynamic>?;
 
-        if (messagesMap == null) return [];
+      if (data == null) return [];
 
-        final List<MessageModel> messages = [];
+      final messages = data.entries.map((entry) {
+        return MessageModel.fromJson(
+          Map<String, dynamic>.from(entry.value as Map),
+          entry.key.toString(),
+        );
+      }).toList();
 
-        messagesMap.forEach((key, value) {
-          final Map<String, dynamic> messageData = Map<String, dynamic>.from(
-            value as Map,
-          );
-          messages.add(MessageModel.fromJson(messageData, key.toString()));
-        });
-        messages.sort((a, b) => a.timestamp.compareTo(b.timestamp));
-        return messages;
-      });
-    } catch (e) {
-      throw Exception("فشل في الاستماع للرسائل: ${e.toString()}");
+      messages.sort((a, b) => a.timestamp.compareTo(b.timestamp));
+
+      return messages;
+    });
+  }
+
+  @override
+  Future<void> markMessagesAsSeen({required String conversationId}) async {
+    final messagesRef = database.ref("messages/$conversationId");
+    final snapshot = await messagesRef
+        .orderByChild("receiverId")
+        .equalTo(currentUserId)
+        .get();
+
+    if (snapshot.exists && snapshot.value != null) {
+      final data = snapshot.value as Map<dynamic, dynamic>;
+      final Map<String, dynamic> updates = {};
+
+      for (final entry in data.entries) {
+        final message = Map<String, dynamic>.from(entry.value);
+
+        if (message["isSeen"] == false) {
+          updates["${entry.key}/isSeen"] = true;
+        }
+      }
+
+      await Future.wait([
+        if (updates.isNotEmpty) messagesRef.update(updates),
+        database
+            .ref("conversations/$conversationId/unreadCount/$currentUserId")
+            .set(0),
+      ]);
+    } else {
+      await database
+          .ref("conversations/$conversationId/unreadCount/$currentUserId")
+          .set(0);
     }
+  }
+
+  @override
+  Future<void> initPresence() async {
+    final connectedRef = database.ref(".info/connected");
+    final statusRef = database.ref("status/$currentUserId");
+
+    connectedRef.onValue.listen((event) async {
+      final connected = event.snapshot.value as bool? ?? false;
+
+      if (!connected) return;
+
+      await statusRef.onDisconnect().set({
+        "online": false,
+        "lastSeen": ServerValue.timestamp,
+      });
+
+      await statusRef.set({"online": true, "lastSeen": ServerValue.timestamp});
+    });
+  }
+
+  @override
+  Stream<PresenceModel> getUserPresence(String userId) {
+    return database.ref("status/$userId").onValue.map((event) {
+      final data = event.snapshot.value as Map<dynamic, dynamic>?;
+
+      if (data == null) {
+        return const PresenceModel(online: false, lastSeen: 0);
+      }
+
+      return PresenceModel.fromJson(data);
+    });
+  }
+
+  @override
+  Future<void> setTyping({
+    required String conversationId,
+    required bool isTyping,
+  }) async {
+    final ref = database.ref("typing/$conversationId/$currentUserId");
+    if (isTyping) {
+      await ref.onDisconnect().set(false);
+    } else {
+      await ref.onDisconnect().cancel();
+    }
+    await ref.set(isTyping);
+  }
+
+  @override
+  Stream<bool> getTypingStatus({
+    required String conversationId,
+    required String friendId,
+  }) {
+    return database
+        .ref("typing/$conversationId/$friendId")
+        .onValue
+        .map((event) => event.snapshot.value as bool? ?? false);
+  }
+
+  @override
+  Future<void> deleteForEveryone({
+    required String conversationId,
+    required String messageId,
+  }) async {
+    await database.ref("messages/$conversationId/$messageId").update({
+      "text": "This message was deleted",
+      "isDeletedForEveryone": true,
+    });
+  }
+
+  @override
+  Future<void> deleteForMe({
+    required String conversationId,
+    required String messageId,
+  }) async {
+    final ref = database.ref("messages/$conversationId/$messageId");
+
+    final snapshot = await ref.get();
+
+    if (!snapshot.exists) return;
+
+    final data = Map<String, dynamic>.from(snapshot.value as Map);
+
+    final deletedForUsers = List<String>.from(data["deletedForUsers"] ?? []);
+
+    if (!deletedForUsers.contains(currentUserId)) {
+      deletedForUsers.add(currentUserId);
+    }
+
+    await ref.update({"deletedForUsers": deletedForUsers});
   }
 }

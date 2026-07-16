@@ -1,12 +1,13 @@
-import 'package:chat_app/core/constants/color_manager.dart';
-import 'package:chat_app/core/constants/font_manager.dart';
-import 'package:chat_app/core/constants/styles_manager.dart';
-import 'package:chat_app/core/widgets/custom_text_field.dart';
-import 'package:chat_app/core/widgets/loading.dart';
-import 'package:chat_app/features/friends/presentation/manager/friend_cubit.dart';
-import 'package:chat_app/features/friends/presentation/widgets/add_friend_card.dart';
-import 'package:chat_app/features/friends/presentation/widgets/custom_empty_state.dart';
-import 'package:chat_app/features/friends/presentation/widgets/skeleton_list_widget.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/font_manager.dart';
+import 'package:silora/core/constants/styles_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
+import 'package:silora/core/widgets/custom_text_field.dart';
+import 'package:silora/core/widgets/loading.dart';
+import 'package:silora/features/friends/presentation/manager/friend_cubit.dart';
+import 'package:silora/features/friends/presentation/widgets/add_friend_card.dart';
+import 'package:silora/features/friends/presentation/widgets/custom_empty_state.dart';
+import 'package:silora/features/friends/presentation/widgets/skeleton_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -39,7 +40,7 @@ class _AddFriendsState extends State<AddFriends> {
     return Scaffold(
       backgroundColor: ColorManager.surfaceBlue,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: ColorManager.transparent,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(
@@ -59,7 +60,10 @@ class _AddFriendsState extends State<AddFriends> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+          padding: EdgeInsets.symmetric(
+            horizontal: AppPadding.p24.w,
+            vertical: AppPadding.p20.h,
+          ),
           child: Column(
             children: [
               CustomTextField(
@@ -69,7 +73,7 @@ class _AddFriendsState extends State<AddFriends> {
                   context.read<FriendCubit>().search(query);
                 },
               ),
-              SizedBox(height: 24.h),
+              SizedBox(height: AppSize.s24.h),
               Expanded(
                 child: BlocConsumer<FriendCubit, FriendState>(
                   listenWhen: (previous, current) =>
@@ -127,7 +131,8 @@ class _AddFriendsState extends State<AddFriends> {
                       return ListView.separated(
                         physics: const BouncingScrollPhysics(),
                         itemCount: usersToDisplay.length,
-                        separatorBuilder: (_, __) => SizedBox(height: 12.h),
+                        separatorBuilder: (_, __) =>
+                            SizedBox(height: AppSize.s12.h),
                         itemBuilder: (context, index) {
                           final user = usersToDisplay[index];
 

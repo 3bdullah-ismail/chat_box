@@ -54,12 +54,6 @@ class AuthRepoImpl extends AuthRepo {
     );
   }
 
-  // @override
-  // Future<Map<String, dynamic>> getUser(String uid) async {
-  //   final user = await authDataSource.getUser(uid);
-  //   return user.toJson();
-  // }
-
   @override
   Future<String> signInWithGoogle() {
     return authDataSource.signInWithGoogle();

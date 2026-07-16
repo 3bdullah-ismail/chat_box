@@ -1,6 +1,6 @@
-import 'package:chat_app/features/auth/data/models/user_model.dart';
-import 'package:chat_app/features/friends/data/datasources/friend_data_source.dart';
-import 'package:chat_app/features/friends/data/models/friend_request_model.dart';
+import 'package:silora/features/auth/data/models/user_model.dart';
+import 'package:silora/features/friends/data/datasources/friend_data_source.dart';
+import 'package:silora/features/friends/data/models/friend_request_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
@@ -16,7 +16,6 @@ class FriendDataSourceImp implements FriendDataSource {
   Future<List<UserModel>> getUsers() async {
     final currentUserId = firebaseAuth.currentUser!.uid;
 
-    // جلب الأصدقاء الحاليين لاستبعادهم من قائمة "البحث عن مستخدمين جدد"
     final friendsSnapshot = await fireStore
         .collection('friends')
         .doc(currentUserId)
@@ -24,7 +23,6 @@ class FriendDataSourceImp implements FriendDataSource {
         .get();
     final friendIds = friendsSnapshot.docs.map((doc) => doc.id).toSet();
 
-    // جلب طلبات الصداقة المعلقة (سواء مرسلة أو مستقبلة) لاستبعادها أيضاً
     final sentRequestsSnapshot = await fireStore
         .collection('friend_requests')
         .where('senderId', isEqualTo: currentUserId)
@@ -63,7 +61,6 @@ class FriendDataSourceImp implements FriendDataSource {
   Future<void> sendFriendRequest(String receiverId) async {
     final senderId = firebaseAuth.currentUser!.uid;
 
-    // الفحص العكسي والمستقيم في نفس الوقت لمنع التكرار والتداخل المعلق
     final existingRequest = await fireStore
         .collection('friend_requests')
         .where('status', isEqualTo: 'pending')

@@ -1,25 +1,23 @@
+import 'package:silora/core/constants/font_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
+import 'package:silora/core/utils/extension.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../core/constants/color_manager.dart';
 import '../../../../core/constants/styles_manager.dart';
 import '../../../../core/routes/app_routes_names.dart';
+import '../../../../core/utils/time_format_methods.dart';
 import '../../../../core/widgets/custom_avatar.dart';
+import '../../../auth/data/models/user_model.dart';
 import '../../data/models/conversation_model.dart';
 
 class ChatCard extends StatelessWidget {
   final ConversationModel conversation;
 
   const ChatCard({super.key, required this.conversation});
-
-  String _formatTime(int milliseconds) {
-    if (milliseconds == 0) return "";
-    final date = DateTime.fromMillisecondsSinceEpoch(milliseconds);
-    return DateFormat('hh:mm a').format(date);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,19 +28,33 @@ class ChatCard extends StatelessWidget {
     );
 
     final friendName = conversation.userNames[friendId] ?? 'Chat User';
+    final myUnreadCount = conversation.getUnreadCount(currentUserId ?? '');
 
     return InkWell(
       onTap: () {
-        context.push(AppRouteNames.chat, extra: conversation.id);
+        final friendModel = UserModel(
+          id: friendId,
+          name: friendName,
+          email: '',
+          username: '',
+        );
+
+        context.push(
+          AppRouteNames.chat,
+          extra: {'conversationId': conversation.id, 'friendUser': friendModel},
+        );
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+        padding: EdgeInsets.symmetric(
+          horizontal: AppPadding.p16.w,
+          vertical: AppPadding.p14.h,
+        ),
         decoration: BoxDecoration(
           color: ColorManager.white,
           border: Border(
             bottom: BorderSide(
               color: ColorManager.gray.withValues(alpha: 0.06),
-              width: 1,
+              width: AppSize.s1,
             ),
           ),
         ),
@@ -50,22 +62,22 @@ class ChatCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CustomAvatar(title: friendName, imageUrl: null),
-            14.horizontalSpace,
+            AppSize.s14.horizontalSpace,
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    friendName,
+                    friendName.toCapitalized(),
                     style: getBoldStyle(
                       color: ColorManager.black,
-                      fontSize: 16.sp,
+                      fontSize: FontSize.s16.sp,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  6.verticalSpace,
+                  AppSize.s6.verticalSpace,
                   Text(
                     conversation.lastMessage.isEmpty
                         ? "Tap to start chatting..."
@@ -74,7 +86,7 @@ class ChatCard extends StatelessWidget {
                       color: conversation.lastMessage.isEmpty
                           ? ColorManager.gray.withValues(alpha: 0.5)
                           : ColorManager.gray,
-                      fontSize: 14.sp,
+                      fontSize: FontSize.s14.sp,
                     ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -82,41 +94,44 @@ class ChatCard extends StatelessWidget {
                 ],
               ),
             ),
-            12.horizontalSpace,
+            AppSize.s12.horizontalSpace,
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  _formatTime(conversation.lastMessageTime),
+                  conversation.lastMessage.isEmpty
+                      ? ""
+                      : formatTime(conversation.lastMessageTime),
                   style: getRegularStyle(
                     color: ColorManager.gray,
-                    fontSize: 12.sp,
+                    fontSize: FontSize.s12.sp,
                   ),
                 ),
-                8.verticalSpace,
-                if (conversation.lastMessage.isNotEmpty)
+                if (myUnreadCount > 0 &&
+                    conversation.lastMessageSenderId != currentUserId) ...[
+                  AppSize.s6.verticalSpace,
                   Container(
-                    padding: EdgeInsets.all(4.r),
-                    constraints: BoxConstraints(
-                      minWidth: 20.w,
-                      minHeight: 20.h,
-                    ),
+                    padding: const EdgeInsets.all(AppPadding.p6),
                     decoration: const BoxDecoration(
                       color: ColorManager.blue,
                       shape: BoxShape.circle,
                     ),
+                    constraints: BoxConstraints(
+                      minWidth: AppSize.s20.w,
+                      minHeight: AppSize.s20.h,
+                    ),
                     child: Center(
                       child: Text(
-                        "1",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.bold,
+                        "$myUnreadCount",
+                        style: getBoldStyle(
+                          color: ColorManager.white,
+                          fontSize: FontSize.s11.sp,
                         ),
                       ),
                     ),
                   ),
+                ],
               ],
             ),
           ],

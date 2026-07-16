@@ -37,7 +37,9 @@ class ChatCubit extends Cubit<ChatState> {
       );
       result.fold(
         (failureMessage) => emit(ChatError(message: failureMessage)),
-        (conversationId) => emit(ChatSuccess(conversationId: conversationId)),
+        (conversationId) => emit(
+          ChatSuccess(conversationId: conversationId, friendUser: friendUser),
+        ),
       );
     } catch (e) {
       emit(ChatError(message: e.toString()));
@@ -46,10 +48,12 @@ class ChatCubit extends Cubit<ChatState> {
 
   Future<void> sendMessage({
     required String conversationId,
+    required String receiverId,
     required String text,
   }) async {
     final result = await _chatRepository.sendMessage(
       conversationId: conversationId,
+      receiverId: receiverId,
       text: text,
     );
     result.fold(
@@ -59,6 +63,7 @@ class ChatCubit extends Cubit<ChatState> {
   }
 
   void fetchMyConversations() {
+    _chatRepository.initPresence();
     emit(GetConversationsLoading());
     _conversationsSubscription?.cancel();
     _conversationsSubscription = _chatRepository.getConversations().listen(

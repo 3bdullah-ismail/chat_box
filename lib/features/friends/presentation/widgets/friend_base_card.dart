@@ -1,9 +1,12 @@
-import 'package:chat_app/core/constants/color_manager.dart';
-import 'package:chat_app/core/constants/font_manager.dart';
-import 'package:chat_app/core/constants/styles_manager.dart';
-import 'package:chat_app/core/widgets/custom_avatar.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/font_manager.dart';
+import 'package:silora/core/constants/styles_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
+import 'package:silora/core/widgets/custom_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../core/utils/extension.dart';
 
 class FriendBaseCard extends StatelessWidget {
   final String title;
@@ -36,18 +39,22 @@ class FriendBaseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: margin ?? EdgeInsets.symmetric(vertical: 6.h),
+      margin: margin ?? EdgeInsets.symmetric(vertical: AppSize.s6.h),
       padding:
-          padding ?? EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+          padding ??
+          EdgeInsets.symmetric(
+            horizontal: AppSize.s16.w,
+            vertical: AppSize.s12.h,
+          ),
       decoration: BoxDecoration(
         color: ColorManager.white,
-        borderRadius: BorderRadius.circular(borderRadius ?? 12.r),
+        borderRadius: BorderRadius.circular(borderRadius ?? AppRadius.r12),
         border: Border.all(color: ColorManager.borderGray),
         boxShadow: [
           BoxShadow(
             color: ColorManager.black.withValues(alpha: 0.04),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
+            blurRadius: AppSize.s12,
+            offset: const Offset(0, AppSize.s4),
           ),
         ],
       ),
@@ -64,29 +71,35 @@ class FriendBaseCard extends StatelessWidget {
                 avatarChild: avatarChild,
                 avatarSize: avatarSize,
               ),
-              SizedBox(width: 12.w),
+              SizedBox(width: AppSize.s12.w),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      title,
+                      title.toCapitalized(),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: getBoldStyle(
                         color: ColorManager.nearBlack,
-                        fontSize: 16.sp,
+                        fontSize: FontSize.s16.sp,
                       ).copyWith(fontWeight: FontWeightManager.bold),
                     ),
-                    if (subtitle != null) ...[SizedBox(height: 2.h), subtitle!],
+                    if (subtitle != null) ...[
+                      SizedBox(height: AppSize.s2.h),
+                      subtitle!,
+                    ],
                   ],
                 ),
               ),
-              if (trailing != null) ...[SizedBox(width: 8.w), trailing!],
+              if (trailing != null) ...[
+                SizedBox(width: AppSize.s8.w),
+                trailing!,
+              ],
             ],
           ),
-          if (bottom != null) ...[SizedBox(height: 16.h), bottom!],
+          if (bottom != null) ...[SizedBox(height: AppSize.s16.h), bottom!],
         ],
       ),
     );

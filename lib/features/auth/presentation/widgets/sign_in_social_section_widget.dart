@@ -1,10 +1,11 @@
-import 'package:chat_app/core/constants/assets_manager.dart';
+import 'package:silora/core/constants/assets_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/widgets/social_signup_btn.dart';
-import 'package:chat_app/features/auth/presentation/manager/auth_cubit.dart';
+import 'package:silora/features/auth/presentation/manager/auth_cubit.dart';
 
 class SignInSocialSectionWidget extends StatelessWidget {
   const SignInSocialSectionWidget({super.key});
@@ -28,7 +29,7 @@ class SignInSocialSectionWidget extends StatelessWidget {
                       },
               ),
             ),
-            SizedBox(width: 16.w),
+            SizedBox(width: AppSize.s16.w),
             Expanded(
               child: SocialSignInButton(
                 asset: ImageAssets.apple,

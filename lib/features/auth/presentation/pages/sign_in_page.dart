@@ -1,14 +1,14 @@
-import 'package:chat_app/core/constants/assets_manager.dart';
-import 'package:chat_app/core/constants/color_manager.dart';
-import 'package:chat_app/core/constants/font_manager.dart';
-import 'package:chat_app/core/constants/styles_manager.dart';
-import 'package:chat_app/core/constants/values_manager.dart';
-import 'package:chat_app/core/di/injection_container.dart';
-import 'package:chat_app/core/routes/app_routes_names.dart';
-import 'package:chat_app/core/widgets/custom_dialog.dart';
-import 'package:chat_app/core/widgets/custom_text_btn.dart';
-import 'package:chat_app/features/auth/presentation/manager/auth_cubit.dart';
-import 'package:chat_app/features/auth/presentation/widgets/sign_in_form_card_widget.dart';
+import 'package:silora/core/constants/assets_manager.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/font_manager.dart';
+import 'package:silora/core/constants/styles_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
+import 'package:silora/core/di/injection_container.dart';
+import 'package:silora/core/routes/app_routes_names.dart';
+import 'package:silora/core/widgets/custom_dialog.dart';
+import 'package:silora/core/widgets/custom_text_btn.dart';
+import 'package:silora/features/auth/presentation/manager/auth_cubit.dart';
+import 'package:silora/features/auth/presentation/widgets/sign_in_form_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -58,8 +58,8 @@ class _SignInState extends State<SignIn> {
                   child: SingleChildScrollView(
                     child: Padding(
                       padding: REdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 20,
+                        horizontal: AppPadding.p24,
+                        vertical: AppPadding.p20,
                       ),
                       child: Center(
                         child: ConstrainedBox(
@@ -72,7 +72,7 @@ class _SignInState extends State<SignIn> {
                                 Center(
                                   child: Image.asset(
                                     ImageAssets.signInBanner,
-                                    height: 170.h,
+                                    height: AppSize.s170.h,
                                     fit: BoxFit.contain,
                                     excludeFromSemantics: true,
                                   ),

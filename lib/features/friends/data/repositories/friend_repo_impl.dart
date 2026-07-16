@@ -1,9 +1,9 @@
 import 'package:injectable/injectable.dart';
 
-import 'package:chat_app/features/auth/data/models/user_model.dart';
-import 'package:chat_app/features/friends/data/datasources/friend_data_source.dart';
-import 'package:chat_app/features/friends/data/models/friend_request_model.dart';
-import 'package:chat_app/features/friends/data/repositories/friend_repo.dart';
+import 'package:silora/features/auth/data/models/user_model.dart';
+import 'package:silora/features/friends/data/datasources/friend_data_source.dart';
+import 'package:silora/features/friends/data/models/friend_request_model.dart';
+import 'package:silora/features/friends/data/repositories/friend_repo.dart';
 
 @LazySingleton(as: FriendRepository)
 class FriendRepositoryImp implements FriendRepository {

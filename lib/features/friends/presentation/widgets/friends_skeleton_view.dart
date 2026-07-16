@@ -1,4 +1,5 @@
-import 'package:chat_app/core/constants/color_manager.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,7 +16,10 @@ class FriendsSkeletonView extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController controller = TextEditingController();
     return ListView(
-      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+      padding: EdgeInsets.symmetric(
+        horizontal: AppPadding.p24.w,
+        vertical: AppPadding.p20.h,
+      ),
       physics: const NeverScrollableScrollPhysics(),
       children: [
         Text(
@@ -25,12 +29,12 @@ class FriendsSkeletonView extends StatelessWidget {
             fontSize: FontSize.s24.sp,
           ),
         ),
-        SizedBox(height: 20.h),
+        SizedBox(height: AppSize.s20.h),
         CustomTextField(
           text: "Search by username, email, or phone",
           controller: controller,
         ),
-        SizedBox(height: 24.h),
+        SizedBox(height: AppSize.s24.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -48,12 +52,12 @@ class FriendsSkeletonView extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: 8.h),
+        SizedBox(height: AppSize.s8.h),
         const SkeletonListWidget(
           type: SkeletonType.friendRequestCompact,
           count: 1,
         ),
-        SizedBox(height: 24.h),
+        SizedBox(height: AppSize.s24.h),
         Text(
           "Your Friends",
           style: getBoldStyle(
@@ -61,7 +65,7 @@ class FriendsSkeletonView extends StatelessWidget {
             fontSize: FontSize.s18.sp,
           ),
         ),
-        SizedBox(height: 12.h),
+        SizedBox(height: AppSize.s12.h),
         const SkeletonListWidget(type: SkeletonType.friend, count: 3),
       ],
     );

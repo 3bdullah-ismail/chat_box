@@ -6,6 +6,8 @@ class UserModel {
   final String email;
   final String username;
   final String? bio;
+  final String? address;
+  final DateTime? joinedAt;
   final bool? isProfileCompleted;
 
   UserModel({
@@ -14,6 +16,8 @@ class UserModel {
     required this.email,
     required this.username,
     this.bio,
+    this.address,
+    this.joinedAt,
     this.isProfileCompleted,
   });
 
@@ -26,6 +30,10 @@ class UserModel {
       email: json['email'],
       username: json['username'] ?? '',
       bio: json['bio'],
+      address: json['address'],
+      joinedAt: json['joinedAt'] != null
+          ? (json['joinedAt'] as Timestamp).toDate()
+          : null,
       isProfileCompleted: json['isProfileCompleted'],
     );
   }
@@ -36,6 +44,8 @@ class UserModel {
       'email': email,
       'username': username,
       'bio': bio,
+      'address': address,
+      'joinedAt': joinedAt != null ? Timestamp.fromDate(joinedAt!) : null,
       'isProfileCompleted': isProfileCompleted,
     };
   }

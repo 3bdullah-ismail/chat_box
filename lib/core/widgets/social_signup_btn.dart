@@ -1,3 +1,4 @@
+import 'package:silora/core/constants/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -22,19 +23,19 @@ class SocialSignInButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(AppRadius.r8.r),
       child: Container(
-        padding: REdgeInsets.symmetric(vertical: 12),
+        padding: REdgeInsets.symmetric(vertical: AppPadding.p12),
         decoration: BoxDecoration(
           color: ColorManager.white,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(AppRadius.r8.r),
           border: Border.all(color: ColorManager.lightGray),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(asset),
-            SizedBox(width: 8.w),
+            SizedBox(width: AppSize.s8.w),
             Text(
               label,
               style: getMediumStyle(

@@ -7,4 +7,5 @@ class AppRouteNames {
   static const String layout = '/layout';
   static const String addFriends = '/add_friends';
   static const String friendRequest = '/friend_request';
+  static const String editProfile = '/edit_profile';
 }

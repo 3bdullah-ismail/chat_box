@@ -1,16 +1,17 @@
-import 'package:chat_app/core/constants/assets_manager.dart';
-import 'package:chat_app/core/constants/color_manager.dart';
-import 'package:chat_app/core/constants/font_manager.dart';
-import 'package:chat_app/core/constants/styles_manager.dart';
-import 'package:chat_app/core/di/injection_container.dart';
-import 'package:chat_app/core/routes/app_routes_names.dart';
-import 'package:chat_app/core/utils/validators.dart';
-import 'package:chat_app/core/widgets/custom_elevated_button.dart';
-import 'package:chat_app/core/widgets/custom_text_btn.dart';
-import 'package:chat_app/core/widgets/custom_text_field.dart';
-import 'package:chat_app/core/widgets/or_divider.dart';
-import 'package:chat_app/core/widgets/social_signup_btn.dart';
-import 'package:chat_app/features/auth/presentation/manager/auth_cubit.dart';
+import 'package:silora/core/constants/assets_manager.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/font_manager.dart';
+import 'package:silora/core/constants/styles_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
+import 'package:silora/core/di/injection_container.dart';
+import 'package:silora/core/routes/app_routes_names.dart';
+import 'package:silora/core/utils/validators.dart';
+import 'package:silora/core/widgets/custom_elevated_button.dart';
+import 'package:silora/core/widgets/custom_text_btn.dart';
+import 'package:silora/core/widgets/custom_text_field.dart';
+import 'package:silora/core/widgets/or_divider.dart';
+import 'package:silora/core/widgets/social_signup_btn.dart';
+import 'package:silora/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,7 +31,7 @@ class _SignupState extends State<Signup> {
 
   Widget _buildFieldLabel(String text) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 8.h),
+      padding: EdgeInsets.only(bottom: AppPadding.p8.h),
       child: Text(
         text,
         style: getBoldStyle(
@@ -83,13 +84,13 @@ class _SignupState extends State<Signup> {
               return SafeArea(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: REdgeInsets.all(24),
+                    padding: REdgeInsets.all(AppPadding.p24),
                     child: Form(
                       key: _formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          SizedBox(height: 12.h),
+                          SizedBox(height: AppSize.s12.h),
                           Center(
                             child: Text(
                               "Create your account",
@@ -99,7 +100,7 @@ class _SignupState extends State<Signup> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 8.h),
+                          SizedBox(height: AppSize.s8.h),
                           Center(
                             child: Text(
                               "Join the platform built for precision\ndevelopment.",
@@ -110,13 +111,13 @@ class _SignupState extends State<Signup> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 32.h),
+                          SizedBox(height: AppSize.s32.h),
                           _buildFieldLabel("Your Name"),
                           CustomTextField(
                             controller: cubit.nameController,
                             text: "John Doe",
                           ),
-                          SizedBox(height: 20.h),
+                          SizedBox(height: AppSize.s20.h),
 
                           _buildFieldLabel("Username"),
                           CustomTextField(
@@ -124,7 +125,7 @@ class _SignupState extends State<Signup> {
                             text: "johndoe123",
                             validator: Validators.validateUsername,
                           ),
-                          SizedBox(height: 20.h),
+                          SizedBox(height: AppSize.s20.h),
 
                           _buildFieldLabel("Your Email"),
                           CustomTextField(
@@ -132,7 +133,7 @@ class _SignupState extends State<Signup> {
                             text: "name@company.com",
                             validator: Validators.validateEmail,
                           ),
-                          SizedBox(height: 20.h),
+                          SizedBox(height: AppSize.s20.h),
 
                           _buildFieldLabel("Password"),
                           CustomTextField(
@@ -141,7 +142,7 @@ class _SignupState extends State<Signup> {
                             text: "••••••••",
                             isPass: true,
                           ),
-                          SizedBox(height: 20.h),
+                          SizedBox(height: AppSize.s20.h),
 
                           _buildFieldLabel("Confirm Password"),
                           CustomTextField(
@@ -154,7 +155,7 @@ class _SignupState extends State<Signup> {
                                   cubit.passwordController.text,
                                 ),
                           ),
-                          SizedBox(height: 32.h),
+                          SizedBox(height: AppSize.s32.h),
                           BlocSelector<AuthCubit, AuthState, bool>(
                             selector: (state) =>
                                 state is SignUpLoading ||
@@ -172,9 +173,9 @@ class _SignupState extends State<Signup> {
                               );
                             },
                           ),
-                          SizedBox(height: 24.h),
+                          SizedBox(height: AppSize.s24.h),
                           const OrDivider(text: 'SOCIAL IDENTITY'),
-                          SizedBox(height: 16.h),
+                          SizedBox(height: AppSize.s16.h),
                           BlocSelector<AuthCubit, AuthState, bool>(
                             selector: (state) =>
                                 state is SignUpLoading ||
@@ -189,7 +190,7 @@ class _SignupState extends State<Signup> {
                               );
                             },
                           ),
-                          SizedBox(height: 24.h),
+                          SizedBox(height: AppSize.s24.h),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -208,7 +209,7 @@ class _SignupState extends State<Signup> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 24.h),
+                          SizedBox(height: AppSize.s24.h),
                           Align(
                             alignment: Alignment.bottomCenter,
                             child: Text(

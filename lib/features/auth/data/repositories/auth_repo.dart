@@ -20,8 +20,6 @@ abstract class AuthRepo {
 
   Future<String> resetPassword(String email);
 
-  // Future<Map<String, dynamic>> getUser(String uid);
-
   Future<String> signOut();
 
   Future<String> verificationEmail();

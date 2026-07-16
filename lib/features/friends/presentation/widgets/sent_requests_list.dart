@@ -1,9 +1,10 @@
-import 'package:chat_app/core/constants/color_manager.dart';
-import 'package:chat_app/features/auth/data/models/user_model.dart';
-import 'package:chat_app/features/friends/data/models/friend_request_model.dart';
-import 'package:chat_app/features/friends/presentation/manager/friend_cubit.dart';
-import 'package:chat_app/features/friends/presentation/widgets/custom_empty_state.dart';
-import 'package:chat_app/features/friends/presentation/widgets/friend_request_card.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
+import 'package:silora/features/auth/data/models/user_model.dart';
+import 'package:silora/features/friends/data/models/friend_request_model.dart';
+import 'package:silora/features/friends/presentation/manager/friend_cubit.dart';
+import 'package:silora/features/friends/presentation/widgets/custom_empty_state.dart';
+import 'package:silora/features/friends/presentation/widgets/friend_request_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,12 +29,15 @@ class SentRequestsList extends StatelessWidget {
       onRefresh: () => context.read<FriendCubit>().getFriendRequests(),
       color: ColorManager.black,
       child: ListView.separated(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+        padding: EdgeInsets.symmetric(
+          horizontal: AppPadding.p20.w,
+          vertical: AppPadding.p16.h,
+        ),
         physics: const AlwaysScrollableScrollPhysics(
           parent: BouncingScrollPhysics(),
         ),
         itemCount: sentRequests.length,
-        separatorBuilder: (_, __) => SizedBox(height: 8.h),
+        separatorBuilder: (_, __) => SizedBox(height: AppSize.s8.h),
         itemBuilder: (context, index) {
           final item = sentRequests[index];
 
@@ -50,9 +54,7 @@ class SentRequestsList extends StatelessWidget {
             user: userModel,
             isReceived: false,
             isCompact: false,
-            onCancel: () {
-              // TODO: context.read<FriendCubit>().cancelFriendRequest(item.id);
-            },
+            onCancel: () {},
           );
         },
       ),

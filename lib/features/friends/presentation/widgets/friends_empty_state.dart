@@ -1,10 +1,11 @@
-import 'package:chat_app/core/constants/color_manager.dart';
-import 'package:chat_app/core/constants/font_manager.dart';
-import 'package:chat_app/core/constants/styles_manager.dart';
-import 'package:chat_app/core/routes/app_routes_names.dart';
-import 'package:chat_app/core/widgets/custom_elevated_button.dart';
-import 'package:chat_app/core/widgets/custom_text_btn.dart';
-import 'package:chat_app/features/friends/presentation/widgets/empty_card.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/font_manager.dart';
+import 'package:silora/core/constants/styles_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
+import 'package:silora/core/routes/app_routes_names.dart';
+import 'package:silora/core/widgets/custom_elevated_button.dart';
+import 'package:silora/core/widgets/custom_text_btn.dart';
+import 'package:silora/features/friends/presentation/widgets/empty_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
@@ -15,7 +16,10 @@ class FriendsEmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
+      padding: EdgeInsets.symmetric(
+        horizontal: AppPadding.p24.w,
+        vertical: AppPadding.p20.h,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -30,12 +34,12 @@ class FriendsEmptyState extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              spacing: 24.h,
+              spacing: AppSize.s24.h,
               children: [
                 const EmptyCard(),
 
                 Column(
-                  spacing: 12.h,
+                  spacing: AppSize.s12.h,
                   children: [
                     Text(
                       "No Friends Yet",
@@ -57,7 +61,7 @@ class FriendsEmptyState extends StatelessWidget {
                 ),
 
                 Column(
-                  spacing: 12.h,
+                  spacing: AppSize.s12.h,
                   children: [
                     SizedBox(
                       width: double.infinity,

@@ -1,7 +1,7 @@
-import 'package:chat_app/core/constants/color_manager.dart';
-import 'package:chat_app/core/routes/app_routes_names.dart';
-import 'package:chat_app/core/widgets/loading.dart';
-import 'package:chat_app/features/friends/presentation/manager/friend_cubit.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/routes/app_routes_names.dart';
+import 'package:silora/core/widgets/loading.dart';
+import 'package:silora/features/friends/presentation/manager/friend_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -39,7 +39,14 @@ class _FriendsPageState extends State<FriendsPage> {
             }
             if (state is ChatSuccess) {
               Loading.hide(context);
-              context.push(AppRouteNames.chat, extra: state.conversationId);
+
+              context.push(
+                AppRouteNames.chat,
+                extra: {
+                  'conversationId': state.conversationId,
+                  'friendUser': state.friendUser,
+                },
+              );
             }
           },
         ),

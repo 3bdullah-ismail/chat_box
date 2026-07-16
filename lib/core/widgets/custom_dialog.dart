@@ -7,6 +7,7 @@ class CustomAwesomeDialog {
     required String message,
     String title = 'Error',
     VoidCallback? btnOkOnPress,
+    Color? btnOkColor,
   }) {
     _show(
       context: context,
@@ -14,6 +15,7 @@ class CustomAwesomeDialog {
       title: title,
       desc: message,
       btnOkOnPress: btnOkOnPress ?? () {},
+      btnOkColor: btnOkColor,
     );
   }
 
@@ -22,6 +24,7 @@ class CustomAwesomeDialog {
     required String message,
     String title = 'Success',
     VoidCallback? btnOkOnPress,
+    Color? btnOkColor,
   }) {
     _show(
       context: context,
@@ -29,16 +32,17 @@ class CustomAwesomeDialog {
       title: title,
       desc: message,
       btnOkOnPress: btnOkOnPress ?? () {},
+      btnOkColor: btnOkColor,
     );
   }
 
-  /// 3. حالة التحذير / التنبيه (Warning Dialog)
   static void showWarning({
     required BuildContext context,
     required String message,
     String title = 'Warning',
     VoidCallback? btnOkOnPress,
     VoidCallback? btnCancelOnPress,
+    Color? btnOkColor,
   }) {
     _show(
       context: context,
@@ -47,10 +51,10 @@ class CustomAwesomeDialog {
       desc: message,
       btnOkOnPress: btnOkOnPress ?? () {},
       btnCancelOnPress: btnCancelOnPress,
+      btnOkColor: btnOkColor,
     );
   }
 
-  /// الدالة الخاصة ببناء الـ Dialog الأساسي (Private Method) لمنع التكرار
   static void _show({
     required BuildContext context,
     required DialogType dialogType,
@@ -58,6 +62,7 @@ class CustomAwesomeDialog {
     required String desc,
     required VoidCallback btnOkOnPress,
     VoidCallback? btnCancelOnPress,
+    Color? btnOkColor,
   }) {
     AwesomeDialog(
       context: context,
@@ -67,6 +72,7 @@ class CustomAwesomeDialog {
       desc: desc,
       btnOkOnPress: btnOkOnPress,
       btnCancelOnPress: btnCancelOnPress,
+      btnOkColor: btnOkColor,
     ).show();
   }
 }
