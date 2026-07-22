@@ -20,6 +20,7 @@ class FriendBaseCard extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
   final double? borderRadius;
+  final VoidCallback? onTap;
 
   const FriendBaseCard({
     super.key,
@@ -34,73 +35,77 @@ class FriendBaseCard extends StatelessWidget {
     this.padding,
     this.margin,
     this.borderRadius,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: margin ?? EdgeInsets.symmetric(vertical: AppSize.s6.h),
-      padding:
-          padding ??
-          EdgeInsets.symmetric(
-            horizontal: AppSize.s16.w,
-            vertical: AppSize.s12.h,
-          ),
-      decoration: BoxDecoration(
-        color: ColorManager.white,
-        borderRadius: BorderRadius.circular(borderRadius ?? AppRadius.r12),
-        border: Border.all(color: ColorManager.borderGray),
-        boxShadow: [
-          BoxShadow(
-            color: ColorManager.black.withValues(alpha: 0.04),
-            blurRadius: AppSize.s12,
-            offset: const Offset(0, AppSize.s4),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            children: [
-              CustomAvatar(
-                title: title,
-                imageUrl: imageUrl,
-                fallbackLetter: fallbackLetter,
-                avatarChild: avatarChild,
-                avatarSize: avatarSize,
-              ),
-              SizedBox(width: AppSize.s12.w),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      title.toCapitalized(),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: getBoldStyle(
-                        color: ColorManager.nearBlack,
-                        fontSize: FontSize.s16.sp,
-                      ).copyWith(fontWeight: FontWeightManager.bold),
-                    ),
-                    if (subtitle != null) ...[
-                      SizedBox(height: AppSize.s2.h),
-                      subtitle!,
-                    ],
-                  ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: margin ?? EdgeInsets.symmetric(vertical: AppSize.s6.h),
+        padding:
+            padding ??
+            EdgeInsets.symmetric(
+              horizontal: AppSize.s16.w,
+              vertical: AppSize.s12.h,
+            ),
+        decoration: BoxDecoration(
+          color: ColorManager.white,
+          borderRadius: BorderRadius.circular(borderRadius ?? AppRadius.r12),
+          border: Border.all(color: ColorManager.borderGray),
+          boxShadow: [
+            BoxShadow(
+              color: ColorManager.black.withValues(alpha: 0.04),
+              blurRadius: AppSize.s12,
+              offset: const Offset(0, AppSize.s4),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              children: [
+                CustomAvatar(
+                  title: title,
+                  imageUrl: imageUrl,
+                  fallbackLetter: fallbackLetter,
+                  avatarChild: avatarChild,
+                  avatarSize: avatarSize,
                 ),
-              ),
-              if (trailing != null) ...[
-                SizedBox(width: AppSize.s8.w),
-                trailing!,
+                SizedBox(width: AppSize.s12.w),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        title.toCapitalized(),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: getBoldStyle(
+                          color: ColorManager.nearBlack,
+                          fontSize: FontSize.s16.sp,
+                        ).copyWith(fontWeight: FontWeightManager.bold),
+                      ),
+                      if (subtitle != null) ...[
+                        SizedBox(height: AppSize.s2.h),
+                        subtitle!,
+                      ],
+                    ],
+                  ),
+                ),
+                if (trailing != null) ...[
+                  SizedBox(width: AppSize.s8.w),
+                  trailing!,
+                ],
               ],
-            ],
-          ),
-          if (bottom != null) ...[SizedBox(height: AppSize.s16.h), bottom!],
-        ],
+            ),
+            if (bottom != null) ...[SizedBox(height: AppSize.s16.h), bottom!],
+          ],
+        ),
       ),
     );
   }

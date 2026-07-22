@@ -1,4 +1,5 @@
-import 'package:intl/intl.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 String formatTime(int milliseconds) {
@@ -14,11 +15,11 @@ String formatLastSeen(int timestamp) {
   final diff = now.difference(date);
 
   if (diff.inMinutes < 1) {
-    return "Just now";
+    return LocaleKeys.core_time_justNow.tr();
   }
 
   if (diff.inHours < 1) {
-    return "${diff.inMinutes} min ago";
+    return "${diff.inMinutes} ${LocaleKeys.core_time_minAgo.tr()}";
   }
 
   if (diff.inHours < 24) {

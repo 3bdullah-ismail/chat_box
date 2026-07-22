@@ -1,11 +1,13 @@
-import 'package:silora/core/constants/assets_manager.dart';
-import 'package:silora/core/constants/values_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:silora/core/constants/assets_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
+import 'package:silora/features/auth/presentation/manager/auth_cubit.dart';
 
 import '../../../../core/widgets/social_signup_btn.dart';
-import 'package:silora/features/auth/presentation/manager/auth_cubit.dart';
 
 class SignInSocialSectionWidget extends StatelessWidget {
   const SignInSocialSectionWidget({super.key});
@@ -21,7 +23,7 @@ class SignInSocialSectionWidget extends StatelessWidget {
             Expanded(
               child: SocialSignInButton(
                 asset: ImageAssets.google,
-                label: 'Google',
+                label: LocaleKeys.auth_social_google.tr(),
                 onTap: isLoading
                     ? null
                     : () {
@@ -33,12 +35,14 @@ class SignInSocialSectionWidget extends StatelessWidget {
             Expanded(
               child: SocialSignInButton(
                 asset: ImageAssets.apple,
-                label: 'Apple',
+                label: LocaleKeys.auth_social_apple.tr(),
                 onTap: isLoading
                     ? null
                     : () => ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Apple Sign-In coming soon'),
+                        SnackBar(
+                          content: Text(
+                            LocaleKeys.auth_signIn_appleSignInComingSoon.tr(),
+                          ),
                         ),
                       ),
               ),

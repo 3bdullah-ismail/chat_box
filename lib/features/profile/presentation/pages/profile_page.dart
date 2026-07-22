@@ -1,23 +1,28 @@
-import 'package:silora/core/constants/color_manager.dart';
-import 'package:silora/core/constants/font_manager.dart';
-import 'package:silora/core/constants/styles_manager.dart';
-import 'package:silora/core/constants/values_manager.dart';
-import 'package:silora/core/routes/app_routes_names.dart';
-import 'package:silora/core/widgets/custom_avatar.dart';
-import 'package:silora/core/widgets/custom_dialog.dart';
-import 'package:silora/core/widgets/custom_elevated_button.dart';
-import 'package:silora/core/widgets/loading.dart';
-import 'package:silora/features/auth/presentation/manager/auth_cubit.dart';
-import 'package:silora/features/profile/presentation/manager/profile_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/constants/font_manager.dart';
+import 'package:silora/core/constants/styles_manager.dart';
+import 'package:silora/core/constants/values_manager.dart';
+import 'package:silora/core/routes/app_routes_names.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
+import 'package:silora/core/widgets/custom_avatar.dart';
+import 'package:silora/core/widgets/custom_dialog.dart';
+import 'package:silora/core/widgets/custom_elevated_button.dart';
+import 'package:silora/core/widgets/loading.dart';
+import 'package:silora/core/widgets/session_expired_widget.dart';
+import 'package:silora/features/auth/presentation/manager/auth_cubit.dart';
+import 'package:silora/features/profile/presentation/manager/profile_cubit.dart';
 
 import '../../../../core/utils/extension.dart';
+import '../widgets/language_spacer.dart';
 import '../widgets/notifications_card.dart';
 import '../widgets/presonal_info_card.dart';
+import '../widgets/profile_skeleton_view.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -37,8 +42,24 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void _refreshProfile() => context.read<ProfileCubit>().getUserProfile(_uid);
 
+  void _showSignOutConfirmation(BuildContext context) {
+    CustomAwesomeDialog.showWarning(
+      context: context,
+      title: LocaleKeys.profile_profilePage_signOutBtn.tr(),
+      message: LocaleKeys.profile_profilePage_signOutConfirmationMsg.tr(),
+      btnOkOnPress: () {
+        context.read<AuthCubit>().signOut();
+      },
+      btnCancelOnPress: () {},
+      btnOkColor: ColorManager.danger,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    // Force rebuild when the locale changes
+    context.locale;
+
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is SignOutLoading) Loading.show(context);
@@ -63,9 +84,10 @@ class _ProfilePageState extends State<ProfilePage> {
             child: BlocBuilder<ProfileCubit, ProfileState>(
               builder: (context, state) {
                 if (state is ProfileLoading || state is ProfileInitial) {
-                  return const Center(
-                    child: CircularProgressIndicator(color: ColorManager.black),
-                  );
+                  return const ProfileSkeletonView();
+                }
+                if (state is ProfileSessionExpired) {
+                  return const SessionExpiredWidget();
                 }
                 if (state is ProfileError) {
                   return Center(
@@ -99,7 +121,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ),
                             ),
-                            child: const Text('Retry'),
+                            child: Text(
+                              LocaleKeys.profile_profilePage_retryBtn.tr(),
+                            ),
                           ),
                         ],
                       ),
@@ -159,14 +183,19 @@ class _ProfilePageState extends State<ProfilePage> {
                         ],
                         SizedBox(height: AppSize.s24.h),
 
-                        PersonalInfoCard(user: user),
+                        PersonalInfoCard(
+                          user: user,
+                          onEditReturn: _refreshProfile,
+                        ),
                         SizedBox(height: AppSize.s16.h),
-                        const NotificationsCard(),
+                        NotificationsCard(),
+                        SizedBox(height: AppSize.s16.h),
+                        const LanguageSpacer(),
                         SizedBox(height: AppSize.s32.h),
 
                         CustomElevatedButton(
-                          label: "Sign out",
-                          onTap: () => context.read<AuthCubit>().signOut(),
+                          label: LocaleKeys.profile_profilePage_signOutBtn.tr(),
+                          onTap: () => _showSignOutConfirmation(context),
                         ),
                       ],
                     ),

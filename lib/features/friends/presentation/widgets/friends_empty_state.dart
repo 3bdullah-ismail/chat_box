@@ -1,14 +1,16 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:silora/core/constants/color_manager.dart';
 import 'package:silora/core/constants/font_manager.dart';
 import 'package:silora/core/constants/styles_manager.dart';
 import 'package:silora/core/constants/values_manager.dart';
 import 'package:silora/core/routes/app_routes_names.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
 import 'package:silora/core/widgets/custom_elevated_button.dart';
 import 'package:silora/core/widgets/custom_text_btn.dart';
 import 'package:silora/features/friends/presentation/widgets/empty_card.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 class FriendsEmptyState extends StatelessWidget {
   const FriendsEmptyState({super.key});
@@ -24,7 +26,7 @@ class FriendsEmptyState extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Friends',
+            LocaleKeys.friends_emptyState_title.tr(),
             style: getBoldStyle(
               color: ColorManager.black,
               fontSize: FontSize.s24.sp,
@@ -42,7 +44,7 @@ class FriendsEmptyState extends StatelessWidget {
                   spacing: AppSize.s12.h,
                   children: [
                     Text(
-                      "No Friends Yet",
+                      LocaleKeys.friends_emptyState_emptyTitle.tr(),
                       textAlign: TextAlign.center,
                       style: getBoldStyle(
                         color: ColorManager.black,
@@ -50,7 +52,7 @@ class FriendsEmptyState extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "You haven't added any friends yet. Start\nconnecting with people to chat, call and\nshare moments together.",
+                      LocaleKeys.friends_emptyState_emptyDesc.tr(),
                       textAlign: TextAlign.center,
                       style: getMediumStyle(
                         color: ColorManager.gray,
@@ -66,13 +68,13 @@ class FriendsEmptyState extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: CustomElevatedButton(
-                        label: "Add Friends",
+                        label: LocaleKeys.friends_emptyState_addFriendsBtn.tr(),
                         onTap: () => context.push(AppRouteNames.addFriends),
                         prefixIcon: const Icon(Icons.person_add_alt),
                       ),
                     ),
                     CustomTextBtn(
-                      text: "View Sent/Received Requests",
+                      text: LocaleKeys.friends_emptyState_viewRequestsBtn.tr(),
                       onPressed: () =>
                           context.push(AppRouteNames.friendRequest),
                       color: ColorManager.nearBlack,

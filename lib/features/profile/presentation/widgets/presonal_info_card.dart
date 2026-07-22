@@ -1,8 +1,9 @@
-import 'package:silora/core/constants/font_manager.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
+import 'package:silora/core/constants/font_manager.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
 
 import '../../../../core/constants/color_manager.dart';
 import '../../../../core/constants/styles_manager.dart';
@@ -11,8 +12,9 @@ import '../../../../core/routes/app_routes_names.dart';
 
 class PersonalInfoCard extends StatelessWidget {
   final dynamic user;
+  final VoidCallback onEditReturn;
 
-  const PersonalInfoCard({super.key, required this.user});
+  const PersonalInfoCard({super.key, required this.user, required this.onEditReturn});
 
   @override
   Widget build(BuildContext context) {
@@ -37,15 +39,17 @@ class PersonalInfoCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Personal Info',
+                LocaleKeys.profile_personalInfo_title.tr(),
                 style: getBoldStyle(
                   color: ColorManager.black,
                   fontSize: FontSize.s16.sp,
                 ),
               ),
               IconButton(
-                onPressed: () =>
-                    context.push(AppRouteNames.editProfile, extra: user),
+                onPressed: () async {
+                    await context.push(AppRouteNames.editProfile, extra: user);
+                    onEditReturn();
+                },
                 constraints: const BoxConstraints(),
                 padding: EdgeInsets.zero,
                 icon: Icon(
@@ -59,16 +63,24 @@ class PersonalInfoCard extends StatelessWidget {
           Divider(color: ColorManager.borderGray, height: AppSize.s20.h),
           _InfoRow(
             icon: Icons.location_on_outlined,
-            text: user.address ?? 'Not provided',
+            text: (user.address != null && user.address.isNotEmpty)
+                ? user.address
+                : LocaleKeys.profile_personalInfo_addressNotProvided.tr(),
           ),
           SizedBox(height: AppSize.s12.h),
-          _InfoRow(icon: Icons.link_rounded, text: user.email, isLink: true),
+          _InfoRow(
+            icon: Icons.link_rounded, 
+            text: (user.email != null && user.email.isNotEmpty) 
+                ? user.email 
+                : LocaleKeys.profile_personalInfo_addressNotProvided.tr(), 
+            isLink: (user.email != null && user.email.isNotEmpty)
+          ),
           SizedBox(height: AppSize.s12.h),
           _InfoRow(
             icon: Icons.calendar_today_outlined,
             text: user.joinedAt != null
-                ? 'Joined ${DateFormat.yMMMM().format(user.joinedAt!)}'
-                : 'Joined recently',
+                ? '${LocaleKeys.profile_personalInfo_joinedPrefix.tr()}${DateFormat.yMMMM().format(user.joinedAt!)}'
+                : LocaleKeys.profile_personalInfo_joinedRecently.tr(),
           ),
         ],
       ),

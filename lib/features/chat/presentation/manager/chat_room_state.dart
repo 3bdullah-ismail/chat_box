@@ -28,3 +28,5 @@ class SendMessageError extends ChatRoomState {
 
   SendMessageError({required this.message});
 }
+
+class ChatRoomSessionExpired extends ChatRoomState {}

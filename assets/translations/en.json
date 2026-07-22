@@ -1,0 +1,189 @@
+{
+  "hello": "Hello",
+  "auth": {
+    "resetPassword": {
+      "title": "Reset Password",
+      "description": "Enter the email address associated with your account and we'll send you a link to reset your password.",
+      "emailAddressLabel": "Email Address",
+      "emailHint": "name@company.com",
+      "sendingBtn": "Sending...",
+      "sendResetLinkBtn": "Send Reset Link",
+      "rememberedPassword": "Remembered your password? ",
+      "signInText": "Sign in"
+    },
+    "signIn": {
+      "title": "Sign In",
+      "welcomeBack": "Welcome back. Enter your details to\ncontinue.",
+      "emailAddressLabel": "EMAIL ADDRESS",
+      "emailHint": "name@company.com",
+      "passwordLabel": "PASSWORD",
+      "forgotPassword": "Forgot Password?",
+      "passwordHint": "Enter your password",
+      "signingInBtn": "Signing In...",
+      "signInBtn": "Sign In",
+      "orContinueWith": "OR CONTINUE WITH",
+      "dontHaveAccount": "Don't have an account?",
+      "signUpText": "Sign Up",
+      "appleSignInComingSoon": "Apple Sign-In coming soon"
+    },
+    "signUp": {
+      "title": "Create your account",
+      "description": "Join the platform built for precision\ndevelopment.",
+      "nameLabel": "Your Name",
+      "nameHint": "John Doe",
+      "usernameLabel": "Username",
+      "usernameHint": "johndoe123",
+      "emailLabel": "Your Email",
+      "emailHint": "name@company.com",
+      "passwordLabel": "Password",
+      "passwordHint": "••••••••",
+      "confirmPasswordLabel": "Confirm Password",
+      "signingUpBtn": "Signing Up...",
+      "signUpBtn": "Sign Up",
+      "socialIdentity": "SOCIAL IDENTITY",
+      "alreadyHaveAccount": "Already have an account?",
+      "signInText": "Sign In",
+      "termsAndPrivacy": "By clicking \"Create Account\", you agree to our Terms of Service and Privacy Policy. Data processing is handled with technical precision.",
+      "verificationEmailSent": "Verification Email Sent"
+    },
+    "social": {
+      "google": "Google",
+      "apple": "Apple"
+    }
+  },
+  "chat": {
+    "page": {
+      "deleteForEveryone": "Delete for everyone",
+      "deleteForMe": "Delete for me",
+      "copy": "Copy",
+      "cancel": "Cancel",
+      "typing": "Typing...",
+      "online": "Online",
+      "offline": "Offline",
+      "lastSeen": "Last seen {}",
+      "noMessages": "No messages yet.\nSay Hello! 👋",
+      "messageDeleted": "🚫 This message was deleted",
+      "messageHint": "Message..."
+    },
+    "chatsPage": {
+      "searchHint": "Search for people"
+    },
+    "chatCard": {
+      "chatUser": "Chat User",
+      "tapToStart": "Tap to start chatting..."
+    },
+    "emptyChats": {
+      "title": "No Conversations\nYet",
+      "description": "Start a new chat to connect with your friends and colleagues. Your private and group messages will appear here.",
+      "startChattingBtn": "Start Chatting",
+      "discoverPeopleBtn": "Discover People"
+    }
+  },
+  "friends": {
+    "addFriends": {
+      "title": "Add Friends",
+      "searchHint": "Search by username, email, or phone",
+      "successMsg": "Friend request sent successfully!",
+      "emptyStateTitle": "No Users Found",
+      "emptyStateDesc": "We couldn't find anyone matching your search query. Try searching by username or email."
+    },
+    "friendRequests": {
+      "title": "Friend Requests",
+      "tabReceived": "Received",
+      "tabSent": "Sent",
+      "successMsg": "Friend request accepted!"
+    },
+    "cards": {
+      "mutualFriend": "Mutual Friend",
+      "addFriendBtn": "Add Friend",
+      "acceptBtn": "Accept",
+      "declineBtn": "Decline",
+      "cancelRequestBtn": "Cancel Request"
+    },
+    "emptyState": {
+      "title": "Friends",
+      "emptyTitle": "No Friends Yet",
+      "emptyDesc": "You haven't added any friends yet. Start\nconnecting with people to chat, call and\nshare moments together.",
+      "addFriendsBtn": "Add Friends",
+      "viewRequestsBtn": "View Sent/Received Requests"
+    },
+    "mainContent": {
+      "title": "Friends",
+      "searchHint": "Search by username, email, or phone",
+      "requestsSectionTitle": "Friend Requests",
+      "viewAllBtn": "View All",
+      "friendsSectionTitle": "My Friends"
+    },
+    "receivedRequests": {
+      "emptyStateTitle": "No Received Requests",
+      "emptyStateDesc": "When someone sends you a friend request, it will appear here."
+    },
+    "sentRequests": {
+      "emptyStateTitle": "No Sent Requests",
+      "emptyStateDesc": "You haven't sent any friend requests yet. Go find some friends!"
+    }
+  },
+  "layout": {
+    "chatsTab": "Chats",
+    "friendsTab": "Friends",
+    "profileTab": "Profile"
+  },
+  "onboarding": {
+    "screenLabel": "Onboarding Screen",
+    "appName": "Silora",
+    "appNameSemantics": "App Name: Silora",
+    "subtitle": "Where Every Connection Matters",
+    "description": "Silora brings people closer through simple, secure, and meaningful conversations. Stay connected with friends, family, and the people who matter most.",
+    "startConnectingBtn": "Start Connecting",
+    "previewSemantics": "Silora messaging experience preview",
+    "mockChatBubbleText": "Welcome to Silora.\nStay close to the people who matter."
+  },
+  "profile": {
+    "editProfile": {
+      "title": "Edit Profile",
+      "fullNameLabel": "Full Name",
+      "nameHint": "Enter your name",
+      "nameEmptyErr": "Name cannot be empty",
+      "bioLabel": "Bio",
+      "bioHint": "Tell us about yourself",
+      "addressLabel": "Address",
+      "addressHint": "E.g. Cairo, Egypt",
+      "saveBtn": "Save Changes"
+    },
+    "profilePage": {
+      "retryBtn": "Retry",
+      "signOutBtn": "Sign out",
+      "signOutConfirmationMsg": "Are you sure you want to sign out?"
+    },
+    "notifications": {
+      "title": "Notifications"
+    },
+    "personalInfo": {
+      "title": "Personal Info",
+      "addressNotProvided": "Not provided",
+      "joinedPrefix": "Joined ",
+      "joinedRecently": "Joined recently"
+    }
+  },
+  "core": {
+    "dialog": {
+      "error": "Error",
+      "success": "Success",
+      "warning": "Warning"
+    },
+    "time": {
+      "justNow": "Just now",
+      "minAgo": "min ago"
+    },
+    "validation": {
+      "emailEmpty": "Email cannot be empty.",
+      "emailInvalid": "Please enter a valid email address.",
+      "passwordEmpty": "Please enter password",
+      "passwordInvalid": "Password must be at least 8 chars\n and contain upper, lower,\n number & special char",
+      "confirmPasswordEmpty": "Please confirm your password",
+      "passwordsNotMatch": "Passwords do not match",
+      "usernameEmpty": "Username cannot be empty.",
+      "usernameInvalid": "Username must be at least 3 characters."
+    }
+  }
+}

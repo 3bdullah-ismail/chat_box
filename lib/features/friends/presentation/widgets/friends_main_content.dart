@@ -1,13 +1,15 @@
-import 'package:silora/core/constants/color_manager.dart';
-import 'package:silora/core/routes/app_routes_names.dart';
-import 'package:silora/features/auth/data/models/user_model.dart';
-import 'package:silora/features/friends/presentation/manager/friend_cubit.dart';
-import 'package:silora/features/friends/presentation/widgets/friend_card.dart';
-import 'package:silora/features/friends/presentation/widgets/friend_request_card.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:silora/core/constants/color_manager.dart';
+import 'package:silora/core/routes/app_routes_names.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
+import 'package:silora/features/auth/data/models/user_model.dart';
+import 'package:silora/features/friends/presentation/manager/friend_cubit.dart';
+import 'package:silora/features/friends/presentation/widgets/friend_card.dart';
+import 'package:silora/features/friends/presentation/widgets/friend_request_card.dart';
 
 import '../../../../core/constants/font_manager.dart';
 import '../../../../core/constants/styles_manager.dart';
@@ -60,7 +62,7 @@ class _FriendsMainContentState extends State<FriendsMainContent> {
         physics: const BouncingScrollPhysics(),
         children: [
           Text(
-            'Friends',
+            LocaleKeys.friends_mainContent_title.tr(),
             style: getBoldStyle(
               color: ColorManager.black,
               fontSize: FontSize.s24.sp,
@@ -69,7 +71,7 @@ class _FriendsMainContentState extends State<FriendsMainContent> {
           SizedBox(height: AppSize.s20.h),
           CustomTextField(
             controller: _searchController,
-            text: "Search by username, email, or phone",
+            text: LocaleKeys.friends_mainContent_searchHint.tr(),
             onChanged: (query) => setState(() => _searchQuery = query),
           ),
           SizedBox(height: AppSize.s24.h),
@@ -89,14 +91,14 @@ class _FriendsMainContentState extends State<FriendsMainContent> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Friend Requests",
+              LocaleKeys.friends_mainContent_requestsSectionTitle.tr(),
               style: getBoldStyle(
                 color: ColorManager.black,
                 fontSize: FontSize.s18.sp,
               ),
             ),
             CustomTextBtn(
-              text: "View All",
+              text: LocaleKeys.friends_mainContent_viewAllBtn.tr(),
               onPressed: () => context.push(AppRouteNames.friendRequest),
               color: ColorManager.black,
             ),
@@ -151,7 +153,7 @@ class _FriendsMainContentState extends State<FriendsMainContent> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "My Friends",
+          LocaleKeys.friends_mainContent_friendsSectionTitle.tr(),
           style: getBoldStyle(
             color: ColorManager.black,
             fontSize: FontSize.s18.sp,

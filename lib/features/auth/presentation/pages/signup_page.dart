@@ -16,6 +16,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
 
 import '../../../../core/widgets/custom_dialog.dart';
 
@@ -71,7 +73,7 @@ class _SignupState extends State<Signup> {
               CustomAwesomeDialog.showSuccess(
                 context: context,
                 message: state.message,
-                title: 'Verification Email Sent',
+                title: LocaleKeys.auth_signUp_verificationEmailSent.tr(),
                 btnOkOnPress: () => context.go(AppRouteNames.signIn),
               );
             } else if (state is SignInSuccess) {
@@ -93,7 +95,7 @@ class _SignupState extends State<Signup> {
                           SizedBox(height: AppSize.s12.h),
                           Center(
                             child: Text(
-                              "Create your account",
+                              LocaleKeys.auth_signUp_title.tr(),
                               style: getBoldStyle(
                                 color: ColorManager.black,
                                 fontSize: FontSize.s36.sp,
@@ -103,7 +105,7 @@ class _SignupState extends State<Signup> {
                           SizedBox(height: AppSize.s8.h),
                           Center(
                             child: Text(
-                              "Join the platform built for precision\ndevelopment.",
+                              LocaleKeys.auth_signUp_description.tr(),
                               textAlign: TextAlign.center,
                               style: getRegularStyle(
                                 color: ColorManager.lightGray,
@@ -112,43 +114,43 @@ class _SignupState extends State<Signup> {
                             ),
                           ),
                           SizedBox(height: AppSize.s32.h),
-                          _buildFieldLabel("Your Name"),
+                          _buildFieldLabel(LocaleKeys.auth_signUp_nameLabel.tr()),
                           CustomTextField(
                             controller: cubit.nameController,
-                            text: "John Doe",
+                            text: LocaleKeys.auth_signUp_nameHint.tr(),
                           ),
                           SizedBox(height: AppSize.s20.h),
 
-                          _buildFieldLabel("Username"),
+                          _buildFieldLabel(LocaleKeys.auth_signUp_usernameLabel.tr()),
                           CustomTextField(
                             controller: cubit.usernameController,
-                            text: "johndoe123",
+                            text: LocaleKeys.auth_signUp_usernameHint.tr(),
                             validator: Validators.validateUsername,
                           ),
                           SizedBox(height: AppSize.s20.h),
 
-                          _buildFieldLabel("Your Email"),
+                          _buildFieldLabel(LocaleKeys.auth_signUp_emailLabel.tr()),
                           CustomTextField(
                             controller: cubit.emailController,
-                            text: "name@company.com",
+                            text: LocaleKeys.auth_signUp_emailHint.tr(),
                             validator: Validators.validateEmail,
                           ),
                           SizedBox(height: AppSize.s20.h),
 
-                          _buildFieldLabel("Password"),
+                          _buildFieldLabel(LocaleKeys.auth_signUp_passwordLabel.tr()),
                           CustomTextField(
                             controller: cubit.passwordController,
                             validator: Validators.validatePassword,
-                            text: "••••••••",
+                            text: LocaleKeys.auth_signUp_passwordHint.tr(),
                             isPass: true,
                           ),
                           SizedBox(height: AppSize.s20.h),
 
-                          _buildFieldLabel("Confirm Password"),
+                          _buildFieldLabel(LocaleKeys.auth_signUp_confirmPasswordLabel.tr()),
                           CustomTextField(
                             isPass: true,
                             controller: cubit.confirmPasswordController,
-                            text: "••••••••",
+                            text: LocaleKeys.auth_signUp_passwordHint.tr(),
                             validator: (value) =>
                                 Validators.validateConfirmPassword(
                                   value,
@@ -162,7 +164,7 @@ class _SignupState extends State<Signup> {
                                 state is VerificationEmailLoading,
                             builder: (context, isLoading) {
                               return CustomElevatedButton(
-                                label: isLoading ? 'Signing Up...' : 'Sign Up',
+                                label: isLoading ? LocaleKeys.auth_signUp_signingUpBtn.tr() : LocaleKeys.auth_signUp_signUpBtn.tr(),
                                 onTap: isLoading
                                     ? null
                                     : () {
@@ -174,7 +176,7 @@ class _SignupState extends State<Signup> {
                             },
                           ),
                           SizedBox(height: AppSize.s24.h),
-                          const OrDivider(text: 'SOCIAL IDENTITY'),
+                          OrDivider(text: LocaleKeys.auth_signUp_socialIdentity.tr()),
                           SizedBox(height: AppSize.s16.h),
                           BlocSelector<AuthCubit, AuthState, bool>(
                             selector: (state) =>
@@ -183,7 +185,7 @@ class _SignupState extends State<Signup> {
                             builder: (context, isLoading) {
                               return SocialSignInButton(
                                 asset: ImageAssets.google,
-                                label: 'Google',
+                                label: LocaleKeys.auth_social_google.tr(),
                                 onTap: isLoading
                                     ? null
                                     : () => cubit.signInWithGoogle(),
@@ -195,14 +197,14 @@ class _SignupState extends State<Signup> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Already have an account?",
+                                LocaleKeys.auth_signUp_alreadyHaveAccount.tr(),
                                 style: getBoldStyle(
                                   color: ColorManager.black,
                                   fontSize: FontSize.s14.sp,
                                 ),
                               ),
                               CustomTextBtn(
-                                text: "Sign In",
+                                text: LocaleKeys.auth_signUp_signInText.tr(),
                                 onPressed: () =>
                                     context.go(AppRouteNames.signIn),
                                 color: ColorManager.blue,
@@ -213,7 +215,7 @@ class _SignupState extends State<Signup> {
                           Align(
                             alignment: Alignment.bottomCenter,
                             child: Text(
-                              "By clicking \"Create Account\", you agree to our Terms of Service and Privacy Policy. Data processing is handled with technical precision.",
+                              LocaleKeys.auth_signUp_termsAndPrivacy.tr(),
                               textAlign: TextAlign.center,
                               style: getRegularStyle(
                                 color: ColorManager.gray,

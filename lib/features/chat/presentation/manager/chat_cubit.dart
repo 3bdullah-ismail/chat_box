@@ -71,7 +71,12 @@ class ChatCubit extends Cubit<ChatState> {
         emit(GetConversationsLoaded(conversations: conversationsList));
       },
       onError: (error) {
-        emit(GetConversationsError(message: error.toString()));
+        String msg = error.toString();
+        if (msg.contains('permission-denied')) {
+          emit(GetConversationsSessionExpired());
+        } else {
+          emit(GetConversationsError(message: msg));
+        }
       },
     );
   }

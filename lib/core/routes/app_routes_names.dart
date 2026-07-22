@@ -8,4 +8,6 @@ class AppRouteNames {
   static const String addFriends = '/add_friends';
   static const String friendRequest = '/friend_request';
   static const String editProfile = '/edit_profile';
+  static const String friendProfile = '/friend_profile';
+  static const String chooseLocation = '/choose_location';
 }

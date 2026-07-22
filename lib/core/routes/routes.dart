@@ -1,15 +1,15 @@
-import 'package:silora/features/auth/presentation/pages/sign_in_page.dart';
-import 'package:silora/features/auth/presentation/pages/signup_page.dart';
-import 'package:silora/features/friends/presentation/pages/add_friends.dart';
-import 'package:silora/features/friends/presentation/pages/friend_requests.dart';
-import 'package:silora/features/layout/presentation/pages/layout.dart';
-import 'package:silora/features/onboarding/page/onboarding.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:silora/features/auth/presentation/pages/sign_in_page.dart';
+import 'package:silora/features/auth/presentation/pages/signup_page.dart';
+import 'package:silora/features/friends/presentation/pages/add_friends.dart';
+import 'package:silora/features/friends/presentation/pages/friend_requests.dart';
+import 'package:silora/features/layout/presentation/pages/layout.dart';
+import 'package:silora/features/onboarding/page/onboarding.dart';
 
 import '../../features/auth/data/models/user_model.dart';
 import '../../features/auth/presentation/manager/auth_cubit.dart';
@@ -18,36 +18,40 @@ import '../../features/chat/presentation/manager/chat_cubit.dart';
 import '../../features/chat/presentation/pages/chat_page.dart';
 import '../../features/friends/presentation/manager/friend_cubit.dart';
 import '../../features/profile/presentation/manager/profile_cubit.dart';
+import '../../features/profile/presentation/pages/choose_location_page.dart';
 import '../../features/profile/presentation/pages/edit_profile_page.dart';
+import '../../features/profile/presentation/pages/friend_profile_page.dart';
 import '../di/injection_container.dart';
+import '../constants/constant_manager.dart';
 import 'app_routes_names.dart';
 
 class Routes {
-  static final GoRouter router = GoRouter(
-    initialLocation: AppRouteNames.onboarding,
-    redirect: (context, state) async {
-      final prefs = await SharedPreferences.getInstance();
-      final seenOnboarding = prefs.getBool('seen_onboarding') ?? false;
-      final isLoggedIn = FirebaseAuth.instance.currentUser != null;
+  static GoRouter createRouter() {
+    return GoRouter(
+      initialLocation: AppRouteNames.onboarding,
+      redirect: (context, state) async {
+        final prefs = await SharedPreferences.getInstance();
+        final hasSeenOnboarding = prefs.getBool(AppConstants.seenOnboardingKey) ?? false;
+        final isLoggedIn = FirebaseAuth.instance.currentUser != null;
 
-      final isGoingToOnboarding =
-          state.matchedLocation == AppRouteNames.onboarding;
-      final isGoingToAuth =
-          state.matchedLocation == AppRouteNames.signIn ||
-          state.matchedLocation == AppRouteNames.signUp ||
-          state.matchedLocation == AppRouteNames.resetPassWord;
-      if (!seenOnboarding) {
-        return isGoingToOnboarding ? null : AppRouteNames.onboarding;
-      }
-      if (!isLoggedIn) {
-        if (isGoingToAuth || isGoingToOnboarding) return null;
-        return AppRouteNames.signIn;
-      }
-      if (isLoggedIn && (isGoingToAuth || isGoingToOnboarding)) {
-        return AppRouteNames.layout;
-      }
-      return null;
-    },
+        final isGoingToOnboarding =
+            state.matchedLocation == AppRouteNames.onboarding;
+        final isGoingToAuth =
+            state.matchedLocation == AppRouteNames.signIn ||
+            state.matchedLocation == AppRouteNames.signUp ||
+            state.matchedLocation == AppRouteNames.resetPassWord;
+        if (!hasSeenOnboarding) {
+          return isGoingToOnboarding ? null : AppRouteNames.onboarding;
+        }
+        if (!isLoggedIn) {
+          if (isGoingToAuth || isGoingToOnboarding) return null;
+          return AppRouteNames.signIn;
+        }
+        if (isLoggedIn && (isGoingToAuth || isGoingToOnboarding)) {
+          return AppRouteNames.layout;
+        }
+        return null;
+      },
     routes: [
       GoRoute(
         path: AppRouteNames.onboarding,
@@ -102,6 +106,13 @@ class Routes {
         },
       ),
       GoRoute(
+        path: AppRouteNames.friendProfile,
+        builder: (context, state) {
+          final user = state.extra as UserModel;
+          return FriendProfilePage(user: user);
+        },
+      ),
+      GoRoute(
         path: AppRouteNames.chat,
         builder: (context, state) {
           final extra = state.extra as Map<String, dynamic>;
@@ -112,6 +123,12 @@ class Routes {
           );
         },
       ),
+      GoRoute(
+        path: AppRouteNames.chooseLocation,
+        builder: (context, state) {
+          return ChooseLocationPage();
+        },
+      ),
     ],
     errorBuilder: (context, state) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -120,4 +137,5 @@ class Routes {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     },
   );
+}
 }

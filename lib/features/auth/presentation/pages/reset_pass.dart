@@ -14,6 +14,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
 
 class ResetPassWord extends StatefulWidget {
   const ResetPassWord({super.key});
@@ -75,7 +77,7 @@ class _ResetPassWordState extends State<ResetPassWord> {
                           children: [
                             AppSize.s20.verticalSpace,
                             Text(
-                              "Reset Password",
+                              LocaleKeys.auth_resetPassword_title.tr(),
                               style:
                                   getBoldStyle(
                                     color: ColorManager.black,
@@ -86,7 +88,7 @@ class _ResetPassWordState extends State<ResetPassWord> {
                             ),
                             AppSize.s16.verticalSpace,
                             Text(
-                              "Enter the email address associated with your account and we'll send you a link to reset your password.",
+                              LocaleKeys.auth_resetPassword_description.tr(),
                               style: getMediumStyle(
                                 color: ColorManager.gray,
                                 fontSize: FontSize.s16.sp,
@@ -94,7 +96,7 @@ class _ResetPassWordState extends State<ResetPassWord> {
                             ),
                             AppSize.s40.verticalSpace,
                             Text(
-                              "Email Address",
+                              LocaleKeys.auth_resetPassword_emailAddressLabel.tr(),
                               style: getBoldStyle(
                                 color: ColorManager.black,
                                 fontSize: FontSize.s14.sp,
@@ -103,7 +105,7 @@ class _ResetPassWordState extends State<ResetPassWord> {
                             AppSize.s8.verticalSpace,
                             CustomTextField(
                               controller: cubit.emailController,
-                              text: "name@company.com",
+                              text: LocaleKeys.auth_resetPassword_emailHint.tr(),
                               keyboardType: TextInputType.emailAddress,
                               validator: Validators.validateEmail,
                             ),
@@ -114,8 +116,8 @@ class _ResetPassWordState extends State<ResetPassWord> {
                               builder: (context, isLoading) {
                                 return CustomElevatedButton(
                                   label: isLoading
-                                      ? "Sending..."
-                                      : "Send Reset Link",
+                                      ? LocaleKeys.auth_resetPassword_sendingBtn.tr()
+                                      : LocaleKeys.auth_resetPassword_sendResetLinkBtn.tr(),
                                   suffixIcon: isLoading
                                       ? const SizedBox()
                                       : Icon(
@@ -144,14 +146,14 @@ class _ResetPassWordState extends State<ResetPassWord> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  "Remembered your password? ",
+                                  LocaleKeys.auth_resetPassword_rememberedPassword.tr(),
                                   style: getMediumStyle(
                                     color: ColorManager.gray,
                                     fontSize: FontSize.s14.sp,
                                   ),
                                 ),
                                 CustomTextBtn(
-                                  text: "Sign in",
+                                  text: LocaleKeys.auth_resetPassword_signInText.tr(),
                                   fontSize: FontSize.s14.sp,
                                   color: ColorManager.black,
                                   onPressed: () =>

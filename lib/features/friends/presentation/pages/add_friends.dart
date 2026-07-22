@@ -1,17 +1,20 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:silora/core/constants/color_manager.dart';
 import 'package:silora/core/constants/font_manager.dart';
 import 'package:silora/core/constants/styles_manager.dart';
 import 'package:silora/core/constants/values_manager.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
 import 'package:silora/core/widgets/custom_text_field.dart';
 import 'package:silora/core/widgets/loading.dart';
 import 'package:silora/features/friends/presentation/manager/friend_cubit.dart';
 import 'package:silora/features/friends/presentation/widgets/add_friend_card.dart';
 import 'package:silora/features/friends/presentation/widgets/custom_empty_state.dart';
 import 'package:silora/features/friends/presentation/widgets/skeleton_list_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:silora/core/widgets/session_expired_widget.dart';
 
 class AddFriends extends StatefulWidget {
   const AddFriends({super.key});
@@ -50,7 +53,7 @@ class _AddFriendsState extends State<AddFriends> {
           onPressed: () => context.pop(),
         ),
         title: Text(
-          "Add Friends",
+          LocaleKeys.friends_addFriends_title.tr(),
           style: getBoldStyle(
             color: ColorManager.black,
             fontSize: FontSize.s20.sp,
@@ -68,7 +71,7 @@ class _AddFriendsState extends State<AddFriends> {
             children: [
               CustomTextField(
                 controller: _searchController,
-                text: "Search by username, email, or phone",
+                text: LocaleKeys.friends_addFriends_searchHint.tr(),
                 onChanged: (query) {
                   context.read<FriendCubit>().search(query);
                 },
@@ -86,8 +89,10 @@ class _AddFriendsState extends State<AddFriends> {
                     } else if (state is SendFriendRequestSuccess) {
                       Loading.hide(context);
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Friend request sent successfully!"),
+                        SnackBar(
+                          content: Text(
+                            LocaleKeys.friends_addFriends_successMsg.tr(),
+                          ),
                           backgroundColor: ColorManager.blue,
                         ),
                       );
@@ -104,12 +109,17 @@ class _AddFriendsState extends State<AddFriends> {
                   buildWhen: (previous, current) =>
                       current is GetUserLoading ||
                       current is GetUserLoaded ||
-                      current is GetUserError,
+                      current is GetUserError ||
+                      current is FriendSessionExpired,
                   builder: (context, state) {
                     if (state is GetUserLoading) {
                       return const SingleChildScrollView(
                         child: SkeletonListWidget(type: SkeletonType.addFriend),
                       );
+                    }
+
+                    if (state is FriendSessionExpired) {
+                      return const SessionExpiredWidget();
                     }
 
                     if (state is GetUserError) {
@@ -120,11 +130,13 @@ class _AddFriendsState extends State<AddFriends> {
                       final usersToDisplay = state.filteredUsers;
 
                       if (usersToDisplay.isEmpty) {
-                        return const CustomEmptyState(
+                        return CustomEmptyState(
                           icon: Icons.person_search_outlined,
-                          title: "No Users Found",
-                          description:
-                              "We couldn't find anyone matching your search query. Try searching by username or email.",
+                          title: LocaleKeys.friends_addFriends_emptyStateTitle
+                              .tr(),
+                          description: LocaleKeys
+                              .friends_addFriends_emptyStateDesc
+                              .tr(),
                         );
                       }
 

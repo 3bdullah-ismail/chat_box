@@ -71,3 +71,5 @@ class GetFriendsError extends FriendState {
 
   GetFriendsError(this.message);
 }
+
+class FriendSessionExpired extends FriendState {}

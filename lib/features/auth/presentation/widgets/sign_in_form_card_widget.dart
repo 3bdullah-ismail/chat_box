@@ -1,3 +1,9 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
 import 'package:silora/core/constants/color_manager.dart';
 import 'package:silora/core/constants/font_manager.dart';
 import 'package:silora/core/constants/styles_manager.dart';
@@ -5,10 +11,6 @@ import 'package:silora/core/constants/values_manager.dart';
 import 'package:silora/core/routes/app_routes_names.dart';
 import 'package:silora/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:silora/features/auth/presentation/widgets/sign_in_social_section_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../core/utils/validators.dart';
 import '../../../../core/widgets/custom_elevated_button.dart';
@@ -45,23 +47,23 @@ class SignInFormCardWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Sign In',
+            LocaleKeys.auth_signIn_title.tr(),
             style: getBoldStyle(
               color: ColorManager.black,
-              fontSize: FontSize.s36,
+              fontSize: FontSize.s28,
             ),
           ),
           SizedBox(height: AppSize.s8.h),
           Text(
-            'Welcome back. Enter your details to\ncontinue.',
+            LocaleKeys.auth_signIn_welcomeBack.tr(),
             style: getMediumStyle(
               color: ColorManager.lightGray,
-              fontSize: FontSize.s16,
+              fontSize: FontSize.s14,
             ),
           ),
           SizedBox(height: AppSize.s24.h),
           Text(
-            'EMAIL ADDRESS',
+            LocaleKeys.auth_signIn_emailAddressLabel.tr(),
             style: getBoldStyle(
               color: ColorManager.gray,
               fontSize: FontSize.s11,
@@ -70,7 +72,7 @@ class SignInFormCardWidget extends StatelessWidget {
           SizedBox(height: AppSize.s8.h),
           CustomTextField(
             controller: cubit.emailController,
-            text: 'name@company.com',
+            text: LocaleKeys.auth_signIn_emailHint.tr(),
             keyboardType: TextInputType.emailAddress,
             validator: Validators.validateEmail,
           ),
@@ -80,7 +82,7 @@ class SignInFormCardWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'PASSWORD',
+                LocaleKeys.auth_signIn_passwordLabel.tr(),
                 style: getBoldStyle(
                   color: ColorManager.gray,
                   fontSize: FontSize.s11,
@@ -88,7 +90,7 @@ class SignInFormCardWidget extends StatelessWidget {
               ),
               CustomTextBtn(
                 color: ColorManager.blue,
-                text: 'Forgot Password?',
+                text: LocaleKeys.auth_signIn_forgotPassword.tr(),
                 fontSize: FontSize.s14,
                 fontWeight: FontWeightManager.bold,
                 onPressed: () => context.go(AppRouteNames.resetPassWord),
@@ -98,7 +100,7 @@ class SignInFormCardWidget extends StatelessWidget {
 
           CustomTextField(
             controller: cubit.passwordController,
-            text: 'Enter your password',
+            text: LocaleKeys.auth_signIn_passwordHint.tr(),
             isPass: true,
             validator: Validators.validatePassword,
           ),
@@ -108,7 +110,7 @@ class SignInFormCardWidget extends StatelessWidget {
             selector: (state) => state is SignInLoading,
             builder: (context, isLoading) {
               return CustomElevatedButton(
-                label: isLoading ? 'Signing In...' : 'Sign In',
+                label: isLoading ? LocaleKeys.auth_signIn_signingInBtn.tr() : LocaleKeys.auth_signIn_signInBtn.tr(),
                 onTap: isLoading
                     ? null
                     : () {
@@ -121,7 +123,7 @@ class SignInFormCardWidget extends StatelessWidget {
           ),
 
           SizedBox(height: AppSize.s20.h),
-          const OrDivider(text: 'OR CONTINUE WITH'),
+          OrDivider(text: LocaleKeys.auth_signIn_orContinueWith.tr()),
           SizedBox(height: AppSize.s20.h),
           const SignInSocialSectionWidget(),
         ],

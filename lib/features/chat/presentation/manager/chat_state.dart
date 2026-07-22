@@ -33,3 +33,5 @@ class GetConversationsError extends ChatState {
 
   GetConversationsError({required this.message});
 }
+
+class GetConversationsSessionExpired extends ChatState {}

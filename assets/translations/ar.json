@@ -1,0 +1,189 @@
+{
+  "hello": "مرحباً",
+  "auth": {
+    "resetPassword": {
+      "title": "إعادة تعيين كلمة المرور",
+      "description": "أدخل عنوان البريد الإلكتروني المرتبط بحسابك وسنرسل لك رابطاً لإعادة تعيين كلمة المرور.",
+      "emailAddressLabel": "البريد الإلكتروني",
+      "emailHint": "name@company.com",
+      "sendingBtn": "جاري الإرسال...",
+      "sendResetLinkBtn": "إرسال رابط إعادة التعيين",
+      "rememberedPassword": "هل تذكرت كلمة المرور؟ ",
+      "signInText": "تسجيل الدخول"
+    },
+    "signIn": {
+      "title": "تسجيل الدخول",
+      "welcomeBack": "مرحباً بعودتك. أدخل بياناتك للمتابعة.",
+      "emailAddressLabel": "البريد الإلكتروني",
+      "emailHint": "name@company.com",
+      "passwordLabel": "كلمة المرور",
+      "forgotPassword": "هل نسيت كلمة المرور؟",
+      "passwordHint": "أدخل كلمة المرور",
+      "signingInBtn": "جاري تسجيل الدخول...",
+      "signInBtn": "تسجيل الدخول",
+      "orContinueWith": "أو المتابعة باستخدام",
+      "dontHaveAccount": "ليس لديك حساب؟",
+      "signUpText": "إنشاء حساب",
+      "appleSignInComingSoon": "تسجيل الدخول بواسطة Apple قريباً"
+    },
+    "signUp": {
+      "title": "أنشئ حسابك",
+      "description": "انضم إلى المنصة المصممة للتطوير الدقيق.",
+      "nameLabel": "اسمك",
+      "nameHint": "جون دو",
+      "usernameLabel": "اسم المستخدم",
+      "usernameHint": "johndoe123",
+      "emailLabel": "بريدك الإلكتروني",
+      "emailHint": "name@company.com",
+      "passwordLabel": "كلمة المرور",
+      "passwordHint": "••••••••",
+      "confirmPasswordLabel": "تأكيد كلمة المرور",
+      "signingUpBtn": "جاري إنشاء الحساب...",
+      "signUpBtn": "إنشاء حساب",
+      "socialIdentity": "الهوية الاجتماعية",
+      "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
+      "signInText": "تسجيل الدخول",
+      "termsAndPrivacy": "بالنقر على \"إنشاء حساب\"، فإنك توافق على شروط الخدمة وسياسة الخصوصية الخاصة بنا. يتم التعامل مع معالجة البيانات بدقة تقنية.",
+      "verificationEmailSent": "تم إرسال بريد التحقق"
+    },
+    "social": {
+      "google": "Google",
+      "apple": "Apple"
+    }
+  },
+  "chat": {
+    "page": {
+      "deleteForEveryone": "حذف لدى الجميع",
+      "deleteForMe": "حذف لدي",
+      "copy": "نسخ",
+      "cancel": "إلغاء",
+      "typing": "يكتب...",
+      "online": "متصل الآن",
+      "offline": "غير متصل",
+      "lastSeen": "آخر ظهور {}",
+      "noMessages": "لا توجد رسائل بعد.\nقل مرحباً! 👋",
+      "messageDeleted": "🚫 تم حذف هذه الرسالة",
+      "messageHint": "رسالة..."
+    },
+    "chatsPage": {
+      "searchHint": "ابحث عن أشخاص"
+    },
+    "chatCard": {
+      "chatUser": "مستخدم",
+      "tapToStart": "اضغط لبدء الدردشة..."
+    },
+    "emptyChats": {
+      "title": "لا توجد محادثات\nبعد",
+      "description": "ابدأ محادثة جديدة للتواصل مع أصدقائك وزملائك. ستظهر رسائلك الخاصة والجماعية هنا.",
+      "startChattingBtn": "ابدأ الدردشة",
+      "discoverPeopleBtn": "اكتشف أشخاصاً جدد"
+    }
+  },
+  "friends": {
+    "addFriends": {
+      "title": "إضافة أصدقاء",
+      "searchHint": "ابحث باسم المستخدم، البريد الإلكتروني، أو الهاتف",
+      "successMsg": "تم إرسال طلب الصداقة بنجاح!",
+      "emptyStateTitle": "لم يتم العثور على مستخدمين",
+      "emptyStateDesc": "لم نتمكن من العثور على أي شخص يطابق بحثك. جرب البحث باسم المستخدم أو البريد الإلكتروني."
+    },
+    "friendRequests": {
+      "title": "طلبات الصداقة",
+      "tabReceived": "المستلمة",
+      "tabSent": "المرسلة",
+      "successMsg": "تم قبول طلب الصداقة!"
+    },
+    "cards": {
+      "mutualFriend": "صديق مشترك",
+      "addFriendBtn": "إضافة صديق",
+      "acceptBtn": "قبول",
+      "declineBtn": "رفض",
+      "cancelRequestBtn": "إلغاء الطلب"
+    },
+    "emptyState": {
+      "title": "الأصدقاء",
+      "emptyTitle": "لا يوجد أصدقاء بعد",
+      "emptyDesc": "لم تقم بإضافة أي أصدقاء بعد. ابدأ\nالتواصل مع الأشخاص للدردشة والمكالمات\nومشاركة اللحظات معاً.",
+      "addFriendsBtn": "إضافة أصدقاء",
+      "viewRequestsBtn": "عرض الطلبات المرسلة/المستلمة"
+    },
+    "mainContent": {
+      "title": "الأصدقاء",
+      "searchHint": "ابحث باسم المستخدم، البريد الإلكتروني، أو الهاتف",
+      "requestsSectionTitle": "طلبات الصداقة",
+      "viewAllBtn": "عرض الكل",
+      "friendsSectionTitle": "أصدقائي"
+    },
+    "receivedRequests": {
+      "emptyStateTitle": "لا توجد طلبات مستلمة",
+      "emptyStateDesc": "عندما يرسل لك شخص طلب صداقة، سيظهر هنا."
+    },
+    "sentRequests": {
+      "emptyStateTitle": "لا توجد طلبات مرسلة",
+      "emptyStateDesc": "لم تقم بإرسال أي طلبات صداقة بعد. اذهب وابحث عن بعض الأصدقاء!"
+    }
+  },
+  "layout": {
+    "chatsTab": "المحادثات",
+    "friendsTab": "الأصدقاء",
+    "profileTab": "الملف الشخصي"
+  },
+  "onboarding": {
+    "screenLabel": "شاشة الترحيب",
+    "appName": "Silora",
+    "appNameSemantics": "اسم التطبيق: Silora",
+    "subtitle": "حيث كل تواصل يهم",
+    "description": "سيلورا تقرب الأشخاص من بعضهم من خلال محادثات بسيطة وآمنة وذات مغزى. ابق على اتصال مع الأصدقاء والعائلة والأشخاص الأهم بالنسبة لك.",
+    "startConnectingBtn": "ابدأ التواصل",
+    "previewSemantics": "معاينة تجربة المراسلة في Silora",
+    "mockChatBubbleText": "مرحباً بك في Silora.\nابق قريباً من الأشخاص الذين يهمونك."
+  },
+  "profile": {
+    "editProfile": {
+      "title": "تعديل الملف الشخصي",
+      "fullNameLabel": "الاسم الكامل",
+      "nameHint": "أدخل اسمك",
+      "nameEmptyErr": "لا يمكن ترك الاسم فارغاً",
+      "bioLabel": "النبذة التعريفية",
+      "bioHint": "تحدث عن نفسك",
+      "addressLabel": "العنوان",
+      "addressHint": "مثال: القاهرة، مصر",
+      "saveBtn": "حفظ التغييرات"
+    },
+    "profilePage": {
+      "retryBtn": "إعادة المحاولة",
+      "signOutBtn": "تسجيل الخروج",
+      "signOutConfirmationMsg": "هل أنت متأكد أنك تريد تسجيل الخروج؟"
+    },
+    "notifications": {
+      "title": "الإشعارات"
+    },
+    "personalInfo": {
+      "title": "المعلومات الشخصية",
+      "addressNotProvided": "غير متوفر",
+      "joinedPrefix": "انضم في ",
+      "joinedRecently": "انضم حديثاً"
+    }
+  },
+  "core": {
+    "dialog": {
+      "error": "خطأ",
+      "success": "نجاح",
+      "warning": "تحذير"
+    },
+    "time": {
+      "justNow": "الآن",
+      "minAgo": "د مضت"
+    },
+    "validation": {
+      "emailEmpty": "لا يمكن ترك البريد الإلكتروني فارغاً.",
+      "emailInvalid": "يرجى إدخال عنوان بريد إلكتروني صالح.",
+      "passwordEmpty": "يرجى إدخال كلمة المرور",
+      "passwordInvalid": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل\n وتحتوي على أحرف كبيرة وصغيرة،\n رقم ورمز خاص",
+      "confirmPasswordEmpty": "يرجى تأكيد كلمة المرور",
+      "passwordsNotMatch": "كلمتا المرور غير متطابقتين",
+      "usernameEmpty": "لا يمكن ترك اسم المستخدم فارغاً.",
+      "usernameInvalid": "يجب أن يتكون اسم المستخدم من 3 أحرف على الأقل."
+    }
+  }
+}

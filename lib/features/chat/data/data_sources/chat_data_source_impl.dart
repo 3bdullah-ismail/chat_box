@@ -172,16 +172,19 @@ class ChatRemoteDataSourceImpl implements ChatDataSource {
     final statusRef = database.ref("status/$currentUserId");
 
     connectedRef.onValue.listen((event) async {
-      final connected = event.snapshot.value as bool? ?? false;
+      try {
+        final connected = event.snapshot.value as bool? ?? false;
 
-      if (!connected) return;
+        if (!connected) return;
 
-      await statusRef.onDisconnect().set({
-        "online": false,
-        "lastSeen": ServerValue.timestamp,
-      });
+        await statusRef.onDisconnect().set({
+          "online": false,
+          "lastSeen": ServerValue.timestamp,
+        });
 
-      await statusRef.set({"online": true, "lastSeen": ServerValue.timestamp});
+        await statusRef.set({"online": true, "lastSeen": ServerValue.timestamp});
+      } catch (_) {
+      }
     });
   }
 
@@ -203,13 +206,15 @@ class ChatRemoteDataSourceImpl implements ChatDataSource {
     required String conversationId,
     required bool isTyping,
   }) async {
-    final ref = database.ref("typing/$conversationId/$currentUserId");
-    if (isTyping) {
-      await ref.onDisconnect().set(false);
-    } else {
-      await ref.onDisconnect().cancel();
-    }
-    await ref.set(isTyping);
+    try {
+      final ref = database.ref("typing/$conversationId/$currentUserId");
+      if (isTyping) {
+        await ref.onDisconnect().set(false);
+      } else {
+        await ref.onDisconnect().cancel();
+      }
+      await ref.set(isTyping);
+    } catch (_) {}
   }
 
   @override

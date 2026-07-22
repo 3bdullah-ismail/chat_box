@@ -1,13 +1,16 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:silora/core/constants/color_manager.dart';
 import 'package:silora/core/constants/font_manager.dart';
 import 'package:silora/core/constants/styles_manager.dart';
 import 'package:silora/core/constants/values_manager.dart';
 import 'package:silora/core/widgets/custom_text_field.dart';
+import 'package:silora/core/widgets/session_expired_widget.dart';
 import 'package:silora/features/chat/presentation/widgets/empty_chats.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
 
 import '../../../../core/routes/app_routes_names.dart';
 import '../../../friends/presentation/widgets/skeleton_list_widget.dart';
@@ -55,17 +58,6 @@ class _ChatsPageState extends State<ChatsPage> {
           ),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.more_vert,
-              color: ColorManager.black,
-              size: AppSize.s36.sp,
-            ),
-            onPressed: () {},
-          ),
-          AppSize.s8.horizontalSpace,
-        ],
       ),
       body: SafeArea(
         child: Column(
@@ -76,7 +68,7 @@ class _ChatsPageState extends State<ChatsPage> {
               padding: EdgeInsets.symmetric(horizontal: AppPadding.p16.w),
               child: CustomTextField(
                 controller: _searchController,
-                text: "Search for people",
+                text: LocaleKeys.chat_chatsPage_searchHint.tr(),
                 prefixIcon: Icon(
                   Icons.search,
                   color: ColorManager.gray,
@@ -97,6 +89,10 @@ class _ChatsPageState extends State<ChatsPage> {
                     return const SingleChildScrollView(
                       child: SkeletonListWidget(type: SkeletonType.chatsList),
                     );
+                  }
+
+                  if (state is GetConversationsSessionExpired) {
+                    return const SessionExpiredWidget();
                   }
 
                   if (state is GetConversationsError) {

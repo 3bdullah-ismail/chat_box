@@ -31,16 +31,26 @@ class AppPadding {
 
 class AppSize {
   static const double s0 = 0;
+  static const double s0_3 = 0.3;
   static const double s0_5 = 0.5;
+  static const double s0_6 = 0.6;
+  static const double s0_75 = 0.75;
   static const double s1 = 1;
-  static const double s2 = 2;
+  static const double s1_1 = 1.1;
+  static const double s1_2 = 1.2;
+  static const double s1_4 = 1.4;
+  static const double s1_45 = 1.45;
   static const double s1_5 = 1.5;
+  static const double s2 = 2;
+  static const double s2_05 = 2.05;
+  static const double s3_5 = 3.5;
   static const double s4 = 4.0;
   static const double s6 = 6.0;
   static const double s8 = 8.0;
   static const double s10 = 10.0;
   static const double s12 = 12.0;
   static const double s14 = 14.0;
+  static const double s15 = 15.0;
   static const double s16 = 16.0;
   static const double s18 = 18.0;
   static const double s20 = 20.0;
@@ -56,6 +66,7 @@ class AppSize {
   static const double s50 = 50.0;
   static const double s60 = 60.0;
   static const double s65 = 65.0;
+  static const double s80 = 80.0;
   static const double s90 = 90.0;
   static const double s100 = 100.0;
   static const double s135 = 135.0;
@@ -87,5 +98,4 @@ class AppRadius {
 class AppDuration {
   static const Duration fast = Duration(milliseconds: 200);
   static const Duration normal = Duration(milliseconds: 300);
-  static const Duration slow = Duration(milliseconds: 500);
 }

@@ -7,6 +7,8 @@ import 'package:silora/features/auth/data/models/user_model.dart';
 import 'package:silora/features/friends/presentation/widgets/friend_base_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
 
 class FriendRequestCard extends StatelessWidget {
   final UserModel user;
@@ -53,7 +55,7 @@ class FriendRequestCard extends StatelessWidget {
       spacing: AppSize.s6.w,
       children: [
         CustomElevatedButton(
-          label: "Accept",
+          label: LocaleKeys.friends_cards_acceptBtn.tr(),
           width: 75.w,
           height: AppSize.s36.h,
           backgroundColor: ColorManager.black,
@@ -77,7 +79,7 @@ class FriendRequestCard extends StatelessWidget {
               padding: EdgeInsets.zero,
             ),
             child: Text(
-              "Decline",
+              LocaleKeys.friends_cards_declineBtn.tr(),
               style: getMediumStyle(
                 color: ColorManager.error,
                 fontSize: FontSize.s13.sp,
@@ -95,7 +97,7 @@ class FriendRequestCard extends StatelessWidget {
         children: [
           Expanded(
             child: CustomElevatedButton(
-              label: "Accept",
+              label: LocaleKeys.friends_cards_acceptBtn.tr(),
               height: AppSize.s44.h,
               backgroundColor: ColorManager.black,
               textStyle: getMediumStyle(
@@ -119,7 +121,7 @@ class FriendRequestCard extends StatelessWidget {
                 padding: EdgeInsets.zero,
               ),
               child: Text(
-                "Decline",
+                LocaleKeys.friends_cards_declineBtn.tr(),
                 style: getMediumStyle(
                   color: ColorManager.nearBlack,
                   fontSize: FontSize.s14.sp,
@@ -131,7 +133,7 @@ class FriendRequestCard extends StatelessWidget {
       );
     } else {
       return CustomElevatedButton(
-        label: "Cancel Request",
+        label: LocaleKeys.friends_cards_cancelRequestBtn.tr(),
         height: AppSize.s44.h,
         backgroundColor: ColorManager.lightGray,
         textStyle: getMediumStyle(

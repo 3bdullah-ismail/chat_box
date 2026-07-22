@@ -1,13 +1,15 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:silora/core/constants/color_manager.dart';
 import 'package:silora/core/constants/values_manager.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
 import 'package:silora/features/auth/data/models/user_model.dart';
 import 'package:silora/features/friends/data/models/friend_request_model.dart';
 import 'package:silora/features/friends/presentation/manager/friend_cubit.dart';
 import 'package:silora/features/friends/presentation/widgets/custom_empty_state.dart';
 import 'package:silora/features/friends/presentation/widgets/friend_request_card.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SentRequestsList extends StatelessWidget {
   final List<FriendRequestModel> sentRequests;
@@ -17,11 +19,10 @@ class SentRequestsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (sentRequests.isEmpty) {
-      return const CustomEmptyState(
+      return CustomEmptyState(
         icon: Icons.outbox_outlined,
-        title: "No Sent Requests",
-        description:
-            "You haven't sent any friend requests yet. Go find some friends!",
+        title: LocaleKeys.friends_sentRequests_emptyStateTitle.tr(),
+        description: LocaleKeys.friends_sentRequests_emptyStateDesc.tr(),
       );
     }
 

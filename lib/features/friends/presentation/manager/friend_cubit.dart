@@ -27,8 +27,12 @@ class FriendCubit extends Cubit<FriendState> {
     try {
       _allUsers = await friendRepository.getUsers();
       emit(GetUserLoaded(allUsers: _allUsers, filteredUsers: _allUsers));
-    } catch (_) {
-      emit(GetUserError('Failed to load users'));
+    } catch (e) {
+      if (e.toString().contains('permission-denied')) {
+        emit(FriendSessionExpired());
+      } else {
+        emit(GetUserError('Failed to load users'));
+      }
     }
   }
 
@@ -48,7 +52,11 @@ class FriendCubit extends Cubit<FriendState> {
         );
       }
     } catch (e) {
-      emit(SendFriendRequestError(e.toString()));
+      String msg = e.toString();
+      if (msg.contains('permission-denied')) {
+        msg = 'Session expired. Please sign out and sign in again.';
+      }
+      emit(SendFriendRequestError(msg));
       if (previousState is GetUserLoaded) emit(previousState);
     }
   }
@@ -65,8 +73,12 @@ class FriendCubit extends Cubit<FriendState> {
           sentRequests: _sentRequests,
         ),
       );
-    } catch (_) {
-      emit(GetFriendRequestError('Failed to load friend requests'));
+    } catch (e) {
+      if (e.toString().contains('permission-denied')) {
+        emit(FriendSessionExpired());
+      } else {
+        emit(GetFriendRequestError('Failed to load friend requests'));
+      }
     }
   }
 
@@ -95,7 +107,11 @@ class FriendCubit extends Cubit<FriendState> {
       getFriendRequests();
       getFriends();
     } catch (e) {
-      emit(AcceptFriendRequestError(e.toString()));
+      String msg = e.toString();
+      if (msg.contains('permission-denied')) {
+        msg = 'Session expired. Please sign out and sign in again.';
+      }
+      emit(AcceptFriendRequestError(msg));
     }
   }
 
@@ -104,8 +120,12 @@ class FriendCubit extends Cubit<FriendState> {
     try {
       friends = await friendRepository.getFriends();
       emit(GetFriendsLoaded(friends));
-    } catch (_) {
-      emit(GetFriendsError('Failed to load friends'));
+    } catch (e) {
+      if (e.toString().contains('permission-denied')) {
+        emit(FriendSessionExpired());
+      } else {
+        emit(GetFriendsError('Failed to load friends'));
+      }
     }
   }
 }

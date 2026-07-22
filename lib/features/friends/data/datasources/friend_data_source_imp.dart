@@ -241,7 +241,18 @@ class FriendDataSourceImp implements FriendDataSource {
         .collection('user_friends')
         .get();
 
-    return snapshot.docs.map(UserModel.fromFirestore).toList();
+    final friendIds = snapshot.docs.map((doc) => doc.id).toList();
+    if (friendIds.isEmpty) return [];
+
+    final friends = await Future.wait(friendIds.map((id) async {
+      final doc = await fireStore.collection('users').doc(id).get();
+      if (doc.exists) {
+        return UserModel.fromFirestore(doc);
+      }
+      return null;
+    }));
+
+    return friends.whereType<UserModel>().toList();
   }
 
   void _sortRequests(List<FriendRequestModel> list) {

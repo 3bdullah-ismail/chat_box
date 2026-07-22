@@ -4,6 +4,8 @@ import 'package:silora/core/constants/styles_manager.dart';
 import 'package:silora/core/constants/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
 
 class EmptyChats extends StatelessWidget {
   final VoidCallback onStartChat;
@@ -70,7 +72,7 @@ class EmptyChats extends StatelessWidget {
               SizedBox(height: AppSize.s24.h),
 
               Text(
-                'No Conversations\nYet',
+                LocaleKeys.chat_emptyChats_title.tr(),
                 textAlign: TextAlign.center,
                 style: getBoldStyle(
                   color: ColorManager.black,
@@ -79,7 +81,7 @@ class EmptyChats extends StatelessWidget {
               ),
               SizedBox(height: AppSize.s16.h),
               Text(
-                'Start a new chat to connect with your friends and colleagues. Your private and group messages will appear here.',
+                LocaleKeys.chat_emptyChats_description.tr(),
                 textAlign: TextAlign.center,
                 style: getMediumStyle(
                   color: ColorManager.gray,
@@ -98,7 +100,7 @@ class EmptyChats extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Start Chatting',
+                  LocaleKeys.chat_emptyChats_startChattingBtn.tr(),
                   style: getMediumStyle(
                     color: ColorManager.white,
                     fontSize: FontSize.s14.sp,
@@ -117,7 +119,7 @@ class EmptyChats extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Discover People',
+                  LocaleKeys.chat_emptyChats_discoverPeopleBtn.tr(),
                   style: getMediumStyle(
                     color: ColorManager.black,
                     fontSize: FontSize.s14.sp,

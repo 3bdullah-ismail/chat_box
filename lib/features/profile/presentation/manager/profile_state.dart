@@ -28,3 +28,5 @@ final class UpdateProfileError extends ProfileState {
 
   UpdateProfileError({required this.errorMessage});
 }
+
+final class ProfileSessionExpired extends ProfileState {}

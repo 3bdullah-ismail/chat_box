@@ -1,14 +1,6 @@
-// GENERATED CODE - DO NOT MODIFY BY HAND
-// dart format width=80
 
-// **************************************************************************
-// InjectableConfigGenerator
-// **************************************************************************
 
-// ignore_for_file: type=lint
-// coverage:ignore-file
 
-// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:cloud_firestore/cloud_firestore.dart' as _i974;
 import 'package:firebase_auth/firebase_auth.dart' as _i59;
 import 'package:firebase_database/firebase_database.dart' as _i345;
@@ -50,7 +42,6 @@ import '../../features/profile/presentation/manager/profile_cubit.dart'
 import '../services/firebase_module.dart' as _i436;
 
 extension GetItInjectableX on _i174.GetIt {
-  // initializes the registration of main-scope dependencies inside of GetIt
   _i174.GetIt init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
@@ -105,9 +96,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i770.ChatCubit>(
       () => _i770.ChatCubit(chatRepository: gh<_i962.ChatRepository>()),
     );
-    gh.factory<_i36.ChatRoomCubit>(
-      () => _i36.ChatRoomCubit(chatRepository: gh<_i962.ChatRepository>()),
-    );
     gh.lazySingleton<_i945.ProfileRepo>(
       () => _i988.ProfileRepoImpl(
         profileRemoteDataSource: gh<_i559.ProfileRemoteDataSource>(),
@@ -118,6 +106,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i735.ProfileCubit>(
       () => _i735.ProfileCubit(profileRepo: gh<_i945.ProfileRepo>()),
+    );
+    gh.factory<_i36.ChatRoomCubit>(
+      () => _i36.ChatRoomCubit(
+        chatRepository: gh<_i962.ChatRepository>(),
+        profileRepo: gh<_i945.ProfileRepo>(),
+      ),
     );
     return this;
   }

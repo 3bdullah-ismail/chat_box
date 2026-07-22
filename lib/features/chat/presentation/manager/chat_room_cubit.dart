@@ -7,18 +7,32 @@ import 'package:injectable/injectable.dart';
 import '../../data/models/message_model.dart';
 import '../../data/models/presence_model.dart';
 import '../../data/repositories/chat_repo.dart';
+import '../../../profile/data/repositories/profile_repo.dart';
+import '../../../auth/data/models/user_model.dart';
 
 part 'chat_room_state.dart';
 
 @injectable
 class ChatRoomCubit extends Cubit<ChatRoomState> {
   final ChatRepository _chatRepository;
+  final ProfileRepo _profileRepo;
   StreamSubscription? _messagesSubscription;
   String? _conversationId;
 
-  ChatRoomCubit({required ChatRepository chatRepository})
-    : _chatRepository = chatRepository,
-      super(ChatRoomInitial());
+  ChatRoomCubit({
+    required ChatRepository chatRepository,
+    required ProfileRepo profileRepo,
+  })  : _chatRepository = chatRepository,
+        _profileRepo = profileRepo,
+        super(ChatRoomInitial());
+
+  Future<UserModel?> getFriendProfile(String friendId) async {
+    try {
+      return await _profileRepo.getUserProfile(friendId);
+    } catch (e) {
+      return null;
+    }
+  }
 
   void listenToMessages({required String conversationId}) {
     _conversationId = conversationId;
@@ -34,7 +48,12 @@ class ChatRoomCubit extends Cubit<ChatRoomState> {
             markAsSeen(conversationId: conversationId);
           },
           onError: (error) {
-            emit(GetMessagesError(message: error.toString()));
+            String msg = error.toString();
+            if (msg.contains('permission-denied')) {
+              emit(ChatRoomSessionExpired());
+            } else {
+              emit(GetMessagesError(message: msg));
+            }
           },
         );
   }

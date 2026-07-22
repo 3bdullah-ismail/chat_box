@@ -1,5 +1,5 @@
-import 'package:silora/core/constants/color_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:silora/core/constants/color_manager.dart';
 
 import '../constants/font_manager.dart';
 import '../constants/styles_manager.dart';
@@ -14,15 +14,21 @@ class CustomTextField extends StatefulWidget {
     this.keyboardType,
     this.prefixIcon,
     this.onChanged,
+    this.maxLines = 1,
+    this.minLines,
+    this.suffixIcon,
   });
 
   final Widget? prefixIcon;
+  final Widget? suffixIcon;
   final TextEditingController controller;
   final String? Function(String? value)? validator;
   final String? text;
   final bool isPass;
   final TextInputType? keyboardType;
   final ValueChanged<String>? onChanged;
+  final int? maxLines;
+  final int? minLines;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -47,6 +53,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return TextFormField(
       style: getRegularStyle(color: ColorManager.black, fontSize: FontSize.s16),
+      maxLines: widget.isPass ? 1 : widget.maxLines,
+      minLines: widget.minLines,
       keyboardType: widget.keyboardType,
       controller: widget.controller,
       validator: widget.validator,
@@ -69,7 +77,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 ),
                 onPressed: _toggleObscure,
               )
-            : null,
+            : widget.suffixIcon,
       ),
     );
   }

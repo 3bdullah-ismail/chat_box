@@ -1,15 +1,19 @@
-import 'package:silora/core/di/injection_container.dart';
-import 'package:silora/core/routes/routes.dart';
-import 'package:silora/core/theme/app_theme.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:silora/core/constants/constant_manager.dart';
+import 'package:silora/core/di/injection_container.dart';
+import 'package:silora/core/translations/codegen_loader.g.dart';
+
+import 'Silora.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
 
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
@@ -22,28 +26,16 @@ void main() async {
   );
   configureDependencies();
 
-  runApp(const MyApp());
-}
+  final prefs = await SharedPreferences.getInstance();
+  final seenOnboarding = prefs.getBool(AppConstants.seenOnboardingKey) ?? false;
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(430, 932),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      builder: (_, __) {
-        FlutterNativeSplash.remove();
-        return MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          title: 'Silora',
-          theme: AppTheme.theme,
-          routerConfig: Routes.router,
-        );
-      },
-      child: const SizedBox.shrink(),
-    );
-  }
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('ar')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      assetLoader: const CodegenLoader(),
+      child: Silora(),
+    ),
+  );
 }

@@ -8,6 +8,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/constants/styles_manager.dart';
 import '../../../chat/presentation/pages/chats_page.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
 
 class LayoutPage extends StatefulWidget {
   const LayoutPage({super.key});
@@ -67,7 +69,7 @@ class _LayoutPageState extends State<LayoutPage> {
                 ImageAssets.chatSvg,
                 Icons.chat_bubble_outline_rounded,
               ),
-              label: 'Chats',
+              label: LocaleKeys.layout_chatsTab.tr(),
             ),
             BottomNavigationBarItem(
               icon: _buildIcon(
@@ -75,11 +77,11 @@ class _LayoutPageState extends State<LayoutPage> {
                 ImageAssets.friendsSvg,
                 Icons.people_outline_rounded,
               ),
-              label: 'Friends',
+              label: LocaleKeys.layout_friendsTab.tr(),
             ),
             BottomNavigationBarItem(
               icon: _buildIcon(2, null, Icons.person_rounded),
-              label: 'Profile',
+              label: LocaleKeys.layout_profileTab.tr(),
             ),
           ],
         ),

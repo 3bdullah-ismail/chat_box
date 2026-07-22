@@ -5,11 +5,14 @@ import 'package:silora/features/friends/presentation/manager/friend_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
 
 import '../../../chat/presentation/manager/chat_cubit.dart';
 import '../widgets/friends_empty_state.dart';
 import '../widgets/friends_main_content.dart';
 import '../widgets/friends_skeleton_view.dart';
+import 'package:silora/core/widgets/session_expired_widget.dart';
 
 class FriendsPage extends StatefulWidget {
   const FriendsPage({super.key});
@@ -57,7 +60,7 @@ class _FriendsPageState extends State<FriendsPage> {
               Loading.hide(context);
               _showSnackBar(
                 context,
-                "Friend request accepted!",
+                LocaleKeys.friends_friendRequests_successMsg.tr(),
                 ColorManager.blue,
               );
             }
@@ -80,6 +83,11 @@ class _FriendsPageState extends State<FriendsPage> {
                   state is GetFriendsLoading ||
                   state is GetFriendRequestLoading;
               final isInitial = state is FriendInitial;
+
+              if (state is FriendSessionExpired) {
+                return const SessionExpiredWidget();
+              }
+
               if ((isLoading || isInitial) && hasNoFriends && hasNoRequests) {
                 return const FriendsSkeletonView();
               }
