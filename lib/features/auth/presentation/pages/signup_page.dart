@@ -1,3 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:silora/core/constants/assets_manager.dart';
 import 'package:silora/core/constants/color_manager.dart';
 import 'package:silora/core/constants/font_manager.dart';
@@ -5,6 +10,7 @@ import 'package:silora/core/constants/styles_manager.dart';
 import 'package:silora/core/constants/values_manager.dart';
 import 'package:silora/core/di/injection_container.dart';
 import 'package:silora/core/routes/app_routes_names.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
 import 'package:silora/core/utils/validators.dart';
 import 'package:silora/core/widgets/custom_elevated_button.dart';
 import 'package:silora/core/widgets/custom_text_btn.dart';
@@ -12,12 +18,6 @@ import 'package:silora/core/widgets/custom_text_field.dart';
 import 'package:silora/core/widgets/or_divider.dart';
 import 'package:silora/core/widgets/social_signup_btn.dart';
 import 'package:silora/features/auth/presentation/manager/auth_cubit.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:silora/core/translations/locale_keys.g.dart';
 
 import '../../../../core/widgets/custom_dialog.dart';
 
@@ -114,14 +114,18 @@ class _SignupState extends State<Signup> {
                             ),
                           ),
                           SizedBox(height: AppSize.s32.h),
-                          _buildFieldLabel(LocaleKeys.auth_signUp_nameLabel.tr()),
+                          _buildFieldLabel(
+                            LocaleKeys.auth_signUp_nameLabel.tr(),
+                          ),
                           CustomTextField(
                             controller: cubit.nameController,
                             text: LocaleKeys.auth_signUp_nameHint.tr(),
                           ),
                           SizedBox(height: AppSize.s20.h),
 
-                          _buildFieldLabel(LocaleKeys.auth_signUp_usernameLabel.tr()),
+                          _buildFieldLabel(
+                            LocaleKeys.auth_signUp_usernameLabel.tr(),
+                          ),
                           CustomTextField(
                             controller: cubit.usernameController,
                             text: LocaleKeys.auth_signUp_usernameHint.tr(),
@@ -129,7 +133,9 @@ class _SignupState extends State<Signup> {
                           ),
                           SizedBox(height: AppSize.s20.h),
 
-                          _buildFieldLabel(LocaleKeys.auth_signUp_emailLabel.tr()),
+                          _buildFieldLabel(
+                            LocaleKeys.auth_signUp_emailLabel.tr(),
+                          ),
                           CustomTextField(
                             controller: cubit.emailController,
                             text: LocaleKeys.auth_signUp_emailHint.tr(),
@@ -137,7 +143,9 @@ class _SignupState extends State<Signup> {
                           ),
                           SizedBox(height: AppSize.s20.h),
 
-                          _buildFieldLabel(LocaleKeys.auth_signUp_passwordLabel.tr()),
+                          _buildFieldLabel(
+                            LocaleKeys.auth_signUp_passwordLabel.tr(),
+                          ),
                           CustomTextField(
                             controller: cubit.passwordController,
                             validator: Validators.validatePassword,
@@ -146,7 +154,9 @@ class _SignupState extends State<Signup> {
                           ),
                           SizedBox(height: AppSize.s20.h),
 
-                          _buildFieldLabel(LocaleKeys.auth_signUp_confirmPasswordLabel.tr()),
+                          _buildFieldLabel(
+                            LocaleKeys.auth_signUp_confirmPasswordLabel.tr(),
+                          ),
                           CustomTextField(
                             isPass: true,
                             controller: cubit.confirmPasswordController,
@@ -164,7 +174,9 @@ class _SignupState extends State<Signup> {
                                 state is VerificationEmailLoading,
                             builder: (context, isLoading) {
                               return CustomElevatedButton(
-                                label: isLoading ? LocaleKeys.auth_signUp_signingUpBtn.tr() : LocaleKeys.auth_signUp_signUpBtn.tr(),
+                                label: isLoading
+                                    ? LocaleKeys.auth_signUp_signingUpBtn.tr()
+                                    : LocaleKeys.auth_signUp_signUpBtn.tr(),
                                 onTap: isLoading
                                     ? null
                                     : () {
@@ -176,7 +188,9 @@ class _SignupState extends State<Signup> {
                             },
                           ),
                           SizedBox(height: AppSize.s24.h),
-                          OrDivider(text: LocaleKeys.auth_signUp_socialIdentity.tr()),
+                          OrDivider(
+                            text: LocaleKeys.auth_signUp_socialIdentity.tr(),
+                          ),
                           SizedBox(height: AppSize.s16.h),
                           BlocSelector<AuthCubit, AuthState, bool>(
                             selector: (state) =>

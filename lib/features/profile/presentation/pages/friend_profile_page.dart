@@ -44,9 +44,7 @@ class FriendProfilePage extends StatelessWidget {
           child: Column(
             children: [
               CustomAvatar(
-                title: user.name.isNotEmpty
-                    ? user.name[0].toUpperCase()
-                    : "?",
+                title: user.name.isNotEmpty ? user.name[0].toUpperCase() : "?",
                 avatarSize: 96.r,
               ),
               SizedBox(height: AppSize.s12.h),
@@ -70,9 +68,7 @@ class FriendProfilePage extends StatelessWidget {
               if (user.bio != null && user.bio!.isNotEmpty) ...[
                 SizedBox(height: AppSize.s12.h),
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppPadding.p16.w,
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: AppPadding.p16.w),
                   child: Text(
                     user.bio!,
                     textAlign: TextAlign.center,
@@ -133,11 +129,11 @@ class FriendInfoCard extends StatelessWidget {
           ),
           SizedBox(height: AppSize.s12.h),
           _InfoRow(
-            icon: Icons.link_rounded, 
-            text: user.email.isNotEmpty 
-                ? user.email 
-                : LocaleKeys.profile_personalInfo_addressNotProvided.tr(), 
-            isLink: user.email.isNotEmpty
+            icon: Icons.link_rounded,
+            text: user.email.isNotEmpty
+                ? user.email
+                : LocaleKeys.profile_personalInfo_addressNotProvided.tr(),
+            isLink: user.email.isNotEmpty,
           ),
           SizedBox(height: AppSize.s12.h),
           _InfoRow(

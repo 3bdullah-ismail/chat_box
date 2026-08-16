@@ -1,10 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:injectable/injectable.dart';
 import 'package:silora/core/utils/chat_utils.dart';
 import 'package:silora/features/auth/data/models/user_model.dart';
 import 'package:silora/features/chat/data/models/conversation_model.dart';
 import 'package:silora/features/chat/data/models/message_model.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:injectable/injectable.dart';
 
 import '../models/presence_model.dart';
 import 'chat_data_source.dart';
@@ -182,9 +182,11 @@ class ChatRemoteDataSourceImpl implements ChatDataSource {
           "lastSeen": ServerValue.timestamp,
         });
 
-        await statusRef.set({"online": true, "lastSeen": ServerValue.timestamp});
-      } catch (_) {
-      }
+        await statusRef.set({
+          "online": true,
+          "lastSeen": ServerValue.timestamp,
+        });
+      } catch (_) {}
     });
   }
 

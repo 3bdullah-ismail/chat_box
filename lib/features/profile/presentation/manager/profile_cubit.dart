@@ -22,7 +22,8 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(ProfileSuccess(user: user));
     } catch (e) {
       String msg = e.toString();
-      if (msg.contains('permission-denied') || msg.contains('User profile not found')) {
+      if (msg.contains('permission-denied') ||
+          msg.contains('User profile not found')) {
         emit(ProfileSessionExpired());
       } else {
         emit(ProfileError(errorMessage: msg));
@@ -41,7 +42,12 @@ class ProfileCubit extends Cubit<ProfileState> {
     try {
       await profileRepo.updateProfile(
         uid: uid,
-        data: {'name': name, 'username': username, 'bio': bio, 'address': address},
+        data: {
+          'name': name,
+          'username': username,
+          'bio': bio,
+          'address': address,
+        },
       );
       emit(UpdateProfileSuccess());
       await getUserProfile(uid);

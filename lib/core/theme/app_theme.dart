@@ -1,6 +1,6 @@
-import 'package:silora/core/constants/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:silora/core/constants/color_manager.dart';
 
 import '../constants/font_manager.dart';
 import '../constants/styles_manager.dart';

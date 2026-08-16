@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../auth/data/models/user_model.dart';
+import '../../../profile/data/repositories/profile_repo.dart';
 import '../../data/models/message_model.dart';
 import '../../data/models/presence_model.dart';
 import '../../data/repositories/chat_repo.dart';
-import '../../../profile/data/repositories/profile_repo.dart';
-import '../../../auth/data/models/user_model.dart';
 
 part 'chat_room_state.dart';
 
@@ -22,9 +22,9 @@ class ChatRoomCubit extends Cubit<ChatRoomState> {
   ChatRoomCubit({
     required ChatRepository chatRepository,
     required ProfileRepo profileRepo,
-  })  : _chatRepository = chatRepository,
-        _profileRepo = profileRepo,
-        super(ChatRoomInitial());
+  }) : _chatRepository = chatRepository,
+       _profileRepo = profileRepo,
+       super(ChatRoomInitial());
 
   Future<UserModel?> getFriendProfile(String friendId) async {
     try {

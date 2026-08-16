@@ -1,9 +1,9 @@
-import 'package:silora/features/auth/data/models/user_model.dart';
-import 'package:silora/features/friends/data/datasources/friend_data_source.dart';
-import 'package:silora/features/friends/data/models/friend_request_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
+import 'package:silora/features/auth/data/models/user_model.dart';
+import 'package:silora/features/friends/data/datasources/friend_data_source.dart';
+import 'package:silora/features/friends/data/models/friend_request_model.dart';
 
 @LazySingleton(as: FriendDataSource)
 class FriendDataSourceImp implements FriendDataSource {
@@ -244,13 +244,15 @@ class FriendDataSourceImp implements FriendDataSource {
     final friendIds = snapshot.docs.map((doc) => doc.id).toList();
     if (friendIds.isEmpty) return [];
 
-    final friends = await Future.wait(friendIds.map((id) async {
-      final doc = await fireStore.collection('users').doc(id).get();
-      if (doc.exists) {
-        return UserModel.fromFirestore(doc);
-      }
-      return null;
-    }));
+    final friends = await Future.wait(
+      friendIds.map((id) async {
+        final doc = await fireStore.collection('users').doc(id).get();
+        if (doc.exists) {
+          return UserModel.fromFirestore(doc);
+        }
+        return null;
+      }),
+    );
 
     return friends.whereType<UserModel>().toList();
   }

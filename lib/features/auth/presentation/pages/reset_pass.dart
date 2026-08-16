@@ -1,21 +1,21 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:silora/core/constants/color_manager.dart';
 import 'package:silora/core/constants/font_manager.dart';
 import 'package:silora/core/constants/styles_manager.dart';
 import 'package:silora/core/constants/values_manager.dart';
 import 'package:silora/core/di/injection_container.dart';
 import 'package:silora/core/routes/app_routes_names.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
 import 'package:silora/core/utils/validators.dart';
 import 'package:silora/core/widgets/custom_dialog.dart';
 import 'package:silora/core/widgets/custom_elevated_button.dart';
 import 'package:silora/core/widgets/custom_text_btn.dart';
 import 'package:silora/core/widgets/custom_text_field.dart';
 import 'package:silora/features/auth/presentation/manager/auth_cubit.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:silora/core/translations/locale_keys.g.dart';
 
 class ResetPassWord extends StatefulWidget {
   const ResetPassWord({super.key});
@@ -96,7 +96,8 @@ class _ResetPassWordState extends State<ResetPassWord> {
                             ),
                             AppSize.s40.verticalSpace,
                             Text(
-                              LocaleKeys.auth_resetPassword_emailAddressLabel.tr(),
+                              LocaleKeys.auth_resetPassword_emailAddressLabel
+                                  .tr(),
                               style: getBoldStyle(
                                 color: ColorManager.black,
                                 fontSize: FontSize.s14.sp,
@@ -105,7 +106,8 @@ class _ResetPassWordState extends State<ResetPassWord> {
                             AppSize.s8.verticalSpace,
                             CustomTextField(
                               controller: cubit.emailController,
-                              text: LocaleKeys.auth_resetPassword_emailHint.tr(),
+                              text: LocaleKeys.auth_resetPassword_emailHint
+                                  .tr(),
                               keyboardType: TextInputType.emailAddress,
                               validator: Validators.validateEmail,
                             ),
@@ -116,8 +118,11 @@ class _ResetPassWordState extends State<ResetPassWord> {
                               builder: (context, isLoading) {
                                 return CustomElevatedButton(
                                   label: isLoading
-                                      ? LocaleKeys.auth_resetPassword_sendingBtn.tr()
-                                      : LocaleKeys.auth_resetPassword_sendResetLinkBtn.tr(),
+                                      ? LocaleKeys.auth_resetPassword_sendingBtn
+                                            .tr()
+                                      : LocaleKeys
+                                            .auth_resetPassword_sendResetLinkBtn
+                                            .tr(),
                                   suffixIcon: isLoading
                                       ? const SizedBox()
                                       : Icon(
@@ -146,14 +151,17 @@ class _ResetPassWordState extends State<ResetPassWord> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  LocaleKeys.auth_resetPassword_rememberedPassword.tr(),
+                                  LocaleKeys
+                                      .auth_resetPassword_rememberedPassword
+                                      .tr(),
                                   style: getMediumStyle(
                                     color: ColorManager.gray,
                                     fontSize: FontSize.s14.sp,
                                   ),
                                 ),
                                 CustomTextBtn(
-                                  text: LocaleKeys.auth_resetPassword_signInText.tr(),
+                                  text: LocaleKeys.auth_resetPassword_signInText
+                                      .tr(),
                                   fontSize: FontSize.s14.sp,
                                   color: ColorManager.black,
                                   onPressed: () =>

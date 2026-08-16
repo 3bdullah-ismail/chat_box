@@ -1,3 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:silora/core/constants/assets_manager.dart';
 import 'package:silora/core/constants/color_manager.dart';
 import 'package:silora/core/constants/font_manager.dart';
@@ -5,16 +10,11 @@ import 'package:silora/core/constants/styles_manager.dart';
 import 'package:silora/core/constants/values_manager.dart';
 import 'package:silora/core/di/injection_container.dart';
 import 'package:silora/core/routes/app_routes_names.dart';
+import 'package:silora/core/translations/locale_keys.g.dart';
 import 'package:silora/core/widgets/custom_dialog.dart';
 import 'package:silora/core/widgets/custom_text_btn.dart';
 import 'package:silora/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:silora/features/auth/presentation/widgets/sign_in_form_card_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:silora/core/translations/locale_keys.g.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -90,7 +90,8 @@ class _SignInState extends State<SignIn> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      LocaleKeys.auth_signIn_dontHaveAccount.tr(),
+                                      LocaleKeys.auth_signIn_dontHaveAccount
+                                          .tr(),
                                       style: getMediumStyle(
                                         color: ColorManager.gray,
                                         fontSize: FontSize.s14,
@@ -98,7 +99,8 @@ class _SignInState extends State<SignIn> {
                                     ),
                                     CustomTextBtn(
                                       color: ColorManager.blue,
-                                      text: LocaleKeys.auth_signIn_signUpText.tr(),
+                                      text: LocaleKeys.auth_signIn_signUpText
+                                          .tr(),
                                       onPressed: () =>
                                           context.go(AppRouteNames.signUp),
                                     ),

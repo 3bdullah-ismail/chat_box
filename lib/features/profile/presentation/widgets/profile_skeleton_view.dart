@@ -59,29 +59,13 @@ class _ProfileSkeletonViewState extends State<ProfileSkeletonView>
                 ),
               ),
               SizedBox(height: AppSize.s12.h),
-              Container(
-                width: 140.w,
-                height: 24.h,
-                decoration: shimmer,
-              ),
+              Container(width: 140.w, height: 24.h, decoration: shimmer),
               SizedBox(height: AppSize.s4.h),
-              Container(
-                width: 100.w,
-                height: 14.h,
-                decoration: shimmer,
-              ),
+              Container(width: 100.w, height: 14.h, decoration: shimmer),
               SizedBox(height: AppSize.s12.h),
-              Container(
-                width: 250.w,
-                height: 14.h,
-                decoration: shimmer,
-              ),
+              Container(width: 250.w, height: 14.h, decoration: shimmer),
               SizedBox(height: AppSize.s4.h),
-              Container(
-                width: 200.w,
-                height: 14.h,
-                decoration: shimmer,
-              ),
+              Container(width: 200.w, height: 14.h, decoration: shimmer),
               SizedBox(height: AppSize.s24.h),
 
               _buildCardSkeleton(shimmer, height: 160.h),
@@ -90,7 +74,7 @@ class _ProfileSkeletonViewState extends State<ProfileSkeletonView>
               SizedBox(height: AppSize.s16.h),
               _buildCardSkeleton(shimmer, height: 60.h),
               SizedBox(height: AppSize.s32.h),
-              
+
               Container(
                 width: double.infinity,
                 height: 56.h,
@@ -127,31 +111,15 @@ class _ProfileSkeletonViewState extends State<ProfileSkeletonView>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 120.w,
-            height: 16.h,
-            decoration: shimmer,
-          ),
+          Container(width: 120.w, height: 16.h, decoration: shimmer),
           if (height > 100) ...[
             SizedBox(height: AppSize.s16.h),
-            Container(
-              width: 200.w,
-              height: 14.h,
-              decoration: shimmer,
-            ),
+            Container(width: 200.w, height: 14.h, decoration: shimmer),
             SizedBox(height: AppSize.s12.h),
-            Container(
-              width: 150.w,
-              height: 14.h,
-              decoration: shimmer,
-            ),
+            Container(width: 150.w, height: 14.h, decoration: shimmer),
             SizedBox(height: AppSize.s12.h),
-            Container(
-              width: 180.w,
-              height: 14.h,
-              decoration: shimmer,
-            ),
-          ]
+            Container(width: 180.w, height: 14.h, decoration: shimmer),
+          ],
         ],
       ),
     );

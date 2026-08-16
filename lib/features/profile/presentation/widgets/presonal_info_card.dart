@@ -14,7 +14,11 @@ class PersonalInfoCard extends StatelessWidget {
   final dynamic user;
   final VoidCallback onEditReturn;
 
-  const PersonalInfoCard({super.key, required this.user, required this.onEditReturn});
+  const PersonalInfoCard({
+    super.key,
+    required this.user,
+    required this.onEditReturn,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +51,8 @@ class PersonalInfoCard extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () async {
-                    await context.push(AppRouteNames.editProfile, extra: user);
-                    onEditReturn();
+                  await context.push(AppRouteNames.editProfile, extra: user);
+                  onEditReturn();
                 },
                 constraints: const BoxConstraints(),
                 padding: EdgeInsets.zero,
@@ -69,11 +73,11 @@ class PersonalInfoCard extends StatelessWidget {
           ),
           SizedBox(height: AppSize.s12.h),
           _InfoRow(
-            icon: Icons.link_rounded, 
-            text: (user.email != null && user.email.isNotEmpty) 
-                ? user.email 
-                : LocaleKeys.profile_personalInfo_addressNotProvided.tr(), 
-            isLink: (user.email != null && user.email.isNotEmpty)
+            icon: Icons.link_rounded,
+            text: (user.email != null && user.email.isNotEmpty)
+                ? user.email
+                : LocaleKeys.profile_personalInfo_addressNotProvided.tr(),
+            isLink: (user.email != null && user.email.isNotEmpty),
           ),
           SizedBox(height: AppSize.s12.h),
           _InfoRow(
