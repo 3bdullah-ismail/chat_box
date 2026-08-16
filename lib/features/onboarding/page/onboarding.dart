@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:silora/core/constants/color_manager.dart';
-import 'package:silora/core/constants/font_manager.dart';
 import 'package:silora/core/constants/constant_manager.dart';
+import 'package:silora/core/constants/font_manager.dart';
 import 'package:silora/core/constants/styles_manager.dart';
 import 'package:silora/core/constants/values_manager.dart';
 import 'package:silora/core/routes/app_routes_names.dart';
@@ -81,10 +81,14 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         Text(
                           LocaleKeys.onboarding_subtitle.tr(),
                           textAlign: TextAlign.center,
-                          style: getBoldStyle(
-                            color: ColorManager.black,
-                            fontSize: FontSize.s22.sp,
-                          ).copyWith(letterSpacing: -AppSize.s0_3, height: AppSize.s1_2),
+                          style:
+                              getBoldStyle(
+                                color: ColorManager.black,
+                                fontSize: FontSize.s22.sp,
+                              ).copyWith(
+                                letterSpacing: -AppSize.s0_3,
+                                height: AppSize.s1_2,
+                              ),
                         ),
                         SizedBox(height: AppSize.s12.h),
                         Padding(
@@ -101,7 +105,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                           ),
                         ),
                         AppSize.s24.verticalSpace,
-                        Expanded(
+                        const Expanded(
                           child: Center(child: PreviewMockDevice()),
                         ),
                         AppSize.s24.verticalSpace,
@@ -128,18 +132,23 @@ class _LanguageSwitcher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isArabic = context.locale.languageCode == AppConstants.arabicLanguageCode;
+    final isArabic =
+        context.locale.languageCode == AppConstants.arabicLanguageCode;
 
     return Align(
       alignment: AlignmentDirectional.topEnd,
       child: TextButton.icon(
         onPressed: () async {
-          final newLocale = isArabic ? const Locale(AppConstants.englishLanguageCode) : const Locale(AppConstants.arabicLanguageCode);
+          final newLocale = isArabic
+              ? const Locale(AppConstants.englishLanguageCode)
+              : const Locale(AppConstants.arabicLanguageCode);
           await context.setLocale(newLocale);
         },
         icon: const Icon(Icons.language, color: ColorManager.black),
         label: Text(
-          isArabic ? AppConstants.englishLanguageName : AppConstants.arabicLanguageName,
+          isArabic
+              ? AppConstants.englishLanguageName
+              : AppConstants.arabicLanguageName,
           style: getMediumStyle(
             color: ColorManager.black,
             fontSize: FontSize.s14.sp,

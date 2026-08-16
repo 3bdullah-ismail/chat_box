@@ -36,7 +36,7 @@ class PreviewMockDevice extends StatelessWidget {
                 BoxShadow(
                   color: ColorManager.overlay,
                   blurRadius: AppSize.s40,
-                  offset: const Offset(0, AppSize.s15),
+                  offset: Offset(0, AppSize.s15),
                   spreadRadius: -AppSize.s10,
                 ),
               ],

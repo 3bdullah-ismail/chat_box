@@ -21,8 +21,8 @@ import '../../features/profile/presentation/manager/profile_cubit.dart';
 import '../../features/profile/presentation/pages/choose_location_page.dart';
 import '../../features/profile/presentation/pages/edit_profile_page.dart';
 import '../../features/profile/presentation/pages/friend_profile_page.dart';
-import '../di/injection_container.dart';
 import '../constants/constant_manager.dart';
+import '../di/injection_container.dart';
 import 'app_routes_names.dart';
 
 class Routes {
@@ -31,7 +31,8 @@ class Routes {
       initialLocation: AppRouteNames.onboarding,
       redirect: (context, state) async {
         final prefs = await SharedPreferences.getInstance();
-        final hasSeenOnboarding = prefs.getBool(AppConstants.seenOnboardingKey) ?? false;
+        final hasSeenOnboarding =
+            prefs.getBool(AppConstants.seenOnboardingKey) ?? false;
         final isLoggedIn = FirebaseAuth.instance.currentUser != null;
 
         final isGoingToOnboarding =
@@ -52,90 +53,90 @@ class Routes {
         }
         return null;
       },
-    routes: [
-      GoRoute(
-        path: AppRouteNames.onboarding,
-        builder: (context, state) => const OnboardingPage(),
-      ),
-      GoRoute(
-        path: AppRouteNames.resetPassWord,
-        builder: (context, state) => const ResetPassWord(),
-      ),
-      GoRoute(
-        path: AppRouteNames.addFriends,
-        builder: (context, state) => BlocProvider(
-          create: (_) => getIt<FriendCubit>()..getUsers(),
-          child: const AddFriends(),
+      routes: [
+        GoRoute(
+          path: AppRouteNames.onboarding,
+          builder: (context, state) => const OnboardingPage(),
         ),
-      ),
-      GoRoute(
-        path: AppRouteNames.layout,
-        builder: (context, state) => MultiBlocProvider(
-          providers: [
-            BlocProvider(create: (_) => getIt<FriendCubit>()),
-            BlocProvider(create: (_) => getIt<ChatCubit>()),
-            BlocProvider(create: (_) => getIt<AuthCubit>()),
-            BlocProvider(create: (_) => getIt<ProfileCubit>()),
-          ],
-          child: const LayoutPage(),
+        GoRoute(
+          path: AppRouteNames.resetPassWord,
+          builder: (context, state) => const ResetPassWord(),
         ),
-      ),
-      GoRoute(
-        path: AppRouteNames.signIn,
-        builder: (context, state) => const SignIn(),
-      ),
-      GoRoute(
-        path: AppRouteNames.signUp,
-        builder: (context, state) => const Signup(),
-      ),
-      GoRoute(
-        path: AppRouteNames.friendRequest,
-        builder: (context, state) => BlocProvider(
-          create: (_) => getIt<FriendCubit>()..getFriendRequests(),
-          child: const FriendRequests(),
+        GoRoute(
+          path: AppRouteNames.addFriends,
+          builder: (context, state) => BlocProvider(
+            create: (_) => getIt<FriendCubit>()..getUsers(),
+            child: const AddFriends(),
+          ),
         ),
-      ),
-      GoRoute(
-        path: AppRouteNames.editProfile,
-        builder: (context, state) {
-          final user = state.extra as UserModel;
-          return BlocProvider.value(
-            value: getIt<ProfileCubit>(),
-            child: EditProfilePage(user: user),
-          );
-        },
-      ),
-      GoRoute(
-        path: AppRouteNames.friendProfile,
-        builder: (context, state) {
-          final user = state.extra as UserModel;
-          return FriendProfilePage(user: user);
-        },
-      ),
-      GoRoute(
-        path: AppRouteNames.chat,
-        builder: (context, state) {
-          final extra = state.extra as Map<String, dynamic>;
+        GoRoute(
+          path: AppRouteNames.layout,
+          builder: (context, state) => MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (_) => getIt<FriendCubit>()),
+              BlocProvider(create: (_) => getIt<ChatCubit>()),
+              BlocProvider(create: (_) => getIt<AuthCubit>()),
+              BlocProvider(create: (_) => getIt<ProfileCubit>()),
+            ],
+            child: const LayoutPage(),
+          ),
+        ),
+        GoRoute(
+          path: AppRouteNames.signIn,
+          builder: (context, state) => const SignIn(),
+        ),
+        GoRoute(
+          path: AppRouteNames.signUp,
+          builder: (context, state) => const Signup(),
+        ),
+        GoRoute(
+          path: AppRouteNames.friendRequest,
+          builder: (context, state) => BlocProvider(
+            create: (_) => getIt<FriendCubit>()..getFriendRequests(),
+            child: const FriendRequests(),
+          ),
+        ),
+        GoRoute(
+          path: AppRouteNames.editProfile,
+          builder: (context, state) {
+            final user = state.extra as UserModel;
+            return BlocProvider.value(
+              value: getIt<ProfileCubit>(),
+              child: EditProfilePage(user: user),
+            );
+          },
+        ),
+        GoRoute(
+          path: AppRouteNames.friendProfile,
+          builder: (context, state) {
+            final user = state.extra as UserModel;
+            return FriendProfilePage(user: user);
+          },
+        ),
+        GoRoute(
+          path: AppRouteNames.chat,
+          builder: (context, state) {
+            final extra = state.extra as Map<String, dynamic>;
 
-          return ChatPage(
-            conversationId: extra['conversationId'] as String,
-            friendUser: extra['friendUser'] as UserModel,
-          );
-        },
-      ),
-      GoRoute(
-        path: AppRouteNames.chooseLocation,
-        builder: (context, state) {
-          return ChooseLocationPage();
-        },
-      ),
-    ],
-    errorBuilder: (context, state) {
-      WidgetsBinding.instance.addPostFrameCallback((_) {
-        SystemNavigator.pop();
-      });
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
-    },
-  );
-}
+            return ChatPage(
+              conversationId: extra['conversationId'] as String,
+              friendUser: extra['friendUser'] as UserModel,
+            );
+          },
+        ),
+        GoRoute(
+          path: AppRouteNames.chooseLocation,
+          builder: (context, state) {
+            return const ChooseLocationPage();
+          },
+        ),
+      ],
+      errorBuilder: (context, state) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          SystemNavigator.pop();
+        });
+        return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      },
+    );
+  }
 }

@@ -188,7 +188,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           onEditReturn: _refreshProfile,
                         ),
                         SizedBox(height: AppSize.s16.h),
-                        NotificationsCard(),
+                        const NotificationsCard(),
                         SizedBox(height: AppSize.s16.h),
                         const LanguageSpacer(),
                         SizedBox(height: AppSize.s32.h),

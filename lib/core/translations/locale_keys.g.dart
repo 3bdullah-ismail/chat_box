@@ -1,14 +1,18 @@
+// ignore_for_file: constant_identifier_names
 
-
-abstract class  LocaleKeys {
+abstract class LocaleKeys {
   static const hello = 'hello';
   static const auth_resetPassword_title = 'auth.resetPassword.title';
-  static const auth_resetPassword_description = 'auth.resetPassword.description';
-  static const auth_resetPassword_emailAddressLabel = 'auth.resetPassword.emailAddressLabel';
+  static const auth_resetPassword_description =
+      'auth.resetPassword.description';
+  static const auth_resetPassword_emailAddressLabel =
+      'auth.resetPassword.emailAddressLabel';
   static const auth_resetPassword_emailHint = 'auth.resetPassword.emailHint';
   static const auth_resetPassword_sendingBtn = 'auth.resetPassword.sendingBtn';
-  static const auth_resetPassword_sendResetLinkBtn = 'auth.resetPassword.sendResetLinkBtn';
-  static const auth_resetPassword_rememberedPassword = 'auth.resetPassword.rememberedPassword';
+  static const auth_resetPassword_sendResetLinkBtn =
+      'auth.resetPassword.sendResetLinkBtn';
+  static const auth_resetPassword_rememberedPassword =
+      'auth.resetPassword.rememberedPassword';
   static const auth_resetPassword_signInText = 'auth.resetPassword.signInText';
   static const auth_resetPassword = 'auth.resetPassword';
   static const auth_signIn_title = 'auth.signIn.title';
@@ -23,7 +27,8 @@ abstract class  LocaleKeys {
   static const auth_signIn_orContinueWith = 'auth.signIn.orContinueWith';
   static const auth_signIn_dontHaveAccount = 'auth.signIn.dontHaveAccount';
   static const auth_signIn_signUpText = 'auth.signIn.signUpText';
-  static const auth_signIn_appleSignInComingSoon = 'auth.signIn.appleSignInComingSoon';
+  static const auth_signIn_appleSignInComingSoon =
+      'auth.signIn.appleSignInComingSoon';
   static const auth_signIn = 'auth.signIn';
   static const auth_signUp_title = 'auth.signUp.title';
   static const auth_signUp_description = 'auth.signUp.description';
@@ -35,14 +40,17 @@ abstract class  LocaleKeys {
   static const auth_signUp_emailHint = 'auth.signUp.emailHint';
   static const auth_signUp_passwordLabel = 'auth.signUp.passwordLabel';
   static const auth_signUp_passwordHint = 'auth.signUp.passwordHint';
-  static const auth_signUp_confirmPasswordLabel = 'auth.signUp.confirmPasswordLabel';
+  static const auth_signUp_confirmPasswordLabel =
+      'auth.signUp.confirmPasswordLabel';
   static const auth_signUp_signingUpBtn = 'auth.signUp.signingUpBtn';
   static const auth_signUp_signUpBtn = 'auth.signUp.signUpBtn';
   static const auth_signUp_socialIdentity = 'auth.signUp.socialIdentity';
-  static const auth_signUp_alreadyHaveAccount = 'auth.signUp.alreadyHaveAccount';
+  static const auth_signUp_alreadyHaveAccount =
+      'auth.signUp.alreadyHaveAccount';
   static const auth_signUp_signInText = 'auth.signUp.signInText';
   static const auth_signUp_termsAndPrivacy = 'auth.signUp.termsAndPrivacy';
-  static const auth_signUp_verificationEmailSent = 'auth.signUp.verificationEmailSent';
+  static const auth_signUp_verificationEmailSent =
+      'auth.signUp.verificationEmailSent';
   static const auth_signUp = 'auth.signUp';
   static const auth_social_google = 'auth.social.google';
   static const auth_social_apple = 'auth.social.apple';
@@ -67,44 +75,62 @@ abstract class  LocaleKeys {
   static const chat_chatCard = 'chat.chatCard';
   static const chat_emptyChats_title = 'chat.emptyChats.title';
   static const chat_emptyChats_description = 'chat.emptyChats.description';
-  static const chat_emptyChats_startChattingBtn = 'chat.emptyChats.startChattingBtn';
-  static const chat_emptyChats_discoverPeopleBtn = 'chat.emptyChats.discoverPeopleBtn';
+  static const chat_emptyChats_startChattingBtn =
+      'chat.emptyChats.startChattingBtn';
+  static const chat_emptyChats_discoverPeopleBtn =
+      'chat.emptyChats.discoverPeopleBtn';
   static const chat_emptyChats = 'chat.emptyChats';
   static const chat = 'chat';
   static const friends_addFriends_title = 'friends.addFriends.title';
   static const friends_addFriends_searchHint = 'friends.addFriends.searchHint';
   static const friends_addFriends_successMsg = 'friends.addFriends.successMsg';
-  static const friends_addFriends_emptyStateTitle = 'friends.addFriends.emptyStateTitle';
-  static const friends_addFriends_emptyStateDesc = 'friends.addFriends.emptyStateDesc';
+  static const friends_addFriends_emptyStateTitle =
+      'friends.addFriends.emptyStateTitle';
+  static const friends_addFriends_emptyStateDesc =
+      'friends.addFriends.emptyStateDesc';
   static const friends_addFriends = 'friends.addFriends';
   static const friends_friendRequests_title = 'friends.friendRequests.title';
-  static const friends_friendRequests_tabReceived = 'friends.friendRequests.tabReceived';
-  static const friends_friendRequests_tabSent = 'friends.friendRequests.tabSent';
-  static const friends_friendRequests_successMsg = 'friends.friendRequests.successMsg';
+  static const friends_friendRequests_tabReceived =
+      'friends.friendRequests.tabReceived';
+  static const friends_friendRequests_tabSent =
+      'friends.friendRequests.tabSent';
+  static const friends_friendRequests_successMsg =
+      'friends.friendRequests.successMsg';
   static const friends_friendRequests = 'friends.friendRequests';
   static const friends_cards_mutualFriend = 'friends.cards.mutualFriend';
   static const friends_cards_addFriendBtn = 'friends.cards.addFriendBtn';
   static const friends_cards_acceptBtn = 'friends.cards.acceptBtn';
   static const friends_cards_declineBtn = 'friends.cards.declineBtn';
-  static const friends_cards_cancelRequestBtn = 'friends.cards.cancelRequestBtn';
+  static const friends_cards_cancelRequestBtn =
+      'friends.cards.cancelRequestBtn';
   static const friends_cards = 'friends.cards';
   static const friends_emptyState_title = 'friends.emptyState.title';
   static const friends_emptyState_emptyTitle = 'friends.emptyState.emptyTitle';
   static const friends_emptyState_emptyDesc = 'friends.emptyState.emptyDesc';
-  static const friends_emptyState_addFriendsBtn = 'friends.emptyState.addFriendsBtn';
-  static const friends_emptyState_viewRequestsBtn = 'friends.emptyState.viewRequestsBtn';
+  static const friends_emptyState_addFriendsBtn =
+      'friends.emptyState.addFriendsBtn';
+  static const friends_emptyState_viewRequestsBtn =
+      'friends.emptyState.viewRequestsBtn';
   static const friends_emptyState = 'friends.emptyState';
   static const friends_mainContent_title = 'friends.mainContent.title';
-  static const friends_mainContent_searchHint = 'friends.mainContent.searchHint';
-  static const friends_mainContent_requestsSectionTitle = 'friends.mainContent.requestsSectionTitle';
-  static const friends_mainContent_viewAllBtn = 'friends.mainContent.viewAllBtn';
-  static const friends_mainContent_friendsSectionTitle = 'friends.mainContent.friendsSectionTitle';
+  static const friends_mainContent_searchHint =
+      'friends.mainContent.searchHint';
+  static const friends_mainContent_requestsSectionTitle =
+      'friends.mainContent.requestsSectionTitle';
+  static const friends_mainContent_viewAllBtn =
+      'friends.mainContent.viewAllBtn';
+  static const friends_mainContent_friendsSectionTitle =
+      'friends.mainContent.friendsSectionTitle';
   static const friends_mainContent = 'friends.mainContent';
-  static const friends_receivedRequests_emptyStateTitle = 'friends.receivedRequests.emptyStateTitle';
-  static const friends_receivedRequests_emptyStateDesc = 'friends.receivedRequests.emptyStateDesc';
+  static const friends_receivedRequests_emptyStateTitle =
+      'friends.receivedRequests.emptyStateTitle';
+  static const friends_receivedRequests_emptyStateDesc =
+      'friends.receivedRequests.emptyStateDesc';
   static const friends_receivedRequests = 'friends.receivedRequests';
-  static const friends_sentRequests_emptyStateTitle = 'friends.sentRequests.emptyStateTitle';
-  static const friends_sentRequests_emptyStateDesc = 'friends.sentRequests.emptyStateDesc';
+  static const friends_sentRequests_emptyStateTitle =
+      'friends.sentRequests.emptyStateTitle';
+  static const friends_sentRequests_emptyStateDesc =
+      'friends.sentRequests.emptyStateDesc';
   static const friends_sentRequests = 'friends.sentRequests';
   static const friends = 'friends';
   static const layout_chatsTab = 'layout.chatsTab';
@@ -121,25 +147,34 @@ abstract class  LocaleKeys {
   static const onboarding_mockChatBubbleText = 'onboarding.mockChatBubbleText';
   static const onboarding = 'onboarding';
   static const profile_editProfile_title = 'profile.editProfile.title';
-  static const profile_editProfile_fullNameLabel = 'profile.editProfile.fullNameLabel';
+  static const profile_editProfile_fullNameLabel =
+      'profile.editProfile.fullNameLabel';
   static const profile_editProfile_nameHint = 'profile.editProfile.nameHint';
-  static const profile_editProfile_nameEmptyErr = 'profile.editProfile.nameEmptyErr';
+  static const profile_editProfile_nameEmptyErr =
+      'profile.editProfile.nameEmptyErr';
   static const profile_editProfile_bioLabel = 'profile.editProfile.bioLabel';
   static const profile_editProfile_bioHint = 'profile.editProfile.bioHint';
-  static const profile_editProfile_addressLabel = 'profile.editProfile.addressLabel';
-  static const profile_editProfile_addressHint = 'profile.editProfile.addressHint';
+  static const profile_editProfile_addressLabel =
+      'profile.editProfile.addressLabel';
+  static const profile_editProfile_addressHint =
+      'profile.editProfile.addressHint';
   static const profile_editProfile_saveBtn = 'profile.editProfile.saveBtn';
   static const profile_editProfile = 'profile.editProfile';
   static const profile_profilePage_retryBtn = 'profile.profilePage.retryBtn';
-  static const profile_profilePage_signOutBtn = 'profile.profilePage.signOutBtn';
-  static const profile_profilePage_signOutConfirmationMsg = 'profile.profilePage.signOutConfirmationMsg';
+  static const profile_profilePage_signOutBtn =
+      'profile.profilePage.signOutBtn';
+  static const profile_profilePage_signOutConfirmationMsg =
+      'profile.profilePage.signOutConfirmationMsg';
   static const profile_profilePage = 'profile.profilePage';
   static const profile_notifications_title = 'profile.notifications.title';
   static const profile_notifications = 'profile.notifications';
   static const profile_personalInfo_title = 'profile.personalInfo.title';
-  static const profile_personalInfo_addressNotProvided = 'profile.personalInfo.addressNotProvided';
-  static const profile_personalInfo_joinedPrefix = 'profile.personalInfo.joinedPrefix';
-  static const profile_personalInfo_joinedRecently = 'profile.personalInfo.joinedRecently';
+  static const profile_personalInfo_addressNotProvided =
+      'profile.personalInfo.addressNotProvided';
+  static const profile_personalInfo_joinedPrefix =
+      'profile.personalInfo.joinedPrefix';
+  static const profile_personalInfo_joinedRecently =
+      'profile.personalInfo.joinedRecently';
   static const profile_personalInfo = 'profile.personalInfo';
   static const profile = 'profile';
   static const core_dialog_error = 'core.dialog.error';
@@ -152,12 +187,15 @@ abstract class  LocaleKeys {
   static const core_validation_emailEmpty = 'core.validation.emailEmpty';
   static const core_validation_emailInvalid = 'core.validation.emailInvalid';
   static const core_validation_passwordEmpty = 'core.validation.passwordEmpty';
-  static const core_validation_passwordInvalid = 'core.validation.passwordInvalid';
-  static const core_validation_confirmPasswordEmpty = 'core.validation.confirmPasswordEmpty';
-  static const core_validation_passwordsNotMatch = 'core.validation.passwordsNotMatch';
+  static const core_validation_passwordInvalid =
+      'core.validation.passwordInvalid';
+  static const core_validation_confirmPasswordEmpty =
+      'core.validation.confirmPasswordEmpty';
+  static const core_validation_passwordsNotMatch =
+      'core.validation.passwordsNotMatch';
   static const core_validation_usernameEmpty = 'core.validation.usernameEmpty';
-  static const core_validation_usernameInvalid = 'core.validation.usernameInvalid';
+  static const core_validation_usernameInvalid =
+      'core.validation.usernameInvalid';
   static const core_validation = 'core.validation';
   static const core = 'core';
-
 }

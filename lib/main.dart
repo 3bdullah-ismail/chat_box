@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:silora/core/constants/constant_manager.dart';
 import 'package:silora/core/di/injection_container.dart';
 import 'package:silora/core/translations/codegen_loader.g.dart';
 
-import 'Silora.dart';
+import 'silora.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -26,16 +24,13 @@ void main() async {
   );
   configureDependencies();
 
-  final prefs = await SharedPreferences.getInstance();
-  final seenOnboarding = prefs.getBool(AppConstants.seenOnboardingKey) ?? false;
-
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/translations',
       fallbackLocale: const Locale('en'),
       assetLoader: const CodegenLoader(),
-      child: Silora(),
+      child: const Silora(),
     ),
   );
 }
