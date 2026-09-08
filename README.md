@@ -207,7 +207,8 @@ lib/
 
 <p align="center">
   <b>English</b><br>
-  <img src="assets/screenshots/chats_en.jpeg" width="200" alt="Chats English">
+  <img src="assets/screenshots/chats_en.jpeg" width="200" alt="Chats English"> 
+  <img src="assets/screenshots/chat_empty_en.png" width="200" alt="Another Empty Chat English">
 </p>
 
 <p align="center">
@@ -222,7 +223,7 @@ lib/
   <b>English</b><br>
   <img src="assets/screenshots/chat_en.jpeg" width="200" alt="Chat English">
   <img src="assets/screenshots/empty_chat_en.jpeg" width="200" alt="Empty Chat English">
-  <img src="assets/screenshots/chat_empty_en.png" width="200" alt="Another Empty Chat English">
+ 
 </p>
 
 <p align="center">
